@@ -1,0 +1,19 @@
+{
+  "[javascript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescript]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "conventionalCommits.gitmoji": false,
+  "editor.formatOnSave": true,
+  "workbench.editor.customLabels.patterns": {
+    "**/app/**/page.tsx": "${dirname} | page.tsx",
+    "**/app/**/layout.tsx": "${dirname} | layout.tsx"
+  },
+  "editor.cursorSmoothCaretAnimation": "on",
+  "editor.smoothScrolling": true
+}
