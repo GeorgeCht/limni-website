@@ -12,7 +12,6 @@ interface LenisProviderProps extends LenisProps {
 
 export const Lenis = ({ children, ...props }: LenisProviderProps) => {
   gsap.registerPlugin(ScrollTrigger)
-
   const lenisRef = React.useRef<LenisRef>(null)
 
   React.useEffect(() => {
@@ -40,7 +39,21 @@ export const Lenis = ({ children, ...props }: LenisProviderProps) => {
     return () => {
       gsap.ticker.remove(update)
     }
-  })
+  }, [])
+
+  React.useEffect(() => {
+    const heartbeatInterval = setInterval(() => {
+      if (!lenisRef.current?.lenis?.isScrolling === true) {
+        lenisRef.current?.lenis?.destroy()
+        lenisRef.current?.lenis?.start()
+      }
+    }, 30000) // Check every 30 seconds
+
+    return () => {
+      clearInterval(heartbeatInterval)
+    }
+  }, [])
+
   return (
     <ReactLenis {...props} ref={lenisRef}>
       {children}

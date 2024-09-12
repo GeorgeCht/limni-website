@@ -6,6 +6,15 @@ const nextConfig = {
     appIsrStatus: true,
     buildActivityPosition: 'bottom-right',
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/home',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default withPayload(nextConfig)

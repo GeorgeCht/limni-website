@@ -8,10 +8,17 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'
+import { ArrowDownIcon } from '../vectors/arrow'
+import { Logo } from '../vectors/logo'
+import { ArchShape } from '../vectors/arch'
+import { MenuIcon } from '../vectors/menu'
+import { Flair } from './flair'
+import { AnimatedLink } from './underline'
 
 export function Test() {
   gsap.registerPlugin(ScrollTrigger)
   const ref = useRef<HTMLDivElement>(null)
+  const parentRef = useRef<HTMLDivElement>(null)
 
   const refTrg = useRef<HTMLDivElement>(null)
   const refElemnt = useRef<HTMLDivElement>(null)
@@ -65,6 +72,39 @@ export function Test() {
         'flex flex-col h-auto gap-4 items-center justify-center p-14 max-w-xl bg-gradient-to-tr from-slate-500 to-neutral-100'
       }
     >
+      <ArrowDownIcon className={'size-6 text-red-600'} />
+      <Logo.Root className={'size-16 text-red-600'} />
+      <Logo.Mark className={'size-39 text-red-600'} />
+      <ArchShape className={'size-6 text-red-600'} />
+      <MenuIcon className={'size-6 text-red-600'} />
+
+      <div ref={parentRef} className={'relative w-full h-screen bg-sky-400'}>
+        <Flair parent={parentRef}>Click me</Flair>
+      </div>
+
+      <div
+        className={
+          'flex flex-col items-center justify-center p-14 max-w-[140px]'
+        }
+      >
+        <Link
+          href={'/home'}
+          className={
+            'underline-hover font-canela text-5xl text-black uppercase'
+          }
+        >
+          Book your room today! <br /> Book
+          <br /> your
+          <br /> room today! Book your room today!
+        </Link>
+        <AnimatedLink href={'/home'} className={'font-canela text-5xl'}>
+          Underline on hover Underline on hover
+          <AnimatedLink href={'/home'} className={'font-canela text-5xl'}>
+            Underline on hover Underline on hover
+          </AnimatedLink>
+        </AnimatedLink>
+      </div>
+
       <p>
         Lorem ipsum, or lipsum as it is sometimes known, is dummy text used in
         laying out print, graphic or web designs. The passage is attributed to

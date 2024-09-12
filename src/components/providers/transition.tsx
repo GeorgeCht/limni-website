@@ -55,13 +55,13 @@ export const PageTransition = ({ children }: { children: React.ReactNode }) => {
       // Fade out
       gsap.to(nodeRef.current, {
         opacity: 0,
-        duration: 0.275,
+        duration: 0.485,
         onComplete: () => {
           window.scrollTo(0, 0)
           // Fade in
           gsap.to(nodeRef.current, {
             opacity: 1,
-            duration: 0.275,
+            duration: 0.485,
           })
         },
       })
