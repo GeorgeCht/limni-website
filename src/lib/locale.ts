@@ -1,6 +1,6 @@
 'use server'
 
-import { getCookie, setCookie } from "@/lib/cookies"
+import { getCookie, setCookie } from '@/lib/cookies'
 
 const COOKIE_NAME = 'locale'
 
@@ -11,7 +11,7 @@ declare type Locale = 'en' | 'el'
  * @returns {Locale} The user's locale, or the default locale if the cookie is not set.
  */
 export async function getLocale() {
-  return getCookie(COOKIE_NAME) as Locale || 'en' as Locale
+  return (getCookie(COOKIE_NAME) as Locale) || ('en' as Locale)
 }
 
 /**

@@ -1,20 +1,44 @@
+import '../globals.css'
+
+import localFont from 'next/font/local'
+
 import type React from 'react'
 import type { Metadata } from 'next'
 
-import '../globals.css'
-
+import { JetBrains_Mono } from 'next/font/google'
 import { Providers } from '@/components/providers'
+import { cn } from '@/lib/utils'
 
-export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const locale = await import('@/lib/locale').then(({ getLocale }) => getLocale())
+const canela = localFont({
+  src: '../../../public/fonts/canela.ttf',
+  variable: '--font-canela',
+  display: 'swap',
+})
+
+const jetbrains = JetBrains_Mono({
+  variable: '--font-jetbrains',
+  subsets: ['latin', 'greek'],
+  display: 'swap',
+})
+
+export default async function RootLayout({
+  children,
+}: { children: React.ReactNode }) {
+  const locale = await import('@/lib/locale').then(({ getLocale }) =>
+    getLocale(),
+  )
   return (
     <html lang={locale || 'en'} suppressHydrationWarning>
       <head>
         <link rel={'icon'} href={'/favicon.ico'} sizes={'32x32'} />
         <link rel={'icon'} href={'/favicon.svg'} type={'image/svg+xml'} />
       </head>
-      <body>
-        <Providers.PageTransition>{children}</Providers.PageTransition>
+      <body
+        className={cn(canela.variable, jetbrains.variable, 'font-jetbrains')}
+      >
+        <Providers.PageTransition>
+          <Providers.Lenis root>{children}</Providers.Lenis>
+        </Providers.PageTransition>
       </body>
     </html>
   )

@@ -25,9 +25,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  globals: [
-    TextGlobals
-  ],
+  globals: [TextGlobals],
   collections: [Users, Media, Content],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

@@ -1,6 +1,7 @@
 'use client'
 
 import type React from 'react'
+import gsap from 'gsap'
 
 import { useEffect, useReducer, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
@@ -12,10 +13,19 @@ export const PageTransition = ({ children }: { children: React.ReactNode }) => {
 
   // this is used to force a re-render when the hash changes to avoid race conditions
   // by ensuring the DOM is updated before we running `getElementById` and `scrollIntoView`
-  const [transitionTicker, dispatchTransitionTicker] = useReducer((state: number) => state + 1, 0)
+  const [transitionTicker, dispatchTransitionTicker] = useReducer(
+    (state: number) => state + 1,
+    0,
+  )
 
   const [hash, setHash] = useState<string>(() => {
-    if (!(typeof window !== 'undefined' && window.document && window.document.createElement))
+    if (
+      !(
+        typeof window !== 'undefined' &&
+        window.document &&
+        window.document.createElement
+      )
+    )
       return ''
     return window.location.hash
   })
@@ -42,7 +52,19 @@ export const PageTransition = ({ children }: { children: React.ReactNode }) => {
   // biome-ignore lint/correctness/useExhaustiveDependencies:
   useEffect(() => {
     if (hasInitialized.current) {
-      window.scrollTo(0, 0)
+      // Fade out
+      gsap.to(nodeRef.current, {
+        opacity: 0,
+        duration: 0.275,
+        onComplete: () => {
+          window.scrollTo(0, 0)
+          // Fade in
+          gsap.to(nodeRef.current, {
+            opacity: 1,
+            duration: 0.275,
+          })
+        },
+      })
     }
     hasInitialized.current = true
   }, [pathname, hasInitialized])
@@ -51,5 +73,9 @@ export const PageTransition = ({ children }: { children: React.ReactNode }) => {
     if (hash) dispatchTransitionTicker()
   }, [hash])
 
-  return <div ref={nodeRef}>{children}</div>
+  return (
+    <div role={'main'} ref={nodeRef}>
+      {children}
+    </div>
+  )
 }

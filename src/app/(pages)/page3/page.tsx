@@ -15,9 +15,7 @@ export default async function MyPage() {
 
   return (
     <div>
-      <h1 className={'text-3xl font-canela'}>
-        Header global: δοκιμή: {textContents['main-header']}
-      </h1>
+      <h1 className={'text-3xl font-canela'}>Header global: This is page3</h1>
       <h1>Header global</h1>
       <p>MyPage contet</p>
       <Test />

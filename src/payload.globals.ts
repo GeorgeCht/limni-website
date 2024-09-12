@@ -7,7 +7,7 @@ export const TextGlobals: GlobalConfig = {
       name: 'main-header',
       type: 'text',
       localized: true,
-      required: true
+      required: true,
     },
   ],
 }

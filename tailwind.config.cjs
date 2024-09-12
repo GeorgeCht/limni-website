@@ -2,7 +2,12 @@
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        canela: ['var(--font-canela)', 'Times', 'serif'],
+        jetbrains: ['var(--font-jetbrains)', 'JetBrains Mono', 'monospace'],
+      }
+    },
   },
   plugins: [],
 }
