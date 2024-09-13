@@ -1,10 +1,11 @@
 'use server'
 
 import { getCookie, setCookie } from '@/lib/cookies'
+import { revalidatePath } from 'next/cache'
 
 const COOKIE_NAME = 'locale'
 
-declare type Locale = 'en' | 'el'
+export type Locale = 'en' | 'el'
 
 /**
  * Get the user's locale from the `locale` cookie.
@@ -21,4 +22,5 @@ export async function getLocale() {
  */
 export async function setLocale(locale: Locale) {
   setCookie(COOKIE_NAME, locale)
+  revalidatePath('/page2')
 }

@@ -3,14 +3,17 @@ import config from '@payload-config'
 
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import { Test } from '@/components/ui/test'
+import { getLocale } from '@/lib/locale'
 
-export const dynamic = 'force-static'
+// export const dynamic = 'force-static'
 
 export default async function MyPage() {
   const payload = await getPayloadHMR({ config })
+  const locale = await getLocale()
   const textContents = await payload.findGlobal({
     slug: 'text-contents',
     depth: 2,
+    locale,
   })
 
   return (

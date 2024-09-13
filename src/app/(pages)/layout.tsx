@@ -8,6 +8,8 @@ import type { Metadata } from 'next'
 import { JetBrains_Mono } from 'next/font/google'
 import { Providers } from '@/components/providers'
 import { cn } from '@/lib/utils'
+import { Header } from '@/components/header'
+import { LocaleSwitch } from '@/components/locale/switch'
 
 const canela = localFont({
   src: '../../../public/fonts/canela.ttf',
@@ -34,8 +36,15 @@ export default async function PageLayout({
         <link rel={'icon'} href={'/favicon.svg'} type={'image/svg+xml'} />
       </head>
       <body
-        className={cn(canela.variable, jetbrains.variable, 'font-jetbrains')}
+        className={cn(
+          canela.variable,
+          jetbrains.variable,
+          'font-jetbrains text-black',
+        )}
       >
+        <Header.Root>
+          <LocaleSwitch />
+        </Header.Root>
         <Providers.PageTransition>
           <Providers.Lenis root>{children}</Providers.Lenis>
         </Providers.PageTransition>
