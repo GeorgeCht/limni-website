@@ -16,7 +16,6 @@ import { Flair } from './flair'
 import { AnimatedLink } from './underline'
 
 export function Test() {
-  gsap.registerPlugin(ScrollTrigger)
   const ref = useRef<HTMLDivElement>(null)
   const parentRef = useRef<HTMLDivElement>(null)
 
@@ -87,21 +86,8 @@ export function Test() {
           'flex flex-col items-center justify-center p-14 max-w-[140px]'
         }
       >
-        <Link
-          href={'/home'}
-          className={
-            'underline-hover font-canela text-5xl text-black uppercase'
-          }
-        >
-          Book your room today! <br /> Book
-          <br /> your
-          <br /> room today! Book your room today!
-        </Link>
-        <AnimatedLink href={'/home'} className={'font-canela text-5xl'}>
-          Underline on hover Underline on hover
-          <AnimatedLink href={'/home'} className={'font-canela text-5xl'}>
-            Underline on hover Underline on hover
-          </AnimatedLink>
+        <AnimatedLink className={'text-9xl leading-none'} href={'/home'}>
+          Book your room today!
         </AnimatedLink>
       </div>
 

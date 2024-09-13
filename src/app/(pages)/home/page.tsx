@@ -6,7 +6,7 @@ import { Test } from '@/components/ui/test'
 
 export const dynamic = 'force-static'
 
-export default async function MyPage() {
+export default async function HomePage() {
   const payload = await getPayloadHMR({ config })
   const textContents = await payload.findGlobal({
     slug: 'text-contents',
@@ -15,9 +15,7 @@ export default async function MyPage() {
 
   return (
     <div>
-      <h1 className={'text-3xl font-canela'}>
-        Header global: δοκιμή: {textContents['main-header']}
-      </h1>
+      <h1 className={'text-3xl font-canela'}>HOME</h1>
       <h1>Header global</h1>
       <p>MyPage contet</p>
       <Test />

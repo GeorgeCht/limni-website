@@ -21,7 +21,7 @@ const jetbrains = JetBrains_Mono({
   display: 'swap',
 })
 
-export default async function RootLayout({
+export default async function PageLayout({
   children,
 }: { children: React.ReactNode }) {
   const locale = await import('@/lib/locale').then(({ getLocale }) =>
