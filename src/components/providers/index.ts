@@ -1,7 +1,7 @@
-import { PageTransition } from './transition'
+import { RootProvider } from './root'
 
 const Providers = {
-  PageTransition,
+  Root: RootProvider,
 }
 
 export { Providers }

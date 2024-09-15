@@ -4,19 +4,22 @@ import gsap from 'gsap'
 
 import { useCallback, useRef } from 'react'
 import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import { useInView } from 'react-intersection-observer'
-import Link from 'next/link'
 import { ArrowDownIcon } from '../vectors/arrow'
 import { Logo } from '../vectors/logo'
 import { ArchShape } from '../vectors/arch'
 import { MenuIcon } from '../vectors/menu'
 import { Flair } from './flair'
 import { AnimatedLink } from './underline'
+import { Link } from 'next-view-transitions'
 
 export function Test() {
   const ref = useRef<HTMLDivElement>(null)
   const parentRef = useRef<HTMLDivElement>(null)
+
+  gsap.registerPlugin(ScrollTrigger)
 
   const refTrg = useRef<HTMLDivElement>(null)
   const refElemnt = useRef<HTMLDivElement>(null)
@@ -168,14 +171,14 @@ export function Test() {
       <Link
         className={'bg-yellow-400 p-3 rounded-full'}
         href={'/page2'}
-        scroll={false}
+        // scroll={false}
       >
         Go to Page2
       </Link>
       <Link
         className={'bg-yellow-400 p-3 rounded-full'}
         href={'/page3'}
-        scroll={false}
+        // scroll={false}
       >
         Go to Page3
       </Link>

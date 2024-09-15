@@ -1,11 +1,11 @@
 'use client'
 
-import Link from 'next/link'
 import type React from 'react'
 
 import { Logo } from '../vectors/logo'
 import { MenuIcon } from '../vectors/menu'
 import { Button } from '../ui/button'
+import { Link } from 'next-view-transitions'
 
 export const HeaderRoot = ({
   children,

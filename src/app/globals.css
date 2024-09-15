@@ -6,4 +6,34 @@
   html {
     @apply box-border;
   }
+
+  /**
+   * Prevent the page to scroll when the user is interacting with the UI.
+   */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+  .lenis.lenis-smooth iframe {
+    pointer-events: none;
+  }
+
+  /* Only necessary with horizontal scrolling */
+  html[data-scroll-orientation="horizontal"] {
+    body {
+      width: fit-content;
+    }
+    [data-scroll-container] {
+      display: flex;
+    }
+  }
 }

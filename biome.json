@@ -12,7 +12,8 @@
         "useKeyWithClickEvents": "off"
       },
       "correctness": {
-        "noUnusedVariables": "warn"
+        "noUnusedVariables": "warn",
+        "useExhaustiveDependencies": "off"
       },
       "complexity": {
         "useArrowFunction": "off",
