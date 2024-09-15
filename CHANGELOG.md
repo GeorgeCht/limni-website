@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.3.0](https://github.com/GeorgeCht/limni-website/compare/v1.2.1...v1.3.0) (2024-09-15)
+
+
+### Features
+
+* **scrolling, transitions:** implemented view transitions, added locomotive scrolling ([5d73bc0](https://github.com/GeorgeCht/limni-website/commit/5d73bc03b77f707aeabaec8b3693c9ac200d9727))
+
 ## [1.2.1](https://github.com/GeorgeCht/limni-website/compare/v1.2.0...v1.2.1) (2024-09-15)
 
 
