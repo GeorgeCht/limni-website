@@ -4,7 +4,6 @@ import gsap from 'gsap'
 
 import { useCallback, useRef } from 'react'
 import { useGSAP } from '@gsap/react'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import { useInView } from 'react-intersection-observer'
 import Link from 'next/link'

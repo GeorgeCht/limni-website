@@ -7,6 +7,10 @@ const COOKIE_NAME = 'locale'
 
 export type Locale = 'en' | 'el'
 
+export type LocalizedString = {
+  [locale in Locale]: string | undefined
+}
+
 /**
  * Get the user's locale from the `locale` cookie.
  * @returns {Locale} The user's locale, or the default locale if the cookie is not set.

@@ -45,9 +45,7 @@ export default async function PageLayout({
         <Header.Root>
           <LocaleSwitch />
         </Header.Root>
-        <Providers.PageTransition>
-          <Providers.Lenis root>{children}</Providers.Lenis>
-        </Providers.PageTransition>
+        <Providers.PageTransition>{children}</Providers.PageTransition>
       </body>
     </html>
   )

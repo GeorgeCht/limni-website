@@ -141,7 +141,7 @@ export interface PayloadMigration {
  */
 export interface TextContent {
   id: string;
-  'main-header': string;
+  mainHeader: string;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

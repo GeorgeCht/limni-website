@@ -26,7 +26,6 @@
     "@payloadcms/richtext-lexical": "beta",
     "cross-env": "^7.0.3",
     "graphql": "^16.8.1",
-    "lenis": "^1.1.13",
     "next": "15.0.0-canary.104",
     "payload": "beta",
     "react": "19.0.0-rc-06d0b89e-20240801",

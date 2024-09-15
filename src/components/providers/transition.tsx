@@ -3,6 +3,7 @@
 import type React from 'react'
 import gsap from 'gsap'
 
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useEffect, useReducer, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
@@ -10,6 +11,8 @@ export const PageTransition = ({ children }: { children: React.ReactNode }) => {
   const nodeRef = useRef(null)
   const pathname = usePathname()
   const hasInitialized = useRef(false)
+
+  gsap.registerPlugin(ScrollTrigger)
 
   // this is used to force a re-render when the hash changes to avoid race conditions
   // by ensuring the DOM is updated before we running `getElementById` and `scrollIntoView`

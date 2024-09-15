@@ -4,7 +4,7 @@ export const TextGlobals: GlobalConfig = {
   slug: 'text-contents',
   fields: [
     {
-      name: 'main-header',
+      name: 'mainHeader',
       type: 'text',
       localized: true,
       required: true,
