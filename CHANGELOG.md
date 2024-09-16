@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.3.1](https://github.com/GeorgeCht/limni-website/compare/v1.3.0...v1.3.1) (2024-09-16)
+
+
+### Bug Fixes
+
+* **locale:** locale is now handled via a client-side zustand store ([bd72525](https://github.com/GeorgeCht/limni-website/commit/bd725258da961423f8c1e9a45d9bf7f61e32f3f6))
+
 ## [1.3.0](https://github.com/GeorgeCht/limni-website/compare/v1.2.1...v1.3.0) (2024-09-15)
 
 
