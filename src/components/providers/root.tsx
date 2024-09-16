@@ -1,21 +1,15 @@
 'use client'
 
-import React from 'react'
-import LocomotiveScroll from 'locomotive-scroll'
+import type React from 'react'
 
-import { gsap } from 'gsap/all'
+import { useLocale } from '@/stores/locale'
 
 export const RootProvider = ({ children }: { children: React.ReactNode }) => {
-  if (typeof window !== 'undefined') {
-    const _ = new LocomotiveScroll({
-      initCustomTicker: (render) => {
-        gsap.ticker.add(render)
-      },
-      destroyCustomTicker: (render) => {
-        gsap.ticker.remove(render)
-      },
-    })
-  }
+  const { locale } = useLocale()
 
-  return <React.Fragment>{children}</React.Fragment>
+  return (
+    <html lang={locale} suppressHydrationWarning>
+      {children}
+    </html>
+  )
 }

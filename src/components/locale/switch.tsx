@@ -16,8 +16,8 @@ export const LocaleSwitch = () => {
           type={'button'}
           onClick={() => setLocale(l as unknown as Locale)}
           className={cn(
-            'flex items-center justify-center rounded-full size-10 border transition-all',
-            l === locale ? 'border-black' : 'border-transparent',
+            'flex items-center justify-center rounded-full size-10 border transition-all delay-[255ms]',
+            l === locale ? 'border-[currentColor]' : 'border-transparent',
           )}
         >
           {l === 'el' ? 'ΕΛ' : 'EN'}

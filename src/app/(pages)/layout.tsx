@@ -33,7 +33,7 @@ export default function PageLayout({
      * @see: https://next-view-transitions.vercel.app/
      */
     <ViewTransitions>
-      <html lang={'en'} suppressHydrationWarning>
+      <Providers.Root>
         <head>
           <link rel={'icon'} href={'/favicon.ico'} sizes={'32x32'} />
           <link rel={'icon'} href={'/favicon.svg'} type={'image/svg+xml'} />
@@ -48,9 +48,9 @@ export default function PageLayout({
           <Header.Root>
             <LocaleSwitch />
           </Header.Root>
-          <Providers.Root>{children}</Providers.Root>
+          <Providers.Scroll>{children}</Providers.Scroll>
         </body>
-      </html>
+      </Providers.Root>
     </ViewTransitions>
   )
 }
