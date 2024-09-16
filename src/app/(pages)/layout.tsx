@@ -24,19 +24,16 @@ const jetbrains = JetBrains_Mono({
   display: 'swap',
 })
 
-export default async function PageLayout({
+export default function PageLayout({
   children,
 }: { children: React.ReactNode }) {
-  const locale = await import('@/lib/locale').then(({ getLocale }) =>
-    getLocale(),
-  )
   return (
     /**
      * @see: https://github.com/shuding/next-view-transitions
      * @see: https://next-view-transitions.vercel.app/
      */
     <ViewTransitions>
-      <html lang={locale || 'en'} suppressHydrationWarning>
+      <html lang={'en'} suppressHydrationWarning>
         <head>
           <link rel={'icon'} href={'/favicon.ico'} sizes={'32x32'} />
           <link rel={'icon'} href={'/favicon.svg'} type={'image/svg+xml'} />
