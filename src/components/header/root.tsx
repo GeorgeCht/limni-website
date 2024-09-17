@@ -9,17 +9,22 @@ import { Link } from 'next-view-transitions'
 import { HeaderFlyout } from './flyout'
 import { cn } from '@/lib/utils'
 import { HoverFlip } from '../ui/hoverflip'
+import { HeaderCTA } from './cta'
 
 export const HeaderRoot = ({
   children,
   ...props
 }: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) => {
-  const [isOpen, setIsOpen] = React.useState(false)
+  const ref = React.useRef<HTMLElement>(null)
+  const [ctaIsOpen, setCtaIsOpen] = React.useState(false)
+  const [flyoutIsOpen, setFlyoutIsOpen] = React.useState(false)
 
   return (
     <React.Fragment>
-      <HeaderFlyout isOpen={isOpen} setIsOpen={setIsOpen} />
+      <HeaderFlyout isOpen={flyoutIsOpen} setIsOpen={setFlyoutIsOpen} />
+      <HeaderCTA isOpen={ctaIsOpen} setIsOpen={setCtaIsOpen} headerRef={ref} />
       <header
+        ref={ref}
         className={
           'sticky top-0 z-[9999] flex w-full justify-between items-center py-8 md:py-14 px-10 md:px-20 transition-all'
         }
@@ -28,19 +33,22 @@ export const HeaderRoot = ({
         <div
           className={cn(
             'basis-1/3 max-[460px]:basis-1/2 flex items-center gap-5',
-            isOpen ? 'text-white' : 'text-black',
+            flyoutIsOpen || ctaIsOpen ? 'text-white' : 'text-black',
           )}
         >
           <div
             role={'button'}
             className={'flex items-center gap-4'}
-            onClick={() => setIsOpen((state) => !state)}
+            onClick={() => {
+              setFlyoutIsOpen((state) => !state)
+              setCtaIsOpen(false)
+            }}
           >
             <MenuIcon className={'transition-all delay-[255ms]'} />
             <HoverFlip.Root
               className={'uppercase transition-all delay-[255ms] min-w-14'}
             >
-              {isOpen ? 'Close' : 'Menu'}
+              {flyoutIsOpen ? 'Close' : 'Menu'}
             </HoverFlip.Root>
           </div>
           {children}
@@ -48,7 +56,7 @@ export const HeaderRoot = ({
         <div
           className={cn(
             'basis-1/3 flex items-center justify-center max-[360px]:hidden',
-            isOpen ? 'text-white' : 'text-black',
+            flyoutIsOpen || ctaIsOpen ? 'text-white' : 'text-black',
           )}
         >
           <Link href={'/'} className={'w-fit inline-block'}>
@@ -65,7 +73,7 @@ export const HeaderRoot = ({
         <div
           className={cn(
             'basis-1/3 max-[460px]:basis-1/2 flex justify-end items-center gap-5',
-            isOpen ? 'text-white' : 'text-black',
+            flyoutIsOpen || ctaIsOpen ? 'text-white' : 'text-black',
           )}
         >
           <HoverFlip.Link
@@ -75,9 +83,10 @@ export const HeaderRoot = ({
             +30 69444 34 3343
           </HoverFlip.Link>
           <Button
+            onClick={() => setCtaIsOpen((state) => !state)}
             className={cn(
-              'max-md:hidden transition-all border delay-[255ms]',
-              isOpen
+              'max-md:hidden border transition-all delay-[255ms]',
+              flyoutIsOpen || ctaIsOpen
                 ? 'text-white bg-transparent border-white'
                 : 'bg-black text-white border-transparent',
             )}
@@ -85,9 +94,13 @@ export const HeaderRoot = ({
             Book your room
           </Button>
           <Button
-            className={
-              'md:hidden max-[474px]:text-sm transition-all delay-[255ms]'
-            }
+            onClick={() => setCtaIsOpen((state) => !state)}
+            className={cn(
+              'md:hidden max-[474px]:text-sm border transition-all delay-[255ms]',
+              flyoutIsOpen || ctaIsOpen
+                ? 'text-white bg-transparent border-white'
+                : 'bg-black text-white border-transparent',
+            )}
           >
             Book now
           </Button>

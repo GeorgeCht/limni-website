@@ -7,7 +7,6 @@ import { cn } from '@/lib/utils'
 import { useGSAP } from '@gsap/react'
 import { useScroller } from '@/components/providers/scroll'
 import { UnderlinedLinkWithImage } from '@/components/ui/underline'
-import { Link } from 'next-view-transitions'
 import { HoverFlip } from '../ui/hoverflip'
 
 interface Props
@@ -20,7 +19,6 @@ interface Props
 }
 
 export const HeaderFlyout = ({
-  children,
   isOpen,
   setIsOpen,
   className,
