@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.4.0](https://github.com/GeorgeCht/limni-website/compare/v1.3.1...v1.4.0) (2024-09-17)
+
+
+### Features
+
+* **flyout + more:** finished menu flyout, added hoverflip effect ([32654e1](https://github.com/GeorgeCht/limni-website/commit/32654e133212511541666e97192f4c9d55fc2a8b))
+* **flyout:** added first implementation for menu flyout ([af70628](https://github.com/GeorgeCht/limni-website/commit/af70628cc661053e0c182699d6b7b60377440c9e))
+
 ## [1.3.1](https://github.com/GeorgeCht/limni-website/compare/v1.3.0...v1.3.1) (2024-09-16)
 
 
