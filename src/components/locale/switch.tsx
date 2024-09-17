@@ -5,6 +5,7 @@ import React from 'react'
 import type { Locale } from '@/lib/locale'
 import { useLocale } from '@/stores/locale'
 import { cn } from '@/lib/utils'
+import { HoverFlip } from '../ui/hoverflip'
 
 export const LocaleSwitch = () => {
   const { locale, setLocale } = useLocale()
@@ -20,7 +21,7 @@ export const LocaleSwitch = () => {
             l === locale ? 'border-[currentColor]' : 'border-transparent',
           )}
         >
-          {l === 'el' ? 'ΕΛ' : 'EN'}
+          <HoverFlip.Root>{l === 'el' ? 'ΕΛ' : 'EN'}</HoverFlip.Root>
         </button>
       ))}
     </div>

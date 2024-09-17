@@ -45,10 +45,12 @@ export default function PageLayout({
             'font-jetbrains text-black',
           )}
         >
-          <Header.Root>
-            <LocaleSwitch />
-          </Header.Root>
-          <Providers.Scroll>{children}</Providers.Scroll>
+          <Providers.Scroll>
+            <Header.Root>
+              <LocaleSwitch />
+            </Header.Root>
+            {children}
+          </Providers.Scroll>
         </body>
       </Providers.Root>
     </ViewTransitions>

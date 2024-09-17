@@ -54,4 +54,38 @@
   body::-webkit-scrollbar {
     display: none;
   }
+
+  /*
+   * HoverFlip effect
+   */
+  .linkflip > span {
+    display: inline-block;
+    position: relative;
+    line-height: normal;
+    z-index: 1;
+    transition: -webkit-transform 1.175s cubic-bezier(0.15, 1, 0.15, 1);
+    transition: transform 1.175s cubic-bezier(0.15, 1, 0.15, 1);
+  }
+
+  .linkflip > span::after {
+    content: attr(data-text);
+    display: block;
+    position: absolute;
+  }
+
+  .linkflip > span::after {
+    top: 100%;
+    transform: skewY(4deg);
+    transform-origin: left top;
+    transition: -webkit-transform 2s cubic-bezier(0.19, 1, 0.22, 1);
+    transition: transform 2s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+
+  .linkflip:hover > span {
+    transform: translateY(-100%);
+  }
+
+  .linkflip:hover > span::after {
+    transform: skewY(0);
+  }
 }

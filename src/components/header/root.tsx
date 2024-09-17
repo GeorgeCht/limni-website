@@ -8,6 +8,7 @@ import { Button } from '../ui/button'
 import { Link } from 'next-view-transitions'
 import { HeaderFlyout } from './flyout'
 import { cn } from '@/lib/utils'
+import { HoverFlip } from '../ui/hoverflip'
 
 export const HeaderRoot = ({
   children,
@@ -36,9 +37,11 @@ export const HeaderRoot = ({
             onClick={() => setIsOpen((state) => !state)}
           >
             <MenuIcon className={'transition-all delay-[255ms]'} />
-            <span className={'uppercase transition-all delay-[255ms] min-w-14'}>
+            <HoverFlip.Root
+              className={'uppercase transition-all delay-[255ms] min-w-14'}
+            >
               {isOpen ? 'Close' : 'Menu'}
-            </span>
+            </HoverFlip.Root>
           </div>
           {children}
         </div>
@@ -65,12 +68,12 @@ export const HeaderRoot = ({
             isOpen ? 'text-white' : 'text-black',
           )}
         >
-          <Link
+          <HoverFlip.Link
             className={'max-xl:hidden transition-all delay-[255ms]'}
             href={'tel:0030694443433'}
           >
             +30 69444 34 3343
-          </Link>
+          </HoverFlip.Link>
           <Button
             className={cn(
               'max-md:hidden transition-all border delay-[255ms]',

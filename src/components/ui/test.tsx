@@ -12,7 +12,7 @@ import { Logo } from '../vectors/logo'
 import { ArchShape } from '../vectors/arch'
 import { MenuIcon } from '../vectors/menu'
 import { Flair } from './flair'
-import { AnimatedLink } from './underline'
+import { UnderlinedLink } from './underline'
 import { Link } from 'next-view-transitions'
 
 export function Test() {
@@ -88,9 +88,9 @@ export function Test() {
           'flex flex-col items-center justify-center p-14 max-w-[140px]'
         }
       >
-        <AnimatedLink className={'text-9xl leading-none'} href={'/home'}>
+        <UnderlinedLink className={'text-9xl leading-none'} href={'/home'}>
           Book your room today!
-        </AnimatedLink>
+        </UnderlinedLink>
       </div>
 
       <p>
