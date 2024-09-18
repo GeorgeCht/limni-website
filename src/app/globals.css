@@ -7,6 +7,10 @@
     @apply box-border;
   }
 
+  body {
+    @apply bg-[#E7E0D5];
+  }
+
   /*
    * Smooth scroll essentials
    */
@@ -25,18 +29,6 @@
   }
   .lenis.lenis-smooth iframe {
     pointer-events: none;
-  }
-
-  /* 
-   * Only necessary with horizontal scrolling 
-   */
-  html[data-scroll-orientation="horizontal"] {
-    body {
-      width: fit-content;
-    }
-    [data-scroll-container] {
-      display: flex;
-    }
   }
 
   /* 

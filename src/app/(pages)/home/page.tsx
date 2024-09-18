@@ -3,6 +3,7 @@ import config from '@payload-config'
 
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import { Test } from '@/components/ui/test'
+import { HeroSection } from '@/components/sections/hero'
 
 export const dynamic = 'force-static'
 
@@ -15,9 +16,7 @@ export default async function HomePage() {
 
   return (
     <div>
-      <h1 className={'text-3xl font-canela'}>HOME</h1>
-      <h1>Header global</h1>
-      <p>MyPage contet</p>
+      <HeroSection />
       <Test />
     </div>
   )
