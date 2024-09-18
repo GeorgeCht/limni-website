@@ -2,16 +2,20 @@
 
 import type React from 'react'
 
-import { Logo } from '../vectors/logo'
 import { Link } from 'next-view-transitions'
-import { HoverFlip } from '../ui/hoverflip'
-import { Button } from '../ui/button'
-import { ArrowUpIcon } from '../vectors/arrow'
 import { FooterNewsletter } from './newsletter'
+
+import { Logo } from '@/components/vectors/logo'
+import { HoverFlip } from '@/components/ui/hoverflip'
+import { Button } from '@/components/ui/button'
+import { ArrowUpIcon } from '@/components/vectors/arrow'
+import { useScroller } from '@/components/providers/scroll'
 
 export const FooterRoot = ({
   ...props
 }: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) => {
+  const scroller = useScroller()
+
   const PageLinks = [
     {
       label: 'Find a room',
@@ -128,7 +132,7 @@ export const FooterRoot = ({
               className={
                 'w-fit text-[15px] text-[#C7B09C] bg-transparent border border-[#C7B09C]/75'
               }
-              onClick={() => window.scrollTo(0, 0)}
+              onClick={() => scroller?.scrollTo(0)}
             >
               <span className={'max-[1380px]:hidden'}>Back to top</span>
               <ArrowUpIcon className={'size-3.5'} />
