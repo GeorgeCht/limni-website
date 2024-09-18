@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.5.0](https://github.com/GeorgeCht/limni-website/compare/v1.4.0...v1.5.0) (2024-09-18)
+
+
+### Features
+
+* **footer:** implemented main footer layout ([e6bb7bb](https://github.com/GeorgeCht/limni-website/commit/e6bb7bb037a13f0368b8adfd783d70b93ce05b4b))
+
 ## [1.4.0](https://github.com/GeorgeCht/limni-website/compare/v1.3.1...v1.4.0) (2024-09-17)
 
 
