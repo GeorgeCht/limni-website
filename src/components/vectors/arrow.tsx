@@ -20,3 +20,64 @@ export const ArrowDownIcon = ({ ...props }: React.SVGProps<SVGSVGElement>) => {
     </svg>
   )
 }
+
+export const ArrowUpIcon = ({ ...props }: React.SVGProps<SVGSVGElement>) => {
+  return (
+    <svg
+      width={'18'}
+      height={'16'}
+      viewBox={'0 0 18 16'}
+      fill={'none'}
+      {...props}
+    >
+      <path
+        d={
+          'M8.96073 0.113369L9.90595 1.05859L1.6171 9.34745L0.671875 8.40223L8.96073 0.113369Z'
+        }
+        fill={'currentColor'}
+      />
+      <path
+        d={
+          'M8.01345 1.0585L8.95867 0.113281L17.2475 8.40214L16.3023 9.34736L8.01345 1.0585Z'
+        }
+        fill={'currentColor'}
+      />
+      <path
+        d={
+          'M8.1451 0.929002L9.48184 0.929002L9.48185 15.8367H8.1451L8.1451 0.929002Z'
+        }
+        fill={'currentColor'}
+      />
+    </svg>
+  )
+}
+
+export const ArrowOutbound = ({ ...props }: React.SVGProps<SVGSVGElement>) => {
+  return (
+    <svg
+      width={'12'}
+      height={'12'}
+      viewBox={'0 0 12 12'}
+      fill={'none'}
+      xmlns={'http://www.w3.org/2000/svg'}
+      {...props}
+    >
+      <path
+        d={
+          'M11.7222 0.00146782V1.33821H0L4.18368e-09 0.00146779L11.7222 0.00146782Z'
+        }
+        fill={'currentColor'}
+      />
+      <path
+        d={'M10.3824 0L11.7191 4.18277e-09V11.7222H10.3824V0Z'}
+        fill={'currentColor'}
+      />
+      <path
+        d={
+          'M10.5699 0.00146486L11.5151 0.946686L0.973762 11.488L0.0285409 10.5428L10.5699 0.00146486Z'
+        }
+        fill={'currentColor'}
+      />
+    </svg>
+  )
+}

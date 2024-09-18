@@ -11,6 +11,7 @@ import { cn } from '@/lib/utils'
 import { Header } from '@/components/header'
 import { LocaleSwitch } from '@/components/locale/switch'
 import { ViewTransitions } from 'next-view-transitions'
+import { Footer } from '@/components/footer'
 
 const canela = localFont({
   src: '../../../public/fonts/canela.ttf',
@@ -50,6 +51,7 @@ export default function PageLayout({
               <LocaleSwitch />
             </Header.Root>
             {children}
+            <Footer.Root />
           </Providers.Scroll>
         </body>
       </Providers.Root>

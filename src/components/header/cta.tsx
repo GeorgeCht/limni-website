@@ -3,22 +3,55 @@
 import React from 'react'
 import gsap from 'gsap'
 
-import { Link } from 'next-view-transitions'
 import { useGSAP } from '@gsap/react'
 
 import { cn } from '@/lib/utils'
 import { useScroller } from '@/components/providers/scroll'
-import { UnderlinedLinkWithImage } from '@/components/ui/underline'
-import { HoverFlip } from '@/components/ui/hoverflip'
+import { useRouter } from 'next/navigation'
 
-const ActionCard = ({ children }: { children: React.ReactNode }) => {
+interface ActionCardProps
+  extends Omit<
+    React.DetailedHTMLProps<
+      React.HTMLAttributes<HTMLDivElement>,
+      HTMLDivElement
+    >,
+    'children'
+  > {
+  title: string
+  cta: string
+}
+
+const ActionCard = ({ title, cta, className, ...props }: ActionCardProps) => {
   return (
     <div
-      className={
-        'relative w-1/2 max-lg:w-full min-h-72 flex justify-start bg-black/25'
-      }
+      className={cn(
+        'group relative w-1/2 max-lg:w-full min-h-64 overflow-hidden cursor-pointer bg-black/15',
+        className,
+      )}
+      {...props}
     >
-      {children}
+      <img
+        src={'/assets/placeholder.avif'}
+        alt={'card'}
+        className={
+          'absolute w-full h-full object-cover opacity-65 z-0 transition-transform duration-500 group-hover:scale-105'
+        }
+      />
+      <div
+        role={'contentinfo'}
+        className={
+          'w-full h-full p-8 md:p-10 *:z-10 flex flex-col gap-4 justify-end items-start'
+        }
+      >
+        <h2
+          className={
+            'font-canela text-white text-4xl md:text-5xl lg:text-6xl leading-none w-fit'
+          }
+        >
+          {title}
+        </h2>
+        <p className={'uppercase text-white w-fit'}>{cta}</p>
+      </div>
     </div>
   )
 }
@@ -41,6 +74,9 @@ export const HeaderCTA = ({
   ...props
 }: Props) => {
   const ref = React.useRef<HTMLDivElement>(null)
+  const card1 = React.useRef<HTMLDivElement>(null)
+  const card2 = React.useRef<HTMLDivElement>(null)
+  const router = useRouter()
 
   useGSAP(() => {
     if (isOpen) {
@@ -51,6 +87,28 @@ export const HeaderCTA = ({
           yPercent: 0,
           height: 'fit-content',
           duration: 0.985,
+          ease: 'circ.inOut',
+        },
+      )
+      gsap.fromTo(
+        card1.current,
+        { y: -75, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.875,
+          delay: 0.175,
+          ease: 'circ.inOut',
+        },
+      )
+      gsap.fromTo(
+        card2.current,
+        { y: -75, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.875,
+          delay: 0.275,
           ease: 'circ.inOut',
         },
       )
@@ -125,15 +183,21 @@ export const HeaderCTA = ({
     >
       <div
         className={
-          'flex max-md:flex-col gap-9 size-full pt-40 pb-10 md:pb-20 px-10 md:px-20 transition-all'
+          'flex max-md:flex-col gap-9 size-full pt-28 md:pt-40 pb-10 md:pb-20 px-10 md:px-20 transition-all'
         }
       >
-        <ActionCard>
-          <h2 className={'font-canela text-white text-6xl'}>Find your room</h2>
-        </ActionCard>
-        <ActionCard>
-          <h2 className={'font-canela text-white text-6xl'}>Fast booking</h2>
-        </ActionCard>
+        <ActionCard
+          ref={card1}
+          title={'Find your room'}
+          cta={'View all rooms'}
+          onClick={() => router.push('/rooms')}
+        />
+        <ActionCard
+          ref={card2}
+          title={'Fast booking'}
+          cta={'Book an appartment'}
+          onClick={() => router.push('/rooms')}
+        />
       </div>
     </div>
   )
