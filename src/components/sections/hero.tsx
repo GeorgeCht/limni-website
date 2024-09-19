@@ -5,22 +5,19 @@ import gsap from 'gsap'
 
 import { cn } from '@/lib/utils'
 import { useGSAP } from '@gsap/react'
-import { Flair } from '../ui/flair'
-import { useScroller } from '../providers/scroll'
-import { ArrowDownIcon } from '../vectors/arrow'
-import { Logo } from '../vectors/logo'
-import { Link } from 'next-view-transitions'
-import { HoverFlip } from '../ui/hoverflip'
 
-interface Props
-  extends Omit<
-    React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>,
-    'ref'
-  > {}
+import { Flair } from '@/components/ui/flair'
+import { ArrowDownIcon } from '@/components/vectors/arrow'
+import { Logo } from '@/components/vectors/logo'
+import { HoverFlip } from '@/components/ui/hoverflip'
 
-export const HeroSection = ({ className, ...props }: Props) => {
-  const scroller = useScroller()
-
+export const HeroSection = ({
+  className,
+  ...props
+}: Omit<
+  React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>,
+  'ref'
+>) => {
   const arch = React.useRef<HTMLDivElement>(null)
   const section = React.useRef<HTMLElement>(null)
   const img = React.useRef<HTMLImageElement>(null)
@@ -28,11 +25,15 @@ export const HeroSection = ({ className, ...props }: Props) => {
   const bottom = React.useRef<HTMLDivElement>(null)
 
   useGSAP(() => {
+    let width = 0
+    if (typeof window !== 'undefined') {
+      width = window.innerWidth
+    }
     gsap.fromTo(
       arch.current,
       { height: '65.175vh' },
       {
-        height: '78.625vh',
+        height: width > 768 ? '78.625vh' : '50vh',
         scrollTrigger: {
           trigger: section.current,
           scrub: 1,
@@ -74,7 +75,7 @@ export const HeroSection = ({ className, ...props }: Props) => {
     <section
       ref={section}
       className={cn(
-        'relative min-h-dvh pb-10 md:pb-16 px-10 md:px-20 transition-all',
+        'relative h-fit min-[1628px]:min-h-dvh pb-10 md:pb-16 px-10 md:px-20 transition-all',
         className,
       )}
       {...props}
@@ -82,7 +83,7 @@ export const HeroSection = ({ className, ...props }: Props) => {
       <div
         ref={arch}
         className={
-          'flex flex-col mt-0 max-md:-mt-16 items-center opacity-0 scale-95 h-[78.625vh] justify-center [mask-image:url(/assets/arch-vector.svg)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] overflow-hidden'
+          'flex flex-col mt-0 items-center opacity-0 scale-95 h-[78.625vh] justify-center [mask-image:url(/assets/arch-vector.svg)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] overflow-hidden'
         }
       >
         <img
@@ -114,16 +115,16 @@ export const HeroSection = ({ className, ...props }: Props) => {
       <Flair parent={arch}>Click me</Flair>
       <div
         ref={bottom}
-        data-scroll
-        data-scroll-speed={0.2125}
-        className={'w-full flex justify-between items-end -mt-40 opacity-0'}
+        className={
+          'w-full flex justify-between items-end min-[1628px]:-mt-40 opacity-0'
+        }
       >
-        <div className={'max-lg:hidden lg:basis-1/3'}>
+        <div className={'max-[1628px]:hidden min-[1628px]:basis-1/3'}>
           <div className={'w-fit p-5 rounded-full border border-black/25'}>
             <ArrowDownIcon className={'size-6 self-center text-black'} />
           </div>
         </div>
-        <div className={'max-lg:hidden lg:basis-1/3'}>
+        <div className={'max-[1628px]:hidden min-[1628px]:basis-1/3'}>
           <p
             className={
               'text-balance text-center leading-tight max-w-72 m-auto uppercase'
@@ -133,15 +134,21 @@ export const HeroSection = ({ className, ...props }: Props) => {
           </p>
         </div>
         <div
+          data-scroll
+          data-scroll-speed={0.2125}
           className={
-            'basis-full lg:basis-1/3 flex justify-center lg:justify-end'
+            'basis-full min-[1628px]:basis-1/3 flex justify-center min-[1628px]:justify-end'
           }
         >
-          <div className={'max-w-80 flex flex-col gap-4 max-lg:justify-center'}>
-            <Logo.Mark className={'size-10 max-lg:hidden'} />
+          <div
+            className={
+              'max-w-80 flex flex-col gap-4 max-[1628px]:justify-center'
+            }
+          >
+            <Logo.Mark className={'size-10 max-[1628px]:hidden'} />
             <p
               className={
-                'text-balance text-lg md:text-xl font-canela max-lg:text-center max-lg:mt-10'
+                'text-balance text-lg md:text-xl font-canela max-[1628px]:text-center max-[1628px]:mt-10'
               }
             >
               Nestled in the serene coastal village of Limni, our hotel offers a
@@ -150,7 +157,7 @@ export const HeroSection = ({ className, ...props }: Props) => {
             </p>
             <HoverFlip.Link
               href={'/rooms'}
-              className={'uppercase max-lg:text-center'}
+              className={'uppercase max-[1628px]:text-center'}
             >
               Get directions
             </HoverFlip.Link>

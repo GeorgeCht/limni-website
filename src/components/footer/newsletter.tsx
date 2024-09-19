@@ -31,8 +31,8 @@ export const FooterNewsletter = ({
 >) => {
   return (
     <form className={cn('flex flex-col gap-5', className)} {...props}>
-      <h2 className={'font-canela text-4xl leading-none text-balance'}>
-        Get offer updates straight to you inbox!
+      <h2 className={'font-canela text-4xl leading-none max-w-96 text-balance'}>
+        Get offer updates straight to your inbox!
       </h2>
       <fieldset className={'w-full max-w-96 h-fit relative'}>
         <Input type={'email'} placeholder={'Enter your email'} />
