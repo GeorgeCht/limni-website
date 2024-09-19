@@ -14,7 +14,7 @@ import { useScroller } from '@/components/providers/scroll'
 export const FooterRoot = ({
   ...props
 }: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) => {
-  const scroller = useScroller()
+  const { scroller } = useScroller()
 
   const PageLinks = [
     {
@@ -132,7 +132,13 @@ export const FooterRoot = ({
               className={
                 'w-fit text-[15px] text-[#C7B09C] bg-transparent border border-[#C7B09C]/75'
               }
-              onClick={() => scroller?.scrollTo(0)}
+              onClick={() => {
+                if (scroller) {
+                  scroller.scrollTo(0)
+                } else {
+                  window.scrollTo({ top: 0 })
+                }
+              }}
             >
               <span className={'max-[1380px]:hidden'}>Back to top</span>
               <ArrowUpIcon className={'size-3.5'} />

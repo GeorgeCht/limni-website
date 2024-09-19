@@ -24,7 +24,7 @@ export const HeaderFlyout = ({
   className,
   ...props
 }: Props) => {
-  const scroller = useScroller()
+  const { scroller } = useScroller()
 
   const ref = React.useRef<HTMLDivElement>(null)
   const linksRef = React.useRef<Array<HTMLLIElement | null>>([])

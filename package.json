@@ -24,6 +24,7 @@
     "@payloadcms/next": "beta",
     "@payloadcms/plugin-cloud": "beta",
     "@payloadcms/richtext-lexical": "beta",
+    "@smakss/react-scroll-direction": "^4.2.0",
     "cross-env": "^7.0.3",
     "graphql": "^16.8.1",
     "locomotive-scroll": "^5.0.0-beta.21",

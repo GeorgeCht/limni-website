@@ -79,13 +79,17 @@ export const HeaderCTA = ({
   const router = useRouter()
 
   useGSAP(() => {
+    let width = 0
+    if (typeof window !== 'undefined') {
+      width = window.innerWidth
+    }
     if (isOpen) {
       gsap.fromTo(
         ref.current,
         { yPercent: -100, height: 0 },
         {
           yPercent: 0,
-          height: 'fit-content',
+          height: width < 768 ? '700' : '496',
           duration: 0.985,
           ease: 'circ.inOut',
         },

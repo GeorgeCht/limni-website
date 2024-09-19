@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import gsap from 'gsap'
 
 import { Logo } from '../vectors/logo'
 import { MenuIcon } from '../vectors/menu'
@@ -11,22 +12,57 @@ import { cn } from '@/lib/utils'
 import { HoverFlip } from '../ui/hoverflip'
 import { HeaderCTA } from './cta'
 
+import { useGSAP } from '@gsap/react'
+import useDetectScroll from '@smakss/react-scroll-direction'
+
 export const HeaderRoot = ({
   children,
   ...props
 }: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) => {
-  const ref = React.useRef<HTMLElement>(null)
+  const header = React.useRef<HTMLElement>(null)
+  const { scrollDir, scrollPosition } = useDetectScroll()
   const [ctaIsOpen, setCtaIsOpen] = React.useState(false)
   const [flyoutIsOpen, setFlyoutIsOpen] = React.useState(false)
+
+  useGSAP(() => {
+    gsap.fromTo(
+      header.current,
+      {
+        y: -35,
+        opacity: 0,
+      },
+      {
+        y: 0,
+        opacity: 1,
+      },
+    )
+  })
+
+  React.useEffect(() => {
+    if (scrollPosition.top < 150) {
+      gsap.to(header.current, { y: 0 })
+    } else {
+      if (scrollDir === 'up') {
+        gsap.to(header.current, { y: 0 })
+      }
+      if (scrollDir === 'down') {
+        gsap.to(header.current, { y: -200 })
+      }
+    }
+  }, [scrollDir, scrollPosition])
 
   return (
     <React.Fragment>
       <HeaderFlyout isOpen={flyoutIsOpen} setIsOpen={setFlyoutIsOpen} />
-      <HeaderCTA isOpen={ctaIsOpen} setIsOpen={setCtaIsOpen} headerRef={ref} />
+      <HeaderCTA
+        isOpen={ctaIsOpen}
+        setIsOpen={setCtaIsOpen}
+        headerRef={header}
+      />
       <header
-        ref={ref}
+        ref={header}
         className={
-          'sticky top-0 z-[9999] flex w-full justify-between items-center py-8 md:py-14 px-10 md:px-20 transition-all'
+          'sticky top-0 z-[9999] flex w-full justify-between items-center py-8 md:py-14 px-10 md:px-20 opacity-0'
         }
         {...props}
       >

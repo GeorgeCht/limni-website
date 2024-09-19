@@ -17,7 +17,7 @@ export default async function HomePage() {
   return (
     <div>
       <HeroSection />
-      <Test />
+      {/* <Test /> */}
     </div>
   )
 }

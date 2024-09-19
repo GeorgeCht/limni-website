@@ -10,6 +10,7 @@ import { useScroller } from '../providers/scroll'
 import { ArrowDownIcon } from '../vectors/arrow'
 import { Logo } from '../vectors/logo'
 import { Link } from 'next-view-transitions'
+import { HoverFlip } from '../ui/hoverflip'
 
 interface Props
   extends Omit<
@@ -23,6 +24,8 @@ export const HeroSection = ({ className, ...props }: Props) => {
   const arch = React.useRef<HTMLDivElement>(null)
   const section = React.useRef<HTMLElement>(null)
   const img = React.useRef<HTMLImageElement>(null)
+  const header = React.useRef<HTMLHeadingElement>(null)
+  const bottom = React.useRef<HTMLDivElement>(null)
 
   useGSAP(() => {
     gsap.fromTo(
@@ -36,6 +39,33 @@ export const HeroSection = ({ className, ...props }: Props) => {
           start: 'top 15%',
           end: 'bottom center',
         },
+      },
+    )
+    gsap.to(arch.current, {
+      opacity: 1,
+      scale: 1,
+      delay: 0.075,
+      duration: 1.175,
+      ease: 'circ.inOut',
+    })
+    gsap.to(bottom.current, {
+      opacity: 1,
+      delay: 0.415,
+      duration: 0.975,
+      ease: 'circ.inOut',
+    })
+    gsap.fromTo(
+      header.current,
+      {
+        marginTop: -35,
+        opacity: 0,
+      },
+      {
+        marginTop: 0,
+        opacity: 1,
+        delay: 0.275,
+        duration: 0.975,
+        ease: 'circ.inOut',
       },
     )
   }, [])
@@ -52,29 +82,30 @@ export const HeroSection = ({ className, ...props }: Props) => {
       <div
         ref={arch}
         className={
-          'flex flex-col max-md:mt-12 items-center h-[78.625vh] justify-center [mask-image:url(/assets/arch-vector.svg)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] overflow-hidden'
+          'flex flex-col mt-0 max-md:-mt-16 items-center opacity-0 scale-95 h-[78.625vh] justify-center [mask-image:url(/assets/arch-vector.svg)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] overflow-hidden'
         }
       >
         <img
           data-scroll
           data-scroll-speed={0.0985}
           ref={img}
-          src={'/assets/placeholder.avif'}
+          src={'/assets/splash.jpg'}
           alt={'placeholder'}
-          className={'w-full h-[120vh] object-cover'}
+          className={'object-cover'}
         />
       </div>
 
       <div
         className={
-          'absolute -top-10 md:top-20 left-0 w-full h-fit transition-all pointer-events-none'
+          'absolute top-20 md:top-20 left-0 w-full h-fit transition-all pointer-events-none'
         }
       >
         <h1
+          ref={header}
           data-scroll
           data-scroll-speed={-0.0985}
           className={
-            'uppercase font-canela text-[11.125vw] lg:text-[9.725vw] w-full leading-none m-auto text-center select-none cursor-default'
+            'uppercase font-canela text-[11.125vw] lg:text-[9.725vw] w-full leading-none m-auto text-center select-none cursor-default opacity-0'
           }
         >
           The boutique experiece
@@ -82,11 +113,12 @@ export const HeroSection = ({ className, ...props }: Props) => {
       </div>
       <Flair parent={arch}>Click me</Flair>
       <div
+        ref={bottom}
         data-scroll
         data-scroll-speed={0.2125}
-        className={'w-full flex justify-between items-end -mt-12'}
+        className={'w-full flex justify-between items-end -mt-40 opacity-0'}
       >
-        <div className={'basis-1/2 lg:basis-1/3'}>
+        <div className={'max-lg:hidden lg:basis-1/3'}>
           <div className={'w-fit p-5 rounded-full border border-black/25'}>
             <ArrowDownIcon className={'size-6 self-center text-black'} />
           </div>
@@ -101,18 +133,27 @@ export const HeroSection = ({ className, ...props }: Props) => {
           </p>
         </div>
         <div
-          className={'basis-1/2 lg:basis-1/3 flex justify-start lg:justify-end'}
+          className={
+            'basis-full lg:basis-1/3 flex justify-center lg:justify-end'
+          }
         >
-          <div className={'max-w-80 flex flex-col gap-4'}>
-            <Logo.Mark className={'size-10'} />
-            <p className={'text-balance text-sm md:text-xl font-canela'}>
+          <div className={'max-w-80 flex flex-col gap-4 max-lg:justify-center'}>
+            <Logo.Mark className={'size-10 max-lg:hidden'} />
+            <p
+              className={
+                'text-balance text-lg md:text-xl font-canela max-lg:text-center max-lg:mt-10'
+              }
+            >
               Nestled in the serene coastal village of Limni, our hotel offers a
               perfect blend of traditional charm and modern comfort. Welcome
               home!
             </p>
-            <Link href={'/rooms'} className={'uppercase'}>
+            <HoverFlip.Link
+              href={'/rooms'}
+              className={'uppercase max-lg:text-center'}
+            >
               Get directions
-            </Link>
+            </HoverFlip.Link>
           </div>
         </div>
       </div>
