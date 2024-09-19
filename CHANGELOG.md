@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.7.0](https://github.com/GeorgeCht/limni-website/compare/v1.6.0...v1.7.0) (2024-09-19)
+
+
+### Features
+
+* **content:** added new sections, implemented new layouts ([51e2c6a](https://github.com/GeorgeCht/limni-website/commit/51e2c6a925292709d559a65c6a0599c65070b90d))
+
+
+### Bug Fixes
+
+* **scroll:** implemented better smooth scrolling behavior for mobile, added hero section animations ([39c004c](https://github.com/GeorgeCht/limni-website/commit/39c004ce7a329a47b1f86ccdb7ded583f5f4f47e))
+
 ## [1.6.0](https://github.com/GeorgeCht/limni-website/compare/v1.5.0...v1.6.0) (2024-09-18)
 
 
