@@ -14,6 +14,7 @@ import { Content } from './collections/Content'
 
 // Globals
 import { TextGlobals } from './payload.globals'
+import { Rooms } from './collections/Rooms'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -26,7 +27,7 @@ export default buildConfig({
     },
   },
   globals: [TextGlobals],
-  collections: [Users, Media, Content],
+  collections: [Users, Media, Content, Rooms],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

@@ -45,7 +45,7 @@ export const InfoTextCTA = ({
       {withImage && (
         <section
           className={
-            'relative w-full max-lg:aspect-square lg:h-dvh pb-16 md:pb-20 px-10 md:px-20 transition-all overflow-hidden'
+            'relative w-full max-lg:aspect-square lg:h-dvh mb-16 md:mb-20 px-10 md:px-20 transition-all overflow-hidden'
           }
         >
           <img

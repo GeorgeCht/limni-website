@@ -46,6 +46,22 @@ export const RoomsDisplay = ({
       })
   }
 
+  useGSAP(() => {
+    gsap.to(listItems.current[2], {
+      width: '40%',
+      duration: 0.275,
+    })
+    // get first two elements
+    Array.from(listItems.current)
+      .slice(0, 2)
+      .forEach((element) => {
+        gsap.to(element, {
+          width: '30%',
+          duration: 0.275,
+        })
+      })
+  })
+
   const handleMouseLeave = () => {
     if (!isTransitioning) {
       listItems.current.forEach((element) => {

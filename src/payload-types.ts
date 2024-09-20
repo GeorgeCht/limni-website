@@ -14,6 +14,7 @@ export interface Config {
     users: User;
     media: Media;
     content: Content;
+    rooms: Room;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -100,6 +101,22 @@ export interface Content {
   height?: number | null;
   focalX?: number | null;
   focalY?: number | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "rooms".
+ */
+export interface Room {
+  id: string;
+  code: string;
+  name: string;
+  visitors: number;
+  area: string;
+  beds: number;
+  category: 'superior' | 'standard' | 'deluxe';
+  amenities: ('tv' | 'wifi' | 'air_conditioning' | 'pool')[];
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

@@ -93,7 +93,7 @@ export const Flair = ({
       ref={ref}
       role={'contentinfo'}
       className={cn(
-        'fixed top-0 left-0 opacity-0 pointer-events-none size-48 bg-black text-white font-jetbrains rounded-full',
+        'fixed top-0 left-0 opacity-0 pointer-events-none size-36 bg-black text-white font-jetbrains rounded-full',
         'uppercase flex items-center justify-center',
         isVisible ? 'opacity-100' : 'opacity-0',
         className,
