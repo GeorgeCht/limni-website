@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.8.0](https://github.com/GeorgeCht/limni-website/compare/v1.7.0...v1.8.0) (2024-09-20)
+
+
+### Features
+
+* **rooms:** added first version of rooms collection to payload ([02a16bd](https://github.com/GeorgeCht/limni-website/commit/02a16bd1742235bb843420552cf9d94fa0e107a0))
+
 ## [1.7.0](https://github.com/GeorgeCht/limni-website/compare/v1.6.0...v1.7.0) (2024-09-19)
 
 
