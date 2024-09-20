@@ -1,15 +1,14 @@
 'use client'
 
 import React from 'react'
-import gsap from 'gsap'
 
 import { cn } from '@/lib/utils'
-import { HoverFlip } from '../ui/hoverflip'
+import { HoverFlip } from '@/components/ui/hoverflip'
 
 interface Props
-  extends React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLElement>,
-    HTMLElement
+  extends Omit<
+    React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>,
+    'ref'
   > {
   withImage?: boolean
 }
@@ -36,7 +35,7 @@ export const InfoTextCTA = ({
         </HoverFlip.Link>
         <h2
           className={
-            'w-full max-w-[1268px] lg:w-10/12 font-canela text-5xl md:text-7xl leading-none text-balance'
+            'w-full max-w-[1368px] lg:w-10/12 font-canela text-6xl md:text-8xl leading-none'
           }
         >
           The preeminent leader in integrated luxury hospitality design.

@@ -31,7 +31,9 @@ export const HeroSection = ({
     }
     gsap.fromTo(
       arch.current,
-      { height: '65.175vh' },
+      {
+        height: '65.175vh',
+      },
       {
         height: width > 768 ? '78.625vh' : '50vh',
         scrollTrigger: {
@@ -83,7 +85,7 @@ export const HeroSection = ({
       <div
         ref={arch}
         className={
-          'flex flex-col mt-0 items-center opacity-0 scale-95 h-[78.625vh] justify-center [mask-image:url(/assets/arch-vector.svg)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] overflow-hidden'
+          'flex flex-col mt-0 items-center opacity-0 scale-150 h-[78.625vh] justify-center [mask-image:url(/assets/arch-vector.svg)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] overflow-hidden'
         }
       >
         <img
