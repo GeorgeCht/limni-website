@@ -13,6 +13,11 @@ const nextConfig = {
         destination: '/home',
         permanent: true,
       },
+      {
+        source: '/api/media/file/:path*',
+        destination: '/storage/:path*',
+        permanent: true,
+      },
     ]
   },
 }
