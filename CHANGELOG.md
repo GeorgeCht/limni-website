@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.8.1](https://github.com/GeorgeCht/limni-website/compare/v1.8.0...v1.8.1) (2024-09-20)
+
+
+### Bug Fixes
+
+* **storage:** updated next config for media file storage ([7d254b5](https://github.com/GeorgeCht/limni-website/commit/7d254b54c268133f43db66f3434a92c8937d4674))
+
 ## [1.8.0](https://github.com/GeorgeCht/limni-website/compare/v1.7.0...v1.8.0) (2024-09-20)
 
 
