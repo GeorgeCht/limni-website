@@ -108,13 +108,23 @@ export interface Content {
  */
 export interface Room {
   id: string;
-  code: string;
-  name: string;
-  visitors: number;
-  area: string;
-  beds: number;
+  'Room essentials': {
+    code: string;
+    name: string;
+    url: string;
+  };
+  'Room details': {
+    visitors: number;
+    area: string;
+    beds: number;
+  };
   category: 'superior' | 'standard' | 'deluxe';
   amenities: ('tv' | 'wifi' | 'air_conditioning' | 'pool')[];
+  Media: {
+    cover: string | Media;
+    images?: (string | Media)[] | null;
+  };
+  slug?: string | null;
   updatedAt: string;
   createdAt: string;
 }
