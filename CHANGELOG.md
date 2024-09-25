@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.10.0](https://github.com/GeorgeCht/limni-website/compare/v1.9.0...v1.10.0) (2024-09-25)
+
+
+### Features
+
+* **schema:** updated all PayloadCMS globals and collections schemas ([90f59f3](https://github.com/GeorgeCht/limni-website/commit/90f59f37657c054bf35430b1af1e936b1c0c3bf4))
+* **ui:** added carousel component ([f7c92fc](https://github.com/GeorgeCht/limni-website/commit/f7c92fc1d1edf92c515c449c53c701597a4f38f0))
+
 ## [1.9.0](https://github.com/GeorgeCht/limni-website/compare/v1.8.1...v1.9.0) (2024-09-23)
 
 
