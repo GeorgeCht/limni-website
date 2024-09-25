@@ -6,7 +6,22 @@ export const Rooms: CollectionConfig = {
   access: {
     read: () => true,
   },
+  admin: {
+    useAsTitle: 'name',
+  },
   fields: [
+    {
+      name: 'name',
+      label: 'Room name',
+      type: 'text',
+      required: true,
+      localized: true,
+      admin: {
+        position: 'sidebar',
+        description: 'The name of the room',
+        placeholder: 'Deluxe Poolside',
+      },
+    },
     {
       name: 'Room essentials',
       type: 'group',
@@ -27,18 +42,6 @@ export const Rooms: CollectionConfig = {
               },
             },
             {
-              name: 'name',
-              label: 'Room name',
-              type: 'text',
-              required: true,
-              localized: true,
-              admin: {
-                width: '15%',
-                description: 'The name of the room',
-                placeholder: 'Deluxe Poolside',
-              },
-            },
-            {
               name: 'url',
               label: 'The external booking link',
               type: 'text',
@@ -52,7 +55,6 @@ export const Rooms: CollectionConfig = {
         },
       ],
     },
-
     {
       name: 'Room details',
       type: 'group',
@@ -147,7 +149,6 @@ export const Rooms: CollectionConfig = {
         },
       ],
     },
-
     {
       name: 'Media',
       type: 'group',
@@ -173,7 +174,6 @@ export const Rooms: CollectionConfig = {
         },
       ],
     },
-
     slugField('name'),
   ],
 }

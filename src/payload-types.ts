@@ -13,8 +13,9 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
-    content: Content;
     rooms: Room;
+    experiences: Experience;
+    questions: Question;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
@@ -85,32 +86,13 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "content".
- */
-export interface Content {
-  id: string;
-  homepage_title: string;
-  updatedAt: string;
-  createdAt: string;
-  url?: string | null;
-  thumbnailURL?: string | null;
-  filename?: string | null;
-  mimeType?: string | null;
-  filesize?: number | null;
-  width?: number | null;
-  height?: number | null;
-  focalX?: number | null;
-  focalY?: number | null;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "rooms".
  */
 export interface Room {
   id: string;
+  name: string;
   'Room essentials': {
     code: string;
-    name: string;
     url: string;
   };
   'Room details': {
@@ -125,6 +107,54 @@ export interface Room {
     images?: (string | Media)[] | null;
   };
   slug?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "experiences".
+ */
+export interface Experience {
+  id: string;
+  name: string;
+  description?: string | null;
+  title?: string | null;
+  'Call to action': {
+    ctaLabel: string;
+    ctaUrl: string;
+  };
+  'Mid Section'?: Mid;
+  availability: 'summer' | 'winter' | 'spring' | 'fall' | 'all';
+  Media: {
+    images?: (string | Media)[] | null;
+    cover: string | Media;
+    frontDisplay: string | Media;
+  };
+  slug?: string | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "mid".
+ */
+export interface Mid {
+  title?: string | null;
+  paragraph?: string | null;
+  includePolicy?: boolean | null;
+  ctaLabel?: string | null;
+  ctaUrl?: string | null;
+  frontImage?: (string | null) | Media;
+  backImage?: (string | null) | Media;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "questions".
+ */
+export interface Question {
+  id: string;
+  question: string;
+  answer: string;
   updatedAt: string;
   createdAt: string;
 }

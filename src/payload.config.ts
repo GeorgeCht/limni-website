@@ -10,11 +10,12 @@ import path from 'node:path'
 // Collections
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
-import { Content } from './collections/Content'
+import { Rooms } from './collections/Rooms'
+import { Experiences } from './collections/Experiences'
+import { FAQs } from './collections/FAQs'
 
 // Globals
 import { TextGlobals } from './payload.globals'
-import { Rooms } from './collections/Rooms'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -27,7 +28,7 @@ export default buildConfig({
     },
   },
   globals: [TextGlobals],
-  collections: [Users, Media, Content, Rooms],
+  collections: [Users, Media, Rooms, Experiences, FAQs],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',
   typescript: {

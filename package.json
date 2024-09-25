@@ -26,6 +26,7 @@
     "@payloadcms/richtext-lexical": "beta",
     "@smakss/react-scroll-direction": "^4.2.0",
     "cross-env": "^7.0.3",
+    "embla-carousel-react": "^8.3.0",
     "graphql": "^16.8.1",
     "locomotive-scroll": "^5.0.0-beta.21",
     "next": "15.0.0-canary.104",
