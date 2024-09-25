@@ -1,3 +1,6 @@
+import { CallToActionBlock } from '@/blocks/CallToAction'
+import { PreFooterBlock } from '@/blocks/PreFooter'
+import { SelectedExperiencesBlock } from '@/blocks/SelectedExperiences'
 import { slugField } from '@/lib/slug'
 import type { CollectionConfig } from 'payload'
 
@@ -150,7 +153,96 @@ export const Rooms: CollectionConfig = {
       ],
     },
     {
-      name: 'Media',
+      name: 'midSection',
+      type: 'group',
+      fields: [
+        {
+          name: 'title',
+          label: 'Mid section title',
+          type: 'text',
+          localized: true,
+          required: true,
+          admin: {
+            placeholder:
+              'The preeminent leader in integrated luxury hospitality design.',
+          },
+        },
+        {
+          name: 'label',
+          label: 'Mid section label',
+          type: 'text',
+          required: true,
+          localized: true,
+          admin: {
+            placeholder: 'Guests favorite',
+          },
+        },
+        {
+          name: 'paragraph',
+          label: 'Mid section paragraph',
+          type: 'textarea',
+          localized: true,
+          required: true,
+        },
+        {
+          name: 'cta',
+          type: 'blocks',
+          label: 'Mid Section Link',
+          minRows: 1,
+          maxRows: 1,
+          required: true,
+          blocks: [CallToActionBlock({})],
+        },
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'backImage',
+              label: 'Back image',
+              type: 'upload',
+              relationTo: 'media',
+              required: true,
+            },
+            {
+              name: 'frontImage',
+              label: 'Front image',
+              type: 'upload',
+              relationTo: 'media',
+              required: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      name: 'recommendedExperiences',
+      label: 'Recommended Experiences',
+      type: 'blocks',
+      minRows: 1,
+      maxRows: 1,
+      required: true,
+      localized: true,
+      blocks: [SelectedExperiencesBlock],
+    },
+    {
+      name: 'prefooter',
+      label: 'Pre Footer',
+      type: 'group',
+      fields: [
+        {
+          name: 'block',
+          type: 'blocks',
+          label: 'Block',
+          minRows: 1,
+          maxRows: 1,
+          required: true,
+          localized: true,
+          blocks: [PreFooterBlock],
+        },
+      ],
+    },
+    {
+      name: 'media',
       type: 'group',
       fields: [
         {

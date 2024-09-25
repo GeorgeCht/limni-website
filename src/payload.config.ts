@@ -11,11 +11,17 @@ import path from 'node:path'
 import { Users } from './collections/Users'
 import { Media } from './collections/Media'
 import { Rooms } from './collections/Rooms'
-import { Experiences } from './collections/Experiences'
 import { FAQs } from './collections/FAQs'
+import { Experiences } from './collections/Experiences'
 
 // Globals
-import { HomePage } from './globals/Home'
+import { Home } from './globals/Home'
+import { Contact } from './globals/Contact'
+import { Shared } from './globals/Shared'
+import { About } from './globals/About'
+import { ExperiencesPage } from './globals/Experiences'
+import { RoomsPage } from './globals/Rooms'
+import { FAQsPage } from './globals/FAQs'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -27,7 +33,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  globals: [HomePage],
+  globals: [Home, About, Contact, RoomsPage, ExperiencesPage, FAQsPage, Shared],
   collections: [Users, Media, Rooms, Experiences, FAQs],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

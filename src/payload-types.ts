@@ -23,7 +23,13 @@ export interface Config {
     defaultIDType: string;
   };
   globals: {
-    homepage: Homepage;
+    home: Home;
+    about: About;
+    contact: Contact;
+    roomsPage: RoomsPage;
+    experiencesPage: ExperiencesPage;
+    QuestionsPage: QuestionsPage;
+    shared: Shared;
   };
   locale: 'en' | 'el';
   user: User & {
@@ -102,7 +108,50 @@ export interface Room {
   };
   category: 'superior' | 'standard' | 'deluxe';
   amenities: ('tv' | 'wifi' | 'air_conditioning' | 'pool')[];
-  Media: {
+  midSection: {
+    title: string;
+    label: string;
+    paragraph: string;
+    cta: {
+      label: string;
+      url: string;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'CallToAction';
+    }[];
+    backImage: string | Media;
+    frontImage: string | Media;
+  };
+  recommendedExperiences: {
+    header: string;
+    subtitle: string;
+    description: string;
+    paragraph: string;
+    experiences?:
+      | {
+          experience: string | Experience;
+          video?: (string | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+    blockName?: string | null;
+    blockType: 'SelectedExperiences';
+  }[];
+  prefooter: {
+    block: {
+      subheader: string;
+      header: string;
+      line1: string;
+      line2: string;
+      url: string;
+      background: string | Media;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'PreFooter';
+    }[];
+  };
+  media: {
     cover: string | Media;
     images?: (string | Media)[] | null;
   };
@@ -119,33 +168,65 @@ export interface Experience {
   name: string;
   description?: string | null;
   title?: string | null;
-  'Call to action': {
-    ctaLabel: string;
-    ctaUrl: string;
+  cta: {
+    label: string;
+    url: string;
+    id?: string | null;
+    blockName?: string | null;
+    blockType: 'CallToAction';
+  }[];
+  midSection: {
+    title?: string | null;
+    paragraph?: string | null;
+    includePolicy?: boolean | null;
+    cta: {
+      label: string;
+      url: string;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'CallToAction';
+    }[];
+    frontImage?: (string | null) | Media;
+    backImage?: (string | null) | Media;
   };
-  'Mid Section'?: Mid;
+  breakSection: {
+    title: string;
+    paragraph: string;
+    cta: {
+      label: string;
+      url: string;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'CallToAction';
+    }[];
+    smallImage?: (string | null) | Media;
+    bigImage?: (string | null) | Media;
+  };
   availability: 'summer' | 'winter' | 'spring' | 'fall' | 'all';
   Media: {
     images?: (string | Media)[] | null;
     cover: string | Media;
     frontDisplay: string | Media;
   };
+  recommendedExperiences: {
+    header: string;
+    subtitle: string;
+    description: string;
+    paragraph: string;
+    experiences?:
+      | {
+          experience: string | Experience;
+          video?: (string | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+    blockName?: string | null;
+    blockType: 'SelectedExperiences';
+  }[];
   slug?: string | null;
   updatedAt: string;
   createdAt: string;
-}
-/**
- * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "mid".
- */
-export interface Mid {
-  title?: string | null;
-  paragraph?: string | null;
-  includePolicy?: boolean | null;
-  ctaLabel?: string | null;
-  ctaUrl?: string | null;
-  frontImage?: (string | null) | Media;
-  backImage?: (string | null) | Media;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -194,38 +275,291 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "homepage".
+ * via the `definition` "home".
  */
-export interface Homepage {
+export interface Home {
   id: string;
-  hero: Hero;
-  second: Second;
+  hero: {
+    header: string;
+    subtitle: string;
+    cta?:
+      | {
+          label: string;
+          url: string;
+          id?: string | null;
+          blockName?: string | null;
+          blockType: 'CallToAction';
+        }[]
+      | null;
+    paragraph: string;
+    paragraphCta?:
+      | {
+          label: string;
+          url: string;
+          id?: string | null;
+          blockName?: string | null;
+          blockType: 'CallToAction';
+        }[]
+      | null;
+    image: string | Media;
+  };
+  second: {
+    header: string;
+    ctaLabel: string;
+    ctaUrl: string;
+    image: string | Media;
+  };
+  third: {
+    title: string;
+    paragraph: string;
+  };
+  fourth?: {
+    rooms?:
+      | {
+          room: string | Room;
+          image: string | Media;
+          id?: string | null;
+        }[]
+      | null;
+  };
+  fifth: {
+    selectedExperiences: {
+      header: string;
+      subtitle: string;
+      description: string;
+      paragraph: string;
+      experiences?:
+        | {
+            experience: string | Experience;
+            video?: (string | null) | Media;
+            id?: string | null;
+          }[]
+        | null;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'SelectedExperiences';
+    }[];
+  };
+  sixth: {
+    prefooter: {
+      subheader: string;
+      header: string;
+      line1: string;
+      line2: string;
+      url: string;
+      background: string | Media;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'PreFooter';
+    }[];
+  };
   updatedAt?: string | null;
   createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "hero".
+ * via the `definition` "about".
  */
-export interface Hero {
-  header: string;
-  subtitle: string;
-  mainCtaLabel: string;
-  mainCtaUrl: string;
-  paragraph: string;
-  paragraphCtaLabel: string;
-  paragraphCtaUrl: string;
-  image: string | Media;
+export interface About {
+  id: string;
+  introSection: {
+    title: string;
+    paragraph: string;
+    cta: {
+      label: string;
+      url: string;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'CallToAction';
+    }[];
+  };
+  secondSection: {
+    title: string;
+    bulletPoints: {
+      text: string;
+      id?: string | null;
+    }[];
+    sliderImages?: (string | Media)[] | null;
+  };
+  breakSection: {
+    title: string;
+    paragraph: string;
+    cta: {
+      label: string;
+      url: string;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'CallToAction';
+    }[];
+    smallImage?: (string | null) | Media;
+    bigImage?: (string | null) | Media;
+  };
+  recommendedExperiences: {
+    header: string;
+    subtitle: string;
+    description: string;
+    paragraph: string;
+    experiences?:
+      | {
+          experience: string | Experience;
+          video?: (string | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+    blockName?: string | null;
+    blockType: 'SelectedExperiences';
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "second".
+ * via the `definition` "contact".
  */
-export interface Second {
-  header: string;
-  ctaLabel: string;
-  ctaUrl: string;
-  image: string | Media;
+export interface Contact {
+  id: string;
+  title: string;
+  paragraph: string;
+  information: {
+    phoneNumber: string;
+    email: string;
+  };
+  location: {
+    address1: string;
+    address2: string;
+    mapsUrl: string;
+  };
+  socialMedia?:
+    | {
+        label: string;
+        url: string;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "roomsPage".
+ */
+export interface RoomsPage {
+  id: string;
+  intro: {
+    title: string;
+    paragraph: string;
+    cta: {
+      label: string;
+      url: string;
+      id?: string | null;
+      blockName?: string | null;
+      blockType: 'CallToAction';
+    }[];
+  };
+  titles: {
+    superiorRooms: string;
+    standardRooms: string;
+    deluxeRooms: string;
+  };
+  recommendedExperiences: {
+    header: string;
+    subtitle: string;
+    description: string;
+    paragraph: string;
+    experiences?:
+      | {
+          experience: string | Experience;
+          video?: (string | null) | Media;
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+    blockName?: string | null;
+    blockType: 'SelectedExperiences';
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "experiencesPage".
+ */
+export interface ExperiencesPage {
+  id: string;
+  headerBig: string;
+  headerSmall: string;
+  label: string;
+  paragraph: string;
+  headerBelow: string;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "QuestionsPage".
+ */
+export interface QuestionsPage {
+  id: string;
+  title: string;
+  label: string;
+  paragraph: string;
+  cta: {
+    label: string;
+    url: string;
+    id?: string | null;
+    blockName?: string | null;
+    blockType: 'CallToAction';
+  }[];
+  roomCategories: {
+    title: string;
+    paragraph: string;
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "shared".
+ */
+export interface Shared {
+  id: string;
+  header: {
+    mainButton: {
+      labelLg: string;
+      labelSm: string;
+      url: string;
+    };
+    roomsCta: {
+      title: string;
+      label: string;
+      url: string;
+    };
+    bookingCta: {
+      title: string;
+      label: string;
+      url: string;
+    };
+  };
+  footer: {
+    newsletter: {
+      header: string;
+      inputPlaceholder: string;
+    };
+    listedLinks?: {
+      links?:
+        | {
+            label: string;
+            url: string;
+            id?: string | null;
+            blockName?: string | null;
+            blockType: 'CallToAction';
+          }[]
+        | null;
+    };
+  };
+  updatedAt?: string | null;
+  createdAt?: string | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

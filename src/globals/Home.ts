@@ -1,13 +1,16 @@
 import type { GlobalConfig } from 'payload'
 
-export const HomePage: GlobalConfig = {
-  slug: 'homepage',
+import { CallToActionBlock } from '@/blocks/CallToAction'
+import { PreFooterBlock } from '@/blocks/PreFooter'
+import { SelectedExperiencesBlock } from '@/blocks/SelectedExperiences'
+
+export const Home: GlobalConfig = {
+  slug: 'home',
   fields: [
     {
       name: 'hero',
       label: 'Hero Section',
       type: 'group',
-      interfaceName: 'hero',
       fields: [
         {
           type: 'row',
@@ -37,31 +40,20 @@ export const HomePage: GlobalConfig = {
           ],
         },
         {
-          type: 'row',
-          fields: [
-            {
-              name: 'mainCtaLabel',
-              label: 'Call to action text label',
-              type: 'text',
-              required: true,
-              localized: true,
-              admin: {
-                width: '25%',
-                description: 'Call to action text label',
+          name: 'cta',
+          label: 'Call to action',
+          type: 'blocks',
+          minRows: 1,
+          maxRows: 1,
+          blocks: [
+            CallToActionBlock({
+              label: {
                 placeholder: 'Book a room',
               },
-            },
-            {
-              name: 'mainCtaUrl',
-              label: 'Call to action URL',
-              type: 'text',
-              required: true,
-              admin: {
-                width: '25%',
-                description: 'URL for the call to action',
+              url: {
                 placeholder: '/rooms',
               },
-            },
+            }),
           ],
         },
         {
@@ -76,31 +68,22 @@ export const HomePage: GlobalConfig = {
           },
         },
         {
-          type: 'row',
-          fields: [
-            {
-              name: 'paragraphCtaLabel',
-              label: 'Call to action text label',
-              type: 'text',
-              required: true,
-              localized: true,
-              admin: {
-                width: '25%',
-                description: 'Call to action text label below paragraph',
+          name: 'paragraphCta',
+          label: 'Call to action',
+          type: 'blocks',
+          minRows: 1,
+          maxRows: 1,
+          blocks: [
+            CallToActionBlock({
+              label: {
                 placeholder: 'Get directions',
+                description: 'Call to action text label below paragraph',
               },
-            },
-            {
-              name: 'paragraphCtaUrl',
-              label: 'Call to action URL',
-              type: 'text',
-              required: true,
-              admin: {
-                width: '25%',
-                description: 'URL for the call to action below paragraph',
+              url: {
                 placeholder: 'https://www.google.com/maps/...',
+                description: 'URL for the call to action below paragraph',
               },
-            },
+            }),
           ],
         },
         {
@@ -116,7 +99,6 @@ export const HomePage: GlobalConfig = {
       name: 'second',
       label: 'Second Section',
       type: 'group',
-      interfaceName: 'second',
       fields: [
         {
           name: 'header',
@@ -163,6 +145,108 @@ export const HomePage: GlobalConfig = {
           type: 'upload',
           relationTo: 'media',
           required: true,
+        },
+      ],
+    },
+    {
+      name: 'third',
+      label: 'Third Section / Room Categories',
+      type: 'group',
+      fields: [
+        {
+          name: 'title',
+          label: 'Third section title',
+          type: 'text',
+          required: true,
+          localized: true,
+          admin: {
+            placeholder: 'Explore our rooms',
+          },
+        },
+        {
+          name: 'paragraph',
+          label: 'Third section paragraph',
+          type: 'textarea',
+          required: true,
+          localized: true,
+          admin: {
+            description: 'Third section paragraph',
+            placeholder: 'We offer a wide range of rooms...',
+          },
+        },
+      ],
+    },
+    {
+      name: 'fourth',
+      label: 'Fourth Section / Selected Rooms',
+      type: 'group',
+      fields: [
+        {
+          name: 'rooms',
+          type: 'array',
+          label: 'Selected rooms',
+          maxRows: 5,
+          labels: {
+            singular: 'Room',
+            plural: 'Rooms',
+          },
+          fields: [
+            {
+              name: 'room',
+              type: 'relationship',
+              relationTo: 'rooms',
+              label: 'Room',
+              required: true,
+            },
+            {
+              name: 'image',
+              type: 'upload',
+              label: 'Front image',
+              relationTo: 'media',
+              required: true,
+            },
+          ],
+          // admin:{
+          //   components: {
+          //     RowLabel: ({ data, index }) => {
+          //       return data?.title || `Slide ${String(index).padStart(2, '0')}`
+          //     },
+          //   },
+          // }
+        },
+      ],
+    },
+    {
+      name: 'fifth',
+      label: 'Fifth Section / Selected Experiences',
+      type: 'group',
+      fields: [
+        {
+          name: 'selectedExperiences',
+          label: 'Selected Experiences',
+          type: 'blocks',
+          minRows: 1,
+          maxRows: 1,
+          required: true,
+          localized: true,
+          blocks: [SelectedExperiencesBlock],
+        },
+      ],
+    },
+    {
+      name: 'sixth',
+      label: 'Sixth Section / Pre Footer',
+      type: 'group',
+      fields: [
+        {
+          name: 'prefooter',
+          type: 'blocks',
+          label: 'Pre Footer',
+          minRows: 1,
+          maxRows: 1,
+          required: true,
+          localized: true,
+          blocks: [PreFooterBlock],
         },
       ],
     },

@@ -1,3 +1,5 @@
+import { CallToActionBlock } from '@/blocks/CallToAction'
+import { SelectedExperiencesBlock } from '@/blocks/SelectedExperiences'
 import { slugField } from '@/lib/slug'
 import type { CollectionConfig } from 'payload'
 
@@ -41,42 +43,26 @@ export const Experiences: CollectionConfig = {
       },
     },
     {
-      name: 'Call to action',
-      type: 'group',
-      fields: [
-        {
-          type: 'row',
-          fields: [
-            {
-              name: 'ctaLabel',
-              label: 'Call to action button text label',
-              type: 'text',
-              required: true,
-              localized: true,
-              admin: {
-                width: '25%',
-                description: 'The call to action text label',
-                placeholder: 'Request a call',
-              },
-            },
-            {
-              name: 'ctaUrl',
-              label: 'Call to action URL',
-              type: 'text',
-              required: true,
-              admin: {
-                width: '25%',
-                description: 'The URL for the call to action',
-              },
-            },
-          ],
-        },
+      name: 'cta',
+      type: 'blocks',
+      label: 'Call to Action',
+      minRows: 1,
+      maxRows: 1,
+      required: true,
+      blocks: [
+        CallToActionBlock({
+          label: {
+            placeholder: 'Request a call',
+          },
+          url: {
+            placeholder: '/contact',
+          },
+        }),
       ],
     },
     {
-      name: 'Mid Section',
+      name: 'midSection',
       type: 'group',
-      interfaceName: 'mid',
       fields: [
         {
           name: 'title',
@@ -99,29 +85,13 @@ export const Experiences: CollectionConfig = {
           type: 'checkbox',
         },
         {
-          type: 'row',
-          fields: [
-            {
-              name: 'ctaLabel',
-              label: 'Call to action button text label',
-              type: 'text',
-              localized: true,
-              admin: {
-                width: '25%',
-                description: 'The call to action text label',
-                placeholder: 'View our menu',
-              },
-            },
-            {
-              name: 'ctaUrl',
-              label: 'Call to action URL',
-              type: 'text',
-              admin: {
-                width: '25%',
-                description: 'The URL for the call to action',
-              },
-            },
-          ],
+          name: 'cta',
+          type: 'blocks',
+          label: 'Mid Section Link',
+          minRows: 1,
+          maxRows: 1,
+          required: true,
+          blocks: [CallToActionBlock({})],
         },
         {
           type: 'row',
@@ -142,7 +112,64 @@ export const Experiences: CollectionConfig = {
         },
       ],
     },
-
+    {
+      name: 'breakSection',
+      type: 'group',
+      fields: [
+        {
+          name: 'title',
+          label: 'Break section title',
+          type: 'text',
+          localized: true,
+          required: true,
+          admin: {
+            placeholder: 'Our guests favorite',
+          },
+        },
+        {
+          name: 'paragraph',
+          label: 'Break section paragraph',
+          type: 'textarea',
+          localized: true,
+          required: true,
+        },
+        {
+          name: 'cta',
+          type: 'blocks',
+          label: 'Break Section Link',
+          minRows: 1,
+          maxRows: 1,
+          required: true,
+          blocks: [
+            CallToActionBlock({
+              label: {
+                placeholder: 'Contact us',
+              },
+              url: {
+                placeholder: '/contact',
+              },
+            }),
+          ],
+        },
+        {
+          type: 'row',
+          fields: [
+            {
+              name: 'smallImage',
+              label: 'Small left image',
+              type: 'upload',
+              relationTo: 'media',
+            },
+            {
+              name: 'bigImage',
+              label: 'Big right image',
+              type: 'upload',
+              relationTo: 'media',
+            },
+          ],
+        },
+      ],
+    },
     {
       name: 'availability',
       label: 'Availability',
@@ -202,6 +229,16 @@ export const Experiences: CollectionConfig = {
           ],
         },
       ],
+    },
+    {
+      name: 'recommendedExperiences',
+      label: 'Recommended Experiences',
+      type: 'blocks',
+      minRows: 1,
+      maxRows: 1,
+      required: true,
+      localized: true,
+      blocks: [SelectedExperiencesBlock],
     },
     slugField('name'),
   ],
