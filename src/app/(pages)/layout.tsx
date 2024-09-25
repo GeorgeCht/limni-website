@@ -14,7 +14,7 @@ import { ViewTransitions } from 'next-view-transitions'
 import { Footer } from '@/components/footer'
 
 const canela = localFont({
-  src: '../../../public/fonts/canela.ttf',
+  src: '../../../public/fonts/canela.woff2',
   variable: '--font-canela',
   display: 'swap',
 })

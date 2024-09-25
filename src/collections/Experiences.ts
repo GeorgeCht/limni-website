@@ -73,7 +73,6 @@ export const Experiences: CollectionConfig = {
         },
       ],
     },
-
     {
       name: 'Mid Section',
       type: 'group',

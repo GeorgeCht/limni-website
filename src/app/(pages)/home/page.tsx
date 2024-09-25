@@ -11,18 +11,17 @@ import { RoomsDisplay } from '@/components/sections/rooms-display'
 export const dynamic = 'force-static'
 
 export default async function HomePage() {
-  const payload = await getPayloadHMR({ config })
-  const textContents = await payload.findGlobal({
-    slug: 'text-contents',
-    depth: 2,
-  })
+  // const payload = await getPayloadHMR({ config })
+  // const textContents = await payload.findGlobal({
+  //   slug: 'text-contents',
+  //   depth: 2,
+  // })
 
   return (
     <div>
       <HeroSection />
       <InfoTextCTA withImage className={'mt-20'} />
       <RoomsDisplay />
-      {/* <Test /> */}
       <Prefooter />
     </div>
   )

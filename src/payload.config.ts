@@ -15,7 +15,7 @@ import { Experiences } from './collections/Experiences'
 import { FAQs } from './collections/FAQs'
 
 // Globals
-import { TextGlobals } from './payload.globals'
+import { HomePage } from './globals/Home'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -27,7 +27,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  globals: [TextGlobals],
+  globals: [HomePage],
   collections: [Users, Media, Rooms, Experiences, FAQs],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

@@ -23,7 +23,7 @@ export interface Config {
     defaultIDType: string;
   };
   globals: {
-    'text-contents': TextContent;
+    homepage: Homepage;
   };
   locale: 'en' | 'el';
   user: User & {
@@ -194,13 +194,38 @@ export interface PayloadMigration {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "text-contents".
+ * via the `definition` "homepage".
  */
-export interface TextContent {
+export interface Homepage {
   id: string;
-  mainHeader: string;
+  hero: Hero;
+  second: Second;
   updatedAt?: string | null;
   createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "hero".
+ */
+export interface Hero {
+  header: string;
+  subtitle: string;
+  mainCtaLabel: string;
+  mainCtaUrl: string;
+  paragraph: string;
+  paragraphCtaLabel: string;
+  paragraphCtaUrl: string;
+  image: string | Media;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "second".
+ */
+export interface Second {
+  header: string;
+  ctaLabel: string;
+  ctaUrl: string;
+  image: string | Media;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
