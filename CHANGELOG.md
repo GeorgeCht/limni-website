@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.11.0](https://github.com/GeorgeCht/limni-website/compare/v1.10.0...v1.11.0) (2024-09-26)
+
+
+### Features
+
+* **ui:** added Selected Rooms section component ([c94721d](https://github.com/GeorgeCht/limni-website/commit/c94721dba67ab2307b29696999fc6559594b22c1))
+* **ui:** more UI section additions ([01fbeb3](https://github.com/GeorgeCht/limni-website/commit/01fbeb3d75e2479d54879294b9b284610f691381))
+
+
+### Bug Fixes
+
+* **gsap:** gSAP ScrollTrigger mini-fix. Started recommended experiences comp ([cda9045](https://github.com/GeorgeCht/limni-website/commit/cda904539aee6f81ab157b8f837adcb6f0040033))
+
 ## [1.10.0](https://github.com/GeorgeCht/limni-website/compare/v1.9.0...v1.10.0) (2024-09-25)
 
 
