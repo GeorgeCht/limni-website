@@ -5,6 +5,7 @@ import gsap from 'gsap'
 
 import { cn } from '@/lib/utils'
 import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import { Flair } from '@/components/ui/flair'
 import { ArrowDownIcon } from '@/components/vectors/arrow'
@@ -23,6 +24,8 @@ export const HeroSection = ({
   const img = React.useRef<HTMLImageElement>(null)
   const header = React.useRef<HTMLHeadingElement>(null)
   const bottom = React.useRef<HTMLDivElement>(null)
+
+  gsap.registerPlugin(ScrollTrigger)
 
   useGSAP(() => {
     let width = 0

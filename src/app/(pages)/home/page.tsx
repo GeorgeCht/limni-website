@@ -7,6 +7,7 @@ import { HeroSection } from '@/components/sections/hero'
 import { InfoTextCTA } from '@/components/sections/infotext-cta'
 import { Prefooter } from '@/components/sections/prefooter'
 import { RoomsDisplay } from '@/components/sections/rooms-display'
+import { RecommendedExperiences } from '@/components/sections/recommended-experiences'
 
 export const dynamic = 'force-static'
 
@@ -22,6 +23,7 @@ export default async function HomePage() {
       <HeroSection />
       <InfoTextCTA withImage className={'mt-20'} />
       <RoomsDisplay />
+      <RecommendedExperiences />
       <Prefooter />
     </div>
   )
