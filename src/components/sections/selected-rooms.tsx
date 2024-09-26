@@ -26,9 +26,13 @@ export const SelectedRooms = ({ className, ...props }: Props) => {
       <div role={'contentinfo'} className={'flex lg:flex-row flex-col gap-20'}>
         <div className={'w-full h-[90vw] lg:h-[50vw] lg:w-1/2 relative'}>
           <div
-            className={'block w-[80%] absolute top-0 right-0 aspect-[20/25]'}
+            className={
+              'block w-[80%] absolute top-0 right-0 aspect-[20/25] overflow-hidden'
+            }
           >
             <img
+              data-scroll
+              data-scroll-speed={-0.0625}
               src={'/assets/placeholder.avif'}
               alt={'placeholder'}
               className={'object-cover w-full h-full'}
@@ -38,10 +42,26 @@ export const SelectedRooms = ({ className, ...props }: Props) => {
             className={'block w-[30%] absolute bottom-0 left-0 aspect-[20/25]'}
           >
             <img
+              data-scroll
+              data-scroll-speed={0.0625}
               src={'/assets/placeholder.avif'}
               alt={'placeholder'}
               className={'object-cover w-full h-full'}
             />
+          </div>
+          <div
+            data-scroll
+            data-scroll-speed={0.0625}
+            className={'flex flex-col gap-6 absolute top-0 left-0 mt-16'}
+          >
+            <p className={'uppercase text-balance'}>Guest's favorite</p>
+            <h2
+              className={
+                'max-w-[768px] font-canela text-balance text-6xl md:text-8xl leading-none'
+              }
+            >
+              Superior balcony view
+            </h2>
           </div>
         </div>
         <div

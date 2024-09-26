@@ -2,7 +2,6 @@ import React from 'react'
 import config from '@payload-config'
 
 import { getPayloadHMR } from '@payloadcms/next/utilities'
-import { Test } from '@/components/ui/test'
 import { HeroSection } from '@/components/sections/hero'
 import { InfoTextCTA } from '@/components/sections/infotext-cta'
 import { Prefooter } from '@/components/sections/prefooter'
@@ -19,7 +18,7 @@ export default async function HomePage() {
   const payload = await getPayloadHMR({ config })
   const home = await payload.findGlobal({
     slug: 'home',
-    depth: 4,
+    depth: 3,
   })
 
   home.fourth?.rooms?.forEach(async (room) => {
@@ -65,8 +64,8 @@ export default async function HomePage() {
       <InfoTextCTA withImage className={'mt-20'} />
       <RoomsDisplay />
       <SelectedRooms />
-      <ImageCarousel images={mediaMock} />
-      <RecommendedExperiences />
+      {/* <ImageCarousel images={mediaMock} /> */}
+      {/* <RecommendedExperiences /> */}
       <Prefooter />
     </div>
   )
