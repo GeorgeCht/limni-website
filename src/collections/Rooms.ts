@@ -26,7 +26,7 @@ export const Rooms: CollectionConfig = {
       },
     },
     {
-      name: 'Room essentials',
+      name: 'roomEssentials',
       type: 'group',
       fields: [
         {
@@ -59,7 +59,7 @@ export const Rooms: CollectionConfig = {
       ],
     },
     {
-      name: 'Room details',
+      name: 'roomDetails',
       type: 'group',
       fields: [
         {

@@ -35,7 +35,7 @@ export const HeroSection = ({
     gsap.fromTo(
       arch.current,
       {
-        height: '65.175vh',
+        height: '70vh',
       },
       {
         height: width > 768 ? '78.625vh' : '50vh',

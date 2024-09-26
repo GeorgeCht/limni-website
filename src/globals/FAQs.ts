@@ -2,7 +2,7 @@ import { CallToActionBlock } from '@/blocks/CallToAction'
 import type { GlobalConfig } from 'payload'
 
 export const FAQsPage: GlobalConfig = {
-  slug: 'QuestionsPage',
+  slug: 'questionsPage',
   fields: [
     {
       name: 'title',

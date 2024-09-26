@@ -27,7 +27,7 @@ export const RoomsDisplay = ({
   const listItems = React.useRef<Array<HTMLLIElement | null>>([])
 
   const handleMouseEnter = (index: number) => {
-    if (typeof window !== 'undefined' && window.innerWidth > 768) {
+    if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
       setIsTransitioning(true)
       gsap.to(listItems.current[index], {
         width: '40%',
@@ -49,7 +49,7 @@ export const RoomsDisplay = ({
   }
 
   useGSAP(() => {
-    if (typeof window !== 'undefined' && window.innerWidth > 768) {
+    if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
       gsap.to(listItems.current[2], {
         width: '40%',
         duration: 0.275,
@@ -66,10 +66,37 @@ export const RoomsDisplay = ({
     }
   })
 
+  // add a resize listener for gsap listItems for mobile
+  React.useEffect(() => {
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
+  const handleResize = () => {
+    if (typeof window !== 'undefined')
+      if (window.innerWidth >= 1024) {
+        listItems.current.forEach((element) => {
+          gsap.to(element, {
+            width: '33.333%',
+            duration: 0.275,
+          })
+        })
+      } else {
+        listItems.current.forEach((element) => {
+          gsap.to(element, {
+            width: '100%',
+            duration: 0.275,
+          })
+        })
+      }
+  }
+
   const handleMouseLeave = () => {
     if (
       typeof window !== 'undefined' &&
-      window.innerWidth > 768 &&
+      window.innerWidth >= 1024 &&
       !isTransitioning
     ) {
       listItems.current.forEach((element) => {

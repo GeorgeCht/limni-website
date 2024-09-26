@@ -28,7 +28,7 @@ export interface Config {
     contact: Contact;
     roomsPage: RoomsPage;
     experiencesPage: ExperiencesPage;
-    QuestionsPage: QuestionsPage;
+    questionsPage: QuestionsPage;
     shared: Shared;
   };
   locale: 'en' | 'el';
@@ -97,11 +97,11 @@ export interface Media {
 export interface Room {
   id: string;
   name: string;
-  'Room essentials': {
+  roomEssentials: {
     code: string;
     url: string;
   };
-  'Room details': {
+  roomDetails: {
     visitors: number;
     area: string;
     beds: number;
@@ -497,7 +497,7 @@ export interface ExperiencesPage {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "QuestionsPage".
+ * via the `definition` "questionsPage".
  */
 export interface QuestionsPage {
   id: string;

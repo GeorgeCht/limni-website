@@ -69,7 +69,82 @@ export const RecommendedExperiences = ({
           "Whether you're seeking a peaceful retreat or an adventure-filled getaway, our hotel promises an unforgettable boutique experience."
         }
       />
-      <div>content B</div>
+      <div
+        className={'flex max-[1280px]:flex-col-reverse items-end gap-10 w-full'}
+      >
+        <div className={'w-1/4 max-[1280px]:w-full flex flex-col gap-8'}>
+          <p className={'max-w-96 text-balance font-canela'}>
+            Nestled in the serene coastal village of Limni, our hotel offers a
+            perfect blend of traditional charm and modern comfort.
+          </p>
+          <HoverFlip.Link href={'/experiences'} className={'uppercase w-fit'}>
+            Learn more
+          </HoverFlip.Link>
+        </div>
+        <ul
+          className={
+            'w-3/4 max-[1280px]:w-full flex flex-row max-[1280px]:flex-col gap-8 *:min-[1280px]:aspect-[7/10] *:aspect-square'
+          }
+        >
+          <li className={'group relative w-full min-[1280px]:w-1/3 bg-black'}>
+            <Link
+              className={
+                'relative w-full h-full flex flex-col items-center justify-between p-6'
+              }
+              href={'/'}
+            >
+              <img
+                src={'/assets/placeholder.avif'}
+                alt={'placeholder'}
+                className={
+                  'absolute top-0 left-0 w-full h-full object-cover md:opacity-100 max-md:opacity-60 group-hover:opacity-60 transition-all z-0'
+                }
+              />
+              <span
+                className={
+                  'text-white z-10 uppercase md:opacity-0 transition-all md:group-hover:opacity-100'
+                }
+              >
+                Available at summer
+              </span>
+              <h3
+                className={
+                  'font-canela text-4xl md:text-5xl md:opacity-0 transition-all md:group-hover:opacity-100 z-10'
+                }
+              >
+                Boat Trips
+              </h3>
+              <HoverFlip.Root
+                className={
+                  'uppercase md:opacity-0 transition-all md:group-hover:opacity-100'
+                }
+              >
+                Discover more
+              </HoverFlip.Root>
+            </Link>
+          </li>
+          <li className={'group relative w-full min-[1280px]:w-1/3 bg-black'}>
+            <Link
+              className={
+                'relative w-full h-full flex flex-col items-center justify-between p-6'
+              }
+              href={'/'}
+            >
+              B
+            </Link>
+          </li>
+          <li className={'group relative w-full min-[1280px]:w-1/3 bg-black'}>
+            <Link
+              className={
+                'relative w-full h-full flex flex-col items-center justify-between p-6'
+              }
+              href={'/'}
+            >
+              C
+            </Link>
+          </li>
+        </ul>
+      </div>
     </section>
   )
 }
