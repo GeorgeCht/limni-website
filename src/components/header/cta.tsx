@@ -6,8 +6,7 @@ import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 
 import { cn } from '@/lib/utils'
-import { useScroller } from '@/components/providers/scroll'
-import { useRouter } from 'next/navigation'
+import { useTransitionRouter } from 'next-view-transitions'
 
 interface ActionCardProps
   extends Omit<
@@ -76,7 +75,7 @@ export const HeaderCTA = ({
   const ref = React.useRef<HTMLDivElement>(null)
   const card1 = React.useRef<HTMLDivElement>(null)
   const card2 = React.useRef<HTMLDivElement>(null)
-  const router = useRouter()
+  const router = useTransitionRouter()
 
   useGSAP(() => {
     let width = 0

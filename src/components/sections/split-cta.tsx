@@ -2,11 +2,11 @@
 
 import type React from 'react'
 
-import { useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { HoverFlip } from '@/components/ui/hoverflip'
 import { Button } from '@/components/ui/button'
 import { ArrowOutbound } from '@/components/vectors/arrow'
+import { useTransitionRouter } from 'next-view-transitions'
 
 const ImagesSection = ({
   direction,
@@ -76,7 +76,7 @@ const TextSection = ({
     url: string
   }
 }) => {
-  const router = useRouter()
+  const router = useTransitionRouter()
 
   return (
     <div

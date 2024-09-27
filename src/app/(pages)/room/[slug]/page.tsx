@@ -1,9 +1,13 @@
 import React from 'react'
 import config from '@payload-config'
 
-import { getPayloadHMR } from '@payloadcms/next/utilities'
 import { notFound } from 'next/navigation'
+
+import { getPayloadHMR } from '@payloadcms/next/utilities'
 import { RecommendedExperiences } from '@/components/sections/recommended-experiences'
+import { RoomHero } from '@/components/sections/room-hero'
+
+import type { Media } from '@/payload-types'
 
 export const dynamic = 'force-static'
 
@@ -40,13 +44,27 @@ export default async function RoomPage({
   }
 
   return (
-    <div>
+    <React.Fragment>
+      <RoomHero
+        code={room.roomEssentials.code}
+        name={room.name}
+        paragraph={room.midSection.paragraph}
+        roomDetails={room.roomDetails}
+        primaryButton={{
+          text: room.midSection.cta[0].label,
+          url: room.midSection.cta[0].url,
+        }}
+        coverImage={{
+          src: (room.media.cover as Media).url!,
+          alt: (room.media.cover as Media).alt,
+        }}
+      />
       <h1>{room.name}</h1>
       <p>{room.roomDetails.area}</p>
       <RecommendedExperiences
         theme={'light'}
         experiences={room.recommendedExperiences[0]}
       />
-    </div>
+    </React.Fragment>
   )
 }

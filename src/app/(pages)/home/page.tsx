@@ -12,6 +12,7 @@ import { ImageCarousel } from '@/components/sections/image-carousel'
 import type { Media, Room } from '@/payload-types'
 import { SelectedRooms } from '@/components/sections/selected-rooms'
 import { SplitCTA } from '@/components/sections/split-cta'
+import { VerticalCTA } from '@/components/sections/vertical-cta'
 
 interface Rooms {
   room: string | Room
@@ -31,6 +32,28 @@ export default async function HomePage() {
   return (
     <div>
       <HeroSection />
+      <VerticalCTA
+        title={'Vertical action'}
+        paragraph={
+          'Enjoy your holiday in a spacious 30m² deluxe room with a pool view, perfect for a group of three. The room features a large bed, a sofa bed, and a wide range of amenities. This accommodation offers both comfort and tranquility.'
+        }
+        primaryButton={{
+          text: 'Book now',
+          url: '/room/pool-side',
+        }}
+        secondaryButton={{
+          text: 'Book now',
+          url: '/room/pool-side',
+        }}
+        topImage={{
+          src: '/api/media/file/placeholder2.avif',
+          alt: 'alt',
+        }}
+        sideImage={{
+          src: '/api/media/file/placeholder.avif',
+          alt: 'alt',
+        }}
+      />
       <SplitCTA
         headingSize={'sm'}
         title={'Deluxe Pool Side'}
