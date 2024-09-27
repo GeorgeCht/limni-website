@@ -8,13 +8,27 @@ import { HoverFlip } from '@/components/ui/hoverflip'
 import { useGSAP } from '@gsap/react'
 import { Link } from 'next-view-transitions'
 
+import type { Media, Room } from '@/payload-types'
+import { useLocale } from '@/stores/locale'
+
+interface Rooms {
+  room: string | Room
+  image: string | Media
+  id?: string | null
+}
+
 interface Props
   extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLElement>,
     HTMLElement
-  > {}
+  > {
+  rooms: Array<Rooms>
+}
 
-export const SelectedRooms = ({ className, ...props }: Props) => {
+export const SelectedRooms = ({ rooms, className, ...props }: Props) => {
+  const { locale } = useLocale()
+  const [selectedRoom, setSelectedRoom] = React.useState(0)
+
   return (
     <section
       className={cn(
@@ -33,8 +47,12 @@ export const SelectedRooms = ({ className, ...props }: Props) => {
             <img
               data-scroll
               data-scroll-speed={-0.0625}
-              src={'/assets/placeholder.avif'}
-              alt={'placeholder'}
+              src={
+                ((rooms[selectedRoom].room as Room).media.cover as Media).url!
+              }
+              alt={
+                ((rooms[selectedRoom].room as Room).media.cover as Media).alt
+              }
               className={'object-cover w-full h-full'}
             />
           </div>
@@ -44,8 +62,8 @@ export const SelectedRooms = ({ className, ...props }: Props) => {
             <img
               data-scroll
               data-scroll-speed={0.0625}
-              src={'/assets/placeholder.avif'}
-              alt={'placeholder'}
+              src={(rooms[selectedRoom].image as Media).url!}
+              alt={(rooms[selectedRoom].image as Media).alt}
               className={'object-cover w-full h-full'}
             />
           </div>
@@ -54,13 +72,15 @@ export const SelectedRooms = ({ className, ...props }: Props) => {
             data-scroll-speed={0.0625}
             className={'flex flex-col gap-6 absolute top-0 left-0 mt-16'}
           >
-            <p className={'uppercase text-balance'}>Guest's favorite</p>
+            <p className={'uppercase text-balance'}>
+              {(rooms[selectedRoom].room as Room).category}
+            </p>
             <h2
               className={
                 'max-w-[768px] font-canela text-balance text-6xl md:text-8xl leading-none'
               }
             >
-              Superior balcony view
+              {(rooms[selectedRoom].room as Room).name}
             </h2>
           </div>
         </div>
@@ -71,30 +91,55 @@ export const SelectedRooms = ({ className, ...props }: Props) => {
         >
           <div className={'flex flex-col gap-4'}>
             <p className={'uppercase'}>
-              3 Visitors / 2 Beds / 30m<sup>2</sup>
+              {(() => {
+                const details = (rooms[selectedRoom].room as Room).roomDetails
+                switch (locale) {
+                  case 'en':
+                    return (
+                      <React.Fragment>
+                        {details.visitors} Guests / {details.beds} Beds /{' '}
+                        {details.area}m<sup>2</sup>
+                      </React.Fragment>
+                    )
+                  case 'el':
+                    return (
+                      <React.Fragment>
+                        {details.visitors} Επισκεπτες / {details.beds}{' '}
+                        {details.beds === 1 ? 'Κρεβατι' : 'Κρεβατια'} /{' '}
+                        {details.area}μ<sup>2</sup>
+                      </React.Fragment>
+                    )
+                }
+              })()}
             </p>
-            <h3
+            <p
               className={
                 'font-canela text-balance max-w-[768px] text-2xl md:text-3xl'
               }
             >
-              Depuis 40 ans, amoureux de la vie en mer sous toutes ses formes,
-              nous avons. moureux de la vie en mer sous toutes ses formes, nous
-              avons.
-            </h3>
+              {(rooms[selectedRoom].room as Room).midSection.paragraph}
+            </p>
           </div>
-          <HoverFlip.Link href={'/rooms'} className={'uppercase'}>
-            Check availability
+          <HoverFlip.Link
+            href={`/room/${(rooms[selectedRoom].room as Room).slug}`}
+            className={'uppercase'}
+          >
+            {locale === 'en' ? 'Check availability' : 'Περισσότερα'}
           </HoverFlip.Link>
           <div className={'flex w-full justify-between items-center mt-12'}>
             <div className={'flex gap-3'}>
               <button
                 type={'button'}
+                onClick={() => {
+                  setSelectedRoom((state) =>
+                    state === 0 ? rooms.length - 1 : state - 1,
+                  )
+                }}
                 className={
                   'size-24 flex items-center justify-center border border-black/25 hover:border-black/75 leading-none transition-all rounded-full uppercase'
                 }
               >
-                Prev
+                {locale === 'en' ? 'Prev' : 'Προηγ'}
               </button>
               <button
                 type={'button'}
@@ -102,10 +147,12 @@ export const SelectedRooms = ({ className, ...props }: Props) => {
                   'size-24 flex items-center justify-center border border-black/25 hover:border-black/75 leading-none transition-all rounded-full uppercase'
                 }
               >
-                Next
+                {locale === 'en' ? 'Next' : 'Επομ'}
               </button>
             </div>
-            <span>1/3</span>
+            <span>
+              {selectedRoom + 1} / {rooms.length}
+            </span>
           </div>
         </div>
       </div>

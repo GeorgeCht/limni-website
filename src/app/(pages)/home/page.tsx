@@ -11,6 +11,13 @@ import { ImageCarousel } from '@/components/sections/image-carousel'
 
 import type { Media, Room } from '@/payload-types'
 import { SelectedRooms } from '@/components/sections/selected-rooms'
+import { SplitCTA } from '@/components/sections/split-cta'
+
+interface Rooms {
+  room: string | Room
+  image: string | Media
+  id?: string | null | undefined
+}
 
 export const dynamic = 'force-static'
 
@@ -21,49 +28,58 @@ export default async function HomePage() {
     depth: 3,
   })
 
-  home.fourth?.rooms?.forEach(async (room) => {
-    ;(room.room as Room).media.images?.forEach((image) => {
-      image as Media
-    })
-  })
-
-  const mediaMock: Array<Media> = [
-    {
-      id: '123',
-      alt: 'alt',
-      updatedAt: '000',
-      createdAt: '000',
-      url: '/assets/placeholder.avif',
-    },
-    {
-      id: '124',
-      alt: 'alt',
-      updatedAt: '000',
-      createdAt: '000',
-      url: '/assets/placeholder.avif',
-    },
-    {
-      id: '125',
-      alt: 'alt',
-      updatedAt: '000',
-      createdAt: '000',
-      url: '/assets/placeholder.avif',
-    },
-    {
-      id: '126',
-      alt: 'alt',
-      updatedAt: '000',
-      createdAt: '000',
-      url: '/assets/placeholder.avif',
-    },
-  ]
-
   return (
     <div>
       <HeroSection />
+      <SplitCTA
+        headingSize={'sm'}
+        title={'Deluxe Pool Side'}
+        paragraph={
+          'Enjoy your holiday in a spacious 30m² deluxe room with a pool view, perfect for a group of three. The room features a large bed, a sofa bed, and a wide range of amenities. This accommodation offers both comfort and tranquility.'
+        }
+        primaryButton={{
+          text: 'Book now',
+          url: '/room/pool-side',
+        }}
+        secondaryButton={{
+          text: 'Book now',
+          url: '/room/pool-side',
+        }}
+        frontImage={{
+          src: '/api/media/file/placeholder2.avif',
+          alt: 'alt',
+        }}
+        backImage={{
+          src: '/api/media/file/placeholder.avif',
+          alt: 'alt',
+        }}
+      />
+      <SplitCTA
+        direction={'right'}
+        title={'Deluxe Pool Side'}
+        paragraph={
+          'Enjoy your holiday in a spacious 30m² deluxe room with a pool view, perfect for a group of three. The room features a large bed, a sofa bed, and a wide range of amenities. This accommodation offers both comfort and tranquility.'
+        }
+        primaryButton={{
+          text: 'Book now',
+          url: '/room/pool-side',
+        }}
+        secondaryButton={{
+          text: 'Book now',
+          url: '/room/pool-side',
+        }}
+        frontImage={{
+          src: '/api/media/file/placeholder2.avif',
+          alt: 'alt',
+        }}
+        backImage={{
+          src: '/api/media/file/placeholder.avif',
+          alt: 'alt',
+        }}
+      />
       <InfoTextCTA withImage className={'mt-20'} />
       <RoomsDisplay />
-      <SelectedRooms />
+      <SelectedRooms rooms={home.fourth?.rooms as Array<Rooms>} />
       {/* <ImageCarousel images={mediaMock} /> */}
       {/* <RecommendedExperiences /> */}
       <Prefooter />
