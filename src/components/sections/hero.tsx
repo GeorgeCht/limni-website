@@ -4,6 +4,7 @@ import React from 'react'
 import gsap from 'gsap'
 
 import { cn } from '@/lib/utils'
+import { useLocale } from '@/stores/locale'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
@@ -12,17 +13,40 @@ import { ArrowDownIcon } from '@/components/vectors/arrow'
 import { Logo } from '@/components/vectors/logo'
 import { HoverFlip } from '@/components/ui/hoverflip'
 
+import type { Media } from '@/payload-types'
+import type { LocalizedString } from '@/lib/locale'
+
+interface Props extends Omit<React.HTMLAttributes<HTMLElement>, 'ref'> {
+  header: LocalizedString
+  subtitle: LocalizedString
+  cta: {
+    label: LocalizedString
+    url: string
+  }
+  paragraph: LocalizedString
+  paragraphCta: {
+    label: LocalizedString
+    url: string
+  }
+  image: Media
+}
+
 export const HeroSection = ({
+  header,
+  subtitle,
+  cta,
+  paragraph,
+  paragraphCta,
+  image,
   className,
   ...props
-}: Omit<
-  React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>,
-  'ref'
->) => {
+}: Props) => {
+  const { locale } = useLocale()
+
   const arch = React.useRef<HTMLDivElement>(null)
   const section = React.useRef<HTMLElement>(null)
   const img = React.useRef<HTMLImageElement>(null)
-  const header = React.useRef<HTMLHeadingElement>(null)
+  const headerRef = React.useRef<HTMLHeadingElement>(null)
   const bottom = React.useRef<HTMLDivElement>(null)
 
   gsap.registerPlugin(ScrollTrigger)
@@ -61,7 +85,7 @@ export const HeroSection = ({
       ease: 'circ.inOut',
     })
     gsap.fromTo(
-      header.current,
+      headerRef.current,
       {
         marginTop: -35,
         opacity: 0,
@@ -95,8 +119,8 @@ export const HeroSection = ({
           data-scroll
           data-scroll-speed={0.0985}
           ref={img}
-          src={'/assets/splash.jpg'}
-          alt={'placeholder'}
+          src={image.url!}
+          alt={image.alt}
           className={'object-cover'}
         />
       </div>
@@ -107,17 +131,21 @@ export const HeroSection = ({
         }
       >
         <h1
-          ref={header}
+          ref={headerRef}
           data-scroll
           data-scroll-speed={-0.0985}
           className={
             'uppercase font-canela text-[11.125vw] lg:text-[9.725vw] w-full leading-none m-auto text-center select-none cursor-default opacity-0'
           }
         >
-          The boutique experiece
+          {locale === 'en' ? header.en : header.el}
         </h1>
       </div>
-      <Flair parent={arch}>Click me</Flair>
+      <Flair parent={arch}>
+        <span className={'text-center p-6'}>
+          {locale === 'en' ? 'Book a room' : 'Καντε κρατηση'}
+        </span>
+      </Flair>
       <div
         ref={bottom}
         className={
@@ -135,7 +163,7 @@ export const HeroSection = ({
               'text-balance text-center leading-tight max-w-72 m-auto uppercase'
             }
           >
-            Welcome to the Southwestern Evoia
+            {locale === 'en' ? subtitle.en : subtitle.el}
           </p>
         </div>
         <div
@@ -156,15 +184,15 @@ export const HeroSection = ({
                 'text-balance text-lg md:text-xl font-canela max-[1628px]:text-center max-[1628px]:mt-10'
               }
             >
-              Nestled in the serene coastal village of Limni, our hotel offers a
-              perfect blend of traditional charm and modern comfort. Welcome
-              home!
+              {locale === 'en' ? paragraph.en : paragraph.el}
             </p>
             <HoverFlip.Link
-              href={'/rooms'}
+              href={cta.url}
               className={'uppercase max-[1628px]:text-center'}
             >
-              Get directions
+              {locale === 'en'
+                ? (cta.label.en as string)
+                : (cta.label.el as string)}
             </HoverFlip.Link>
           </div>
         </div>

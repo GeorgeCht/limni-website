@@ -203,7 +203,7 @@ export interface Experience {
     bigImage?: (string | null) | Media;
   };
   availability: 'summer' | 'winter' | 'spring' | 'fall' | 'all';
-  Media: {
+  media: {
     images?: (string | Media)[] | null;
     cover: string | Media;
     frontDisplay: string | Media;

@@ -2,22 +2,48 @@ import React from 'react'
 import config from '@payload-config'
 
 import { getPayloadHMR } from '@payloadcms/next/utilities'
+
 import { HeroSection } from '@/components/sections/hero'
 import { InfoTextCTA } from '@/components/sections/infotext-cta'
 import { Prefooter } from '@/components/sections/prefooter'
 import { RoomsDisplay } from '@/components/sections/rooms-display'
 import { RecommendedExperiences } from '@/components/sections/recommended-experiences'
-import { ImageCarousel } from '@/components/sections/image-carousel'
-
-import type { Media, Room } from '@/payload-types'
 import { SelectedRooms } from '@/components/sections/selected-rooms'
-import { SplitCTA } from '@/components/sections/split-cta'
-import { VerticalCTA } from '@/components/sections/vertical-cta'
+
+import type { Experience, Media, Room } from '@/payload-types'
+import type { LocalizedObject, LocalizedString } from '@/lib/locale'
 
 interface Rooms {
   room: string | Room
   image: string | Media
   id?: string | null | undefined
+}
+
+interface Experiences {
+  header: string
+  subtitle: string
+  description: string
+  paragraph: string
+  experiences?: Array<{
+    experience: string | Experience
+    video?: (string | null) | Media
+    id?: string | null
+  }> | null
+  id?: string | null
+  blockName?: string | null
+  blockType: 'SelectedExperiences'
+}
+
+interface PrefooterType {
+  subheader: string
+  header: string
+  line1: string
+  line2: string
+  url: string
+  background: string | Media
+  id?: string | null
+  blockName?: string | null
+  blockType: 'PreFooter'
 }
 
 export const dynamic = 'force-static'
@@ -26,86 +52,51 @@ export default async function HomePage() {
   const payload = await getPayloadHMR({ config })
   const home = await payload.findGlobal({
     slug: 'home',
-    depth: 3,
+    locale: 'all',
+    depth: 2,
   })
 
   return (
-    <div>
-      <HeroSection />
-      <VerticalCTA
-        title={'Vertical action'}
-        paragraph={
-          'Enjoy your holiday in a spacious 30m² deluxe room with a pool view, perfect for a group of three. The room features a large bed, a sofa bed, and a wide range of amenities. This accommodation offers both comfort and tranquility.'
-        }
-        primaryButton={{
-          text: 'Book now',
-          url: '/room/pool-side',
+    <React.Fragment>
+      <HeroSection
+        header={home.hero.header as unknown as LocalizedString}
+        subtitle={home.hero.subtitle as unknown as LocalizedString}
+        cta={{
+          label: home.hero.cta?.[0]?.label! as unknown as LocalizedString,
+          url: home.hero.cta?.[0]?.url!,
         }}
-        secondaryButton={{
-          text: 'Book now',
-          url: '/room/pool-side',
+        paragraph={home.hero.paragraph as unknown as LocalizedString}
+        paragraphCta={{
+          label: home.hero.paragraphCta?.[0]
+            .label as unknown as LocalizedString,
+          url: home.hero.paragraphCta?.[0].url!,
         }}
-        topImage={{
-          src: '/api/media/file/placeholder2.avif',
-          alt: 'alt',
-        }}
-        sideImage={{
-          src: '/api/media/file/placeholder.avif',
-          alt: 'alt',
-        }}
+        image={home.hero.image as Media}
       />
-      <SplitCTA
-        headingSize={'sm'}
-        title={'Deluxe Pool Side'}
-        paragraph={
-          'Enjoy your holiday in a spacious 30m² deluxe room with a pool view, perfect for a group of three. The room features a large bed, a sofa bed, and a wide range of amenities. This accommodation offers both comfort and tranquility.'
-        }
-        primaryButton={{
-          text: 'Book now',
-          url: '/room/pool-side',
+
+      <InfoTextCTA
+        withImage
+        title={home.second.header as unknown as LocalizedString}
+        cta={{
+          label: home.second.ctaLabel as unknown as LocalizedString,
+          url: home.second.ctaUrl!,
         }}
-        secondaryButton={{
-          text: 'Book now',
-          url: '/room/pool-side',
-        }}
-        frontImage={{
-          src: '/api/media/file/placeholder2.avif',
-          alt: 'alt',
-        }}
-        backImage={{
-          src: '/api/media/file/placeholder.avif',
-          alt: 'alt',
-        }}
+        image={home.second.image as Media}
+        className={'mt-20'}
       />
-      <SplitCTA
-        direction={'right'}
-        title={'Deluxe Pool Side'}
-        paragraph={
-          'Enjoy your holiday in a spacious 30m² deluxe room with a pool view, perfect for a group of three. The room features a large bed, a sofa bed, and a wide range of amenities. This accommodation offers both comfort and tranquility.'
-        }
-        primaryButton={{
-          text: 'Book now',
-          url: '/room/pool-side',
-        }}
-        secondaryButton={{
-          text: 'Book now',
-          url: '/room/pool-side',
-        }}
-        frontImage={{
-          src: '/api/media/file/placeholder2.avif',
-          alt: 'alt',
-        }}
-        backImage={{
-          src: '/api/media/file/placeholder.avif',
-          alt: 'alt',
-        }}
-      />
-      <InfoTextCTA withImage className={'mt-20'} />
       <RoomsDisplay />
       <SelectedRooms rooms={home.fourth?.rooms as Array<Rooms>} />
-      {/* <ImageCarousel images={mediaMock} /> */}
-      {/* <RecommendedExperiences /> */}
-      <Prefooter />
-    </div>
+      <RecommendedExperiences
+        experiences={
+          home.fifth
+            .selectedExperiences as unknown as LocalizedObject<Experiences>
+        }
+      />
+      <Prefooter
+        prefooter={
+          home.sixth.prefooter as unknown as LocalizedObject<PrefooterType>
+        }
+      />
+    </React.Fragment>
   )
 }

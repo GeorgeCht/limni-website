@@ -1,15 +1,14 @@
 'use client'
 
 import React from 'react'
-import gsap from 'gsap'
 
 import { cn } from '@/lib/utils'
 import { HoverFlip } from '@/components/ui/hoverflip'
-import { useGSAP } from '@gsap/react'
 import { Link } from 'next-view-transitions'
 import { useLocale } from '@/stores/locale'
 
 import type { Experience, Media } from '@/payload-types'
+import type { LocalizedObject, LocalizedString } from '@/lib/locale'
 
 const HeadingComponent = ({
   header,
@@ -25,7 +24,7 @@ const HeadingComponent = ({
       <h4 className={'w-1/4 max-lg:w-full uppercase'}>{subtitle}</h4>
       <div
         className={
-          'w-3/4 max-lg:w-full flex flex-row max-md:flex-col justify-between items-end gap-4'
+          'w-3/4 max-lg:w-full flex flex-row max-md:flex-col justify-between items-end gap-10'
         }
       >
         <h2
@@ -63,7 +62,7 @@ interface Props
     React.HTMLAttributes<HTMLElement>,
     HTMLElement
   > {
-  experiences: Experiences
+  experiences: LocalizedObject<Experiences>
   theme?: 'dark' | 'light'
 }
 
@@ -90,16 +89,30 @@ export const RecommendedExperiences = ({
       {...props}
     >
       <HeadingComponent
-        header={experiences.header}
-        subtitle={experiences.subtitle}
-        description={experiences.description}
+        header={
+          locale === 'en'
+            ? experiences.en?.[0]?.header! ?? ''
+            : experiences.el?.[0]?.header! ?? ''
+        }
+        subtitle={
+          locale === 'en'
+            ? experiences.en?.[0]?.subtitle! ?? ''
+            : experiences.el?.[0]?.subtitle! ?? ''
+        }
+        description={
+          locale === 'en'
+            ? experiences.en?.[0]?.description! ?? ''
+            : experiences.el?.[0]?.description! ?? ''
+        }
       />
       <div
         className={'flex max-[1280px]:flex-col-reverse items-end gap-10 w-full'}
       >
         <div className={'w-1/4 max-[1280px]:w-full flex flex-col gap-8'}>
           <p className={'max-w-96 text-balance text-lg font-canela'}>
-            {experiences.paragraph}
+            {locale === 'en'
+              ? experiences.en?.[0]?.paragraph! ?? ''
+              : experiences.el?.[0]?.paragraph! ?? ''}
           </p>
           <HoverFlip.Link href={'/experiences'} className={'uppercase w-fit'}>
             {locale === 'en' ? 'Learn more' : 'Περισσότερα'}
@@ -110,9 +123,8 @@ export const RecommendedExperiences = ({
             'w-3/4 max-[1280px]:w-full flex flex-row max-[1280px]:flex-col gap-8 *:min-[1280px]:aspect-[7/10] *:aspect-square'
           }
         >
-          {experiences.experiences?.map((experience) => {
+          {experiences[locale]?.[0]?.experiences?.map((experience) => {
             const item = experience.experience as Experience
-            item.availability
             return (
               <li
                 key={experience.id}
@@ -125,8 +137,8 @@ export const RecommendedExperiences = ({
                   href={`/experiences/${item.slug}`}
                 >
                   <img
-                    src={(item.Media.cover as Media).url!}
-                    alt={(item.Media.cover as Media).alt}
+                    src={(item.media.cover as Media).url!}
+                    alt={(item.media.cover as Media).alt}
                     className={
                       'absolute top-0 left-0 w-full h-full object-cover md:opacity-100 max-md:opacity-60 group-hover:md:opacity-0 transition-all z-0'
                     }
@@ -197,7 +209,9 @@ export const RecommendedExperiences = ({
                       'font-canela text-white text-4xl text-center md:text-5xl md:opacity-0 transition-all md:group-hover:opacity-100 z-10'
                     }
                   >
-                    {item.name}
+                    {locale === 'en'
+                      ? (item.name as unknown as LocalizedString).en
+                      : (item.name as unknown as LocalizedString).el}
                   </h3>
                   <HoverFlip.Root
                     className={

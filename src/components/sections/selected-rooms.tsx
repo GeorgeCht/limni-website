@@ -1,15 +1,13 @@
 'use client'
 
 import React from 'react'
-import gsap from 'gsap'
 
 import { cn } from '@/lib/utils'
+import { useLocale } from '@/stores/locale'
 import { HoverFlip } from '@/components/ui/hoverflip'
-import { useGSAP } from '@gsap/react'
-import { Link } from 'next-view-transitions'
 
 import type { Media, Room } from '@/payload-types'
-import { useLocale } from '@/stores/locale'
+import type { LocalizedString } from '@/lib/locale'
 
 interface Rooms {
   room: string | Room
@@ -80,7 +78,15 @@ export const SelectedRooms = ({ rooms, className, ...props }: Props) => {
                 'max-w-[768px] font-canela text-balance text-6xl md:text-8xl leading-none'
               }
             >
-              {(rooms[selectedRoom].room as Room).name}
+              {locale === 'en'
+                ? (
+                    (rooms[selectedRoom].room as Room)
+                      .name as unknown as LocalizedString
+                  ).en!
+                : (
+                    (rooms[selectedRoom].room as Room)
+                      .name as unknown as LocalizedString
+                  ).el!}
             </h2>
           </div>
         </div>
@@ -117,7 +123,15 @@ export const SelectedRooms = ({ rooms, className, ...props }: Props) => {
                 'font-canela text-balance max-w-[768px] text-2xl md:text-3xl'
               }
             >
-              {(rooms[selectedRoom].room as Room).midSection.paragraph}
+              {locale === 'en'
+                ? (
+                    (rooms[selectedRoom].room as Room).midSection
+                      .paragraph as unknown as LocalizedString
+                  ).en!
+                : (
+                    (rooms[selectedRoom].room as Room).midSection
+                      .paragraph as unknown as LocalizedString
+                  ).el!}
             </p>
           </div>
           <HoverFlip.Link
@@ -143,6 +157,11 @@ export const SelectedRooms = ({ rooms, className, ...props }: Props) => {
               </button>
               <button
                 type={'button'}
+                onClick={() => {
+                  setSelectedRoom((state) =>
+                    state === rooms.length - 1 ? 0 : state + 1,
+                  )
+                }}
                 className={
                   'size-24 flex items-center justify-center border border-black/25 hover:border-black/75 leading-none transition-all rounded-full uppercase'
                 }

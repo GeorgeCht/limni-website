@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { HoverFlip } from '@/components/ui/hoverflip'
 import { useGSAP } from '@gsap/react'
 import { Link } from 'next-view-transitions'
+import { useLocale } from '@/stores/locale'
 
 interface Props
   extends React.DetailedHTMLProps<
@@ -21,6 +22,7 @@ export const RoomsDisplay = ({
   className,
   ...props
 }: Props) => {
+  const { locale } = useLocale()
   const [isTransitioning, setIsTransitioning] = React.useState(false)
 
   const section = React.useRef<HTMLElement>(null)
@@ -66,7 +68,6 @@ export const RoomsDisplay = ({
     }
   })
 
-  // add a resize listener for gsap listItems for mobile
   React.useEffect(() => {
     window.addEventListener('resize', handleResize)
     return () => {
@@ -110,20 +111,20 @@ export const RoomsDisplay = ({
 
   const roomCategories = [
     {
-      title: 'Premium Rooms',
-      href: '/categories/premium',
+      title: 'Standard',
+      href: '/rooms/standard',
       image: '/assets/placeholder.avif',
       count: 10,
     },
     {
-      title: 'Deluxe Rooms',
-      href: '/categories/deluxe',
+      title: 'Deluxe',
+      href: '/rooms/deluxe',
       image: '/assets/placeholder.avif',
       count: 4,
     },
     {
-      title: 'Suites',
-      href: '/categories/suites',
+      title: 'Superior',
+      href: '/rooms/superior',
       image: '/assets/placeholder.avif',
       count: 3,
     },
@@ -168,7 +169,7 @@ export const RoomsDisplay = ({
               href={'/rooms'}
               className={'uppercase w-full text-start sm:text-end'}
             >
-              View all rooms
+              {locale === 'en' ? 'View all rooms' : 'Ολα τα δωμάτια'}
             </HoverFlip.Link>
           </div>
         </div>

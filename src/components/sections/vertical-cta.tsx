@@ -3,11 +3,15 @@
 import type React from 'react'
 
 import { cn } from '@/lib/utils'
+import { useLocale } from '@/stores/locale'
 import { HoverFlip } from '@/components/ui/hoverflip'
 import { Button } from '@/components/ui/button'
 import { ArrowOutbound } from '@/components/vectors/arrow'
 
 import { useTransitionRouter } from 'next-view-transitions'
+
+import type { LocalizedString } from '@/lib/locale'
+import type { Media } from '@/payload-types'
 
 const TextSection = ({
   title,
@@ -16,22 +20,20 @@ const TextSection = ({
   secondaryButton,
   topImage,
 }: {
-  title: string
-  paragraph: string
+  title: LocalizedString
+  paragraph: LocalizedString
   primaryButton: {
-    text: string
+    text: LocalizedString
     url: string
   }
   secondaryButton?: {
-    text: string
+    text: LocalizedString
     url: string
   }
-  topImage: {
-    src: string
-    alt: string
-  }
+  topImage: Media
 }) => {
   const router = useTransitionRouter()
+  const { locale } = useLocale()
 
   return (
     <div
@@ -40,28 +42,34 @@ const TextSection = ({
       }
     >
       <img
-        src={topImage.src}
+        src={topImage.url!}
         alt={topImage.alt}
         className={'object-cover w-full aspect-square'}
       />
       <div className={'flex flex-col gap-4 lg:pt-20'}>
-        <h3 className={'uppercase pb-2'}>{title}</h3>
+        <h3 className={'uppercase pb-2'}>
+          {locale === 'en' ? title.en : title.el}
+        </h3>
         <p
           className={
             'font-canela text-balance max-w-[768px] text-2xl md:text-3xl'
           }
         >
-          {paragraph}
+          {locale === 'en' ? paragraph.en : paragraph.el}
         </p>
       </div>
       <div className={'flex flex-row items-center gap-14'}>
         <Button onClick={() => router.push(primaryButton.url)}>
-          {primaryButton.text}
+          {locale === 'en'
+            ? (primaryButton.text.en as string)
+            : (primaryButton.text.el as string)}
           <ArrowOutbound className={'ml-4'} />
         </Button>
         {secondaryButton && (
           <HoverFlip.Link href={secondaryButton.url} className={'uppercase'}>
-            {secondaryButton.text}
+            {locale === 'en'
+              ? (secondaryButton.text.en as string)
+              : (secondaryButton.text.el as string)}
           </HoverFlip.Link>
         )}
       </div>
@@ -70,28 +78,22 @@ const TextSection = ({
 }
 
 interface Props
-  extends React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLElement>,
-    HTMLElement
+  extends Omit<
+    React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>,
+    'title'
   > {
-  title: string
-  paragraph: string
+  title: LocalizedString
+  paragraph: LocalizedString
   primaryButton: {
-    text: string
+    text: LocalizedString
     url: string
   }
   secondaryButton?: {
-    text: string
+    text: LocalizedString
     url: string
   }
-  topImage: {
-    src: string
-    alt: string
-  }
-  sideImage: {
-    src: string
-    alt: string
-  }
+  topImage: Media
+  sideImage: Media
 }
 
 export const VerticalCTA = ({
@@ -132,7 +134,7 @@ export const VerticalCTA = ({
           <img
             data-scroll
             data-scroll-speed={0.0625}
-            src={sideImage.src}
+            src={sideImage.url!}
             alt={sideImage.alt}
             className={'object-cover w-full h-full max-lg:aspect-square'}
           />

@@ -199,7 +199,7 @@ export const Experiences: CollectionConfig = {
       ],
     },
     {
-      name: 'Media',
+      name: 'media',
       type: 'group',
       fields: [
         {

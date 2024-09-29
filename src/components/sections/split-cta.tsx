@@ -3,10 +3,14 @@
 import type React from 'react'
 
 import { cn } from '@/lib/utils'
+import { useLocale } from '@/stores/locale'
 import { HoverFlip } from '@/components/ui/hoverflip'
 import { Button } from '@/components/ui/button'
 import { ArrowOutbound } from '@/components/vectors/arrow'
 import { useTransitionRouter } from 'next-view-transitions'
+
+import type { LocalizedString } from '@/lib/locale'
+import type { Media } from '@/payload-types'
 
 const ImagesSection = ({
   direction,
@@ -14,14 +18,8 @@ const ImagesSection = ({
   backImage,
 }: {
   direction?: 'left' | 'right'
-  frontImage: {
-    src: string
-    alt: string
-  }
-  backImage: {
-    src: string
-    alt: string
-  }
+  frontImage: Media
+  backImage: Media
 }) => {
   return (
     <div className={'w-full h-[90vw] lg:h-[50vw] lg:w-1/2 relative'}>
@@ -34,7 +32,7 @@ const ImagesSection = ({
         <img
           data-scroll
           data-scroll-speed={-0.0625}
-          src={backImage.src}
+          src={backImage.url!}
           alt={backImage.alt}
           className={'object-cover w-full h-full'}
         />
@@ -48,7 +46,7 @@ const ImagesSection = ({
         <img
           data-scroll
           data-scroll-speed={0.0625}
-          src={frontImage.src}
+          src={frontImage.url!}
           alt={frontImage.alt}
           className={'object-cover w-full h-full'}
         />
@@ -64,18 +62,19 @@ const TextSection = ({
   primaryButton,
   secondaryButton,
 }: {
-  title: string
-  paragraph: string
+  title: LocalizedString
+  paragraph: LocalizedString
   headingSize: 'sm' | 'lg'
   primaryButton: {
-    text: string
+    text: LocalizedString
     url: string
   }
   secondaryButton?: {
-    text: string
+    text: LocalizedString
     url: string
   }
 }) => {
+  const { locale } = useLocale()
   const router = useTransitionRouter()
 
   return (
@@ -92,24 +91,28 @@ const TextSection = ({
               : 'font-canela text-balance max-w-[768px] text-6xl md:text-8xl leading-none',
           )}
         >
-          {title}
+          {locale === 'en' ? title.en : title.el}
         </h3>
         <p
           className={
             'font-canela text-balance max-w-[768px] text-2xl md:text-3xl'
           }
         >
-          {paragraph}
+          {locale === 'en' ? paragraph.en : paragraph.el}
         </p>
       </div>
       <div className={'flex flex-row items-center gap-14'}>
         <Button onClick={() => router.push(primaryButton.url)}>
-          {primaryButton.text}
+          {locale === 'en'
+            ? (primaryButton.text.en as string)
+            : (primaryButton.text.el as string)}
           <ArrowOutbound className={'ml-4'} />
         </Button>
         {secondaryButton && (
           <HoverFlip.Link href={secondaryButton.url} className={'uppercase'}>
-            {secondaryButton.text}
+            {locale === 'en'
+              ? (secondaryButton.text.en as string)
+              : (secondaryButton.text.el as string)}
           </HoverFlip.Link>
         )}
       </div>
@@ -118,33 +121,29 @@ const TextSection = ({
 }
 
 interface Props
-  extends React.DetailedHTMLProps<
-    React.HTMLAttributes<HTMLElement>,
-    HTMLElement
+  extends Omit<
+    React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>,
+    'title'
   > {
+  theme?: 'light' | 'dark'
   direction?: 'left' | 'right'
   headingSize?: 'sm' | 'lg'
-  title: string
-  paragraph: string
+  title: LocalizedString
+  paragraph: LocalizedString
   primaryButton: {
-    text: string
+    text: LocalizedString
     url: string
   }
   secondaryButton?: {
-    text: string
+    text: LocalizedString
     url: string
   }
-  frontImage: {
-    src: string
-    alt: string
-  }
-  backImage: {
-    src: string
-    alt: string
-  }
+  frontImage: Media
+  backImage: Media
 }
 
 export const SplitCTA = ({
+  theme = 'light',
   direction = 'left',
   headingSize = 'lg',
   title,
@@ -160,6 +159,7 @@ export const SplitCTA = ({
     <section
       className={cn(
         'relative w-full h-fit py-12 md:py-20 px-10 md:px-20 transition-all',
+        theme === 'dark' && 'bg-[#414135] text-[#E7E0D5]',
         className,
       )}
       {...props}

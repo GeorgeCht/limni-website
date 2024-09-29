@@ -44,13 +44,15 @@ export const ImageCarousel = ({ images, className, ...props }: Props) => {
           {images.map((image) => (
             <CarouselItem
               key={image.id}
-              className={'md:basis-1/2 lg:basis-5/6 basis-5/6'}
+              className={
+                'md:basis-1/2 lg:basis-5/6 basis-5/6 aspect-square lg:aspect-video pr-4 lg:pr-8'
+              }
             >
-              <div className={'pr-4 lg:pr-8'}>
+              <div className={'relative size-full'}>
                 <img
                   src={image.url!}
                   alt={image.alt}
-                  className={'object-cover aspect-square lg:aspect-video'}
+                  className={'object-cover absolute inset-0 w-full h-full'}
                 />
               </div>
             </CarouselItem>
