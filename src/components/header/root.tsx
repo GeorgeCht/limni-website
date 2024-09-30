@@ -16,6 +16,7 @@ import { HeaderCTA } from './cta'
 
 import { useGSAP } from '@gsap/react'
 import { useLocale } from '@/stores/locale'
+import { staticData } from '@/lib/static'
 
 export const HeaderRoot = ({
   children,
@@ -28,6 +29,13 @@ export const HeaderRoot = ({
 
   const [ctaIsOpen, setCtaIsOpen] = React.useState(false)
   const [flyoutIsOpen, setFlyoutIsOpen] = React.useState(false)
+
+  const formatPhoneNumber = (phoneNumber: string): string => {
+    const cleaned = phoneNumber.replace(/\D/g, '')
+    return cleaned.length > 10
+      ? cleaned.replace(/(\d{2})(\d{5})(\d{2})(\d+)/, '+$1 $2 $3 $4')
+      : cleaned.replace(/(\d{5})(\d{2})(\d+)/, '$1 $2 $3')
+  }
 
   useGSAP(() => {
     gsap.fromTo(
@@ -92,7 +100,7 @@ export const HeaderRoot = ({
               {flyoutIsOpen ? (locale === 'en' ? 'Close' : 'Κλείσιμο') : 'Menu'}
             </HoverFlip.Root>
           </div>
-          {children}
+          {flyoutIsOpen ? null : children}
         </div>
         <div
           className={cn(
@@ -119,9 +127,9 @@ export const HeaderRoot = ({
         >
           <HoverFlip.Link
             className={'max-xl:hidden transition-all delay-[255ms]'}
-            href={'tel:0030694443433'}
+            href={`tel:${staticData.menu.contact.phone}`}
           >
-            +30 69444 34 3343
+            {formatPhoneNumber(staticData.menu.contact.phone)}
           </HoverFlip.Link>
           <Button
             onClick={() => setCtaIsOpen((state) => !state)}
@@ -132,7 +140,9 @@ export const HeaderRoot = ({
                 : 'bg-black text-white border-transparent',
             )}
           >
-            Book your room
+            {locale === 'en'
+              ? staticData.menu.cta.sm.en
+              : staticData.menu.cta.sm.el}
           </Button>
           <Button
             onClick={() => setCtaIsOpen((state) => !state)}
@@ -143,7 +153,9 @@ export const HeaderRoot = ({
                 : 'bg-black text-white border-transparent',
             )}
           >
-            Book now
+            {locale === 'en'
+              ? staticData.menu.cta.lg.en
+              : staticData.menu.cta.lg.el}
           </Button>
         </div>
       </header>

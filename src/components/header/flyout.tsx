@@ -8,6 +8,8 @@ import { useGSAP } from '@gsap/react'
 import { useScroller } from '@/components/providers/scroll'
 import { UnderlinedLinkWithImage } from '@/components/ui/underline'
 import { HoverFlip } from '@/components/ui/hoverflip'
+import { staticData } from '@/lib/static'
+import { useLocale } from '@/stores/locale'
 
 interface Props
   extends React.DetailedHTMLProps<
@@ -25,6 +27,7 @@ export const HeaderFlyout = ({
   ...props
 }: Props) => {
   const { scroller } = useScroller()
+  const { locale } = useLocale()
 
   const ref = React.useRef<HTMLDivElement>(null)
   const linksRef = React.useRef<Array<HTMLLIElement | null>>([])
@@ -87,49 +90,6 @@ export const HeaderFlyout = ({
     }
   }, [isOpen])
 
-  const linksData = [
-    {
-      href: '/rooms',
-      label: 'Find a room',
-      image: '/assets/placeholder.avif',
-    },
-    {
-      href: '/about',
-      label: 'Our hotel',
-      image: '/assets/placeholder.avif',
-    },
-    {
-      href: '/experiences',
-      label: 'Experiences',
-      image: '/assets/placeholder.avif',
-    },
-    {
-      href: '/contact',
-      label: 'Contact us',
-      image: '/assets/placeholder.avif',
-    },
-    {
-      href: '/faqs',
-      label: 'FAQs',
-      image: '/assets/placeholder.avif',
-    },
-  ]
-
-  const socialLinksData = [
-    {
-      href: 'https://www.instagram.com/limnihotel/',
-      label: 'Instagram',
-    },
-    {
-      href: 'https://www.facebook.com/limnihotel/',
-      label: 'Facebook',
-    },
-    {
-      href: 'https://www.booking.com/hotel/gr/limni-hotel.html',
-      label: 'Booking',
-    },
-  ]
-
   return (
     <div
       ref={ref}
@@ -151,7 +111,7 @@ export const HeaderFlyout = ({
             'flex flex-col items-center justify-center gap-1 w-full pt-40'
           }
         >
-          {linksData.map((link, index) => (
+          {staticData.menu.items.map((link, index) => (
             <li
               key={`${link.href}-${index}`}
               ref={(element) => {
@@ -172,7 +132,7 @@ export const HeaderFlyout = ({
                 }
                 href={link.href}
               >
-                {link.label}
+                {link.label[locale]}
               </UnderlinedLinkWithImage>
               <span className={'text-white text-sm'}>0{index + 1}</span>
             </li>
@@ -186,20 +146,20 @@ export const HeaderFlyout = ({
           }
         >
           <div className={'basis-1/3 max-lg:basis-full flex justify-start'}>
-            <HoverFlip.Link href={'mailto:info@limni-hotel.com'}>
-              info@limni-hotel.com
+            <HoverFlip.Link href={`mailto:${staticData.menu.contact.email}`}>
+              {staticData.menu.contact.email}
             </HoverFlip.Link>
           </div>
           <div
             className={
-              'basis-1/3 max-lg:basis-full flex justify-center text-center m-auto'
+              'basis-1/3 max-lg:basis-full flex justify-center text-center m-auto uppercase'
             }
           >
-            ODOS LIMNIS, EVOIA 3243, SOUTHWESTERN EVOIA
+            {staticData.menu.contact.address[locale]}
           </div>
           <div className={'basis-1/3 max-lg:basis-full flex justify-end'}>
             <ul className={'flex items-center gap-2'}>
-              {socialLinksData.map((link, index) => {
+              {staticData.menu.socialMedia.map((link, index) => {
                 const label = `(${link.label})`
                 return (
                   <li
