@@ -6,11 +6,12 @@ import { getPayloadHMR } from '@payloadcms/next/utilities'
 import { ImageCarousel } from '@/components/sections/image-carousel'
 import { InfoTextCTA } from '@/components/sections/infotext-cta'
 import { SplitCTA } from '@/components/sections/split-cta'
+import { VerticalCTA } from '@/components/sections/vertical-cta'
+import { RecommendedExperiences } from '@/components/sections/recommended-experiences'
+import { ExperienceHero } from '@/components/sections/experience-hero'
 
 import type { Experience, Media } from '@/payload-types'
 import type { LocalizedObject, LocalizedString } from '@/lib/locale'
-import { VerticalCTA } from '@/components/sections/vertical-cta'
-import { RecommendedExperiences } from '@/components/sections/recommended-experiences'
 
 interface Experiences {
   header: string
@@ -62,6 +63,10 @@ export default async function ExperiencePage({
 
   return (
     <React.Fragment>
+      <ExperienceHero
+        name={experience.name as unknown as LocalizedString}
+        description={experience.description as unknown as LocalizedString}
+      />
       <ImageCarousel
         className={
           'lg:bg-[linear-gradient(180deg,_rgba(0,0,0,0)_0%,_rgba(0,0,0,0)_79.99%,_rgba(65,65,53,1)_80%,_rgba(65,65,53,1)_100%)]'

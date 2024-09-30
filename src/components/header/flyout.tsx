@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 import { useGSAP } from '@gsap/react'
 import { useScroller } from '@/components/providers/scroll'
 import { UnderlinedLinkWithImage } from '@/components/ui/underline'
-import { HoverFlip } from '../ui/hoverflip'
+import { HoverFlip } from '@/components/ui/hoverflip'
 
 interface Props
   extends React.DetailedHTMLProps<

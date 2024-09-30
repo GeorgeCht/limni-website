@@ -2,25 +2,30 @@
 
 import React from 'react'
 import gsap from 'gsap'
+import useDetectScroll from '@smakss/react-scroll-direction'
 
-import { Logo } from '../vectors/logo'
-import { MenuIcon } from '../vectors/menu'
-import { Button } from '../ui/button'
+import { cn } from '@/lib/utils'
+import { Logo } from '@/components/vectors/logo'
+import { MenuIcon } from '@/components/vectors/menu'
+import { Button } from '@/components/ui/button'
+import { HoverFlip } from '@/components/ui/hoverflip'
+
 import { Link } from 'next-view-transitions'
 import { HeaderFlyout } from './flyout'
-import { cn } from '@/lib/utils'
-import { HoverFlip } from '../ui/hoverflip'
 import { HeaderCTA } from './cta'
 
 import { useGSAP } from '@gsap/react'
-import useDetectScroll from '@smakss/react-scroll-direction'
+import { useLocale } from '@/stores/locale'
 
 export const HeaderRoot = ({
   children,
   ...props
 }: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) => {
   const header = React.useRef<HTMLElement>(null)
+
+  const { locale } = useLocale()
   const { scrollDir, scrollPosition } = useDetectScroll()
+
   const [ctaIsOpen, setCtaIsOpen] = React.useState(false)
   const [flyoutIsOpen, setFlyoutIsOpen] = React.useState(false)
 
@@ -84,7 +89,7 @@ export const HeaderRoot = ({
             <HoverFlip.Root
               className={'uppercase transition-all delay-[255ms] min-w-14'}
             >
-              {flyoutIsOpen ? 'Close' : 'Menu'}
+              {flyoutIsOpen ? (locale === 'en' ? 'Close' : 'Κλείσιμο') : 'Menu'}
             </HoverFlip.Root>
           </div>
           {children}
