@@ -33,13 +33,13 @@ export const Rooms: CollectionConfig = {
           type: 'row',
           fields: [
             {
-              name: 'code',
+              name: 'id',
               required: true,
-              label: 'Room code',
+              label: 'Room ID',
               type: 'text',
               admin: {
                 width: '15%',
-                description: 'Unique room code example: DP001',
+                description: 'Unique room id example: DP001',
                 placeholder: 'DP001',
               },
             },

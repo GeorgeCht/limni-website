@@ -98,7 +98,7 @@ export interface Room {
   id: string;
   name: string;
   roomEssentials: {
-    code: string;
+    id: string;
     url: string;
   };
   roomDetails: {
