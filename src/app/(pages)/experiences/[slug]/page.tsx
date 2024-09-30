@@ -56,8 +56,6 @@ export default async function ExperiencePage({
 
   const experience = result.docs[0] as Experience
 
-  console.log(experience.recommendedExperiences)
-
   if (!experience) {
     return notFound()
   }

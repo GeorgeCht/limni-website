@@ -62,13 +62,17 @@ export default async function RoomPage({
   const payload = await getPayloadHMR({ config })
   const result = await payload.find({
     collection: 'rooms',
-    depth: 3,
+    locale: 'all',
+    depth: 2,
     where: {
       slug: {
         equals: params.slug,
       },
     },
   })
+
+  console.log(result)
+  console.log(result.docs[0])
 
   const room = result.docs[0]
   const midSection = room.midSection
@@ -81,20 +85,15 @@ export default async function RoomPage({
     <React.Fragment>
       <RoomHero
         code={room.roomEssentials.code}
-        name={room.name}
-        paragraph={midSection.paragraph}
+        name={room.name as unknown as LocalizedString}
+        paragraph={midSection.paragraph as unknown as LocalizedString}
         roomDetails={room.roomDetails}
         primaryButton={{
-          text: midSection.cta[0].label,
+          text: midSection.cta[0].label as unknown as LocalizedString,
           url: midSection.cta[0].url,
         }}
-        coverImage={{
-          src: (room.media.cover as Media).url!,
-          alt: (room.media.cover as Media).alt,
-        }}
+        coverImage={room.media.cover as Media}
       />
-      <h1>{room.name}</h1>
-      <p>{room.roomDetails.area}</p>
       <ImageCarousel images={room.media.images as Array<Media>} />
       <InfoTextCTA
         title={midSection.title as unknown as LocalizedString}
@@ -115,6 +114,7 @@ export default async function RoomPage({
         backImage={midSection.backImage as Media}
       />
       <Prefooter
+        className={'bg-transparent'}
         prefooter={
           room.prefooter.block as unknown as LocalizedObject<PrefooterType>
         }

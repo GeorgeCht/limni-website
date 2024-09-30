@@ -13,25 +13,25 @@ import { useTransitionRouter } from 'next-view-transitions'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
+import type { Media } from '@/payload-types'
+import type { LocalizedString } from '@/lib/locale'
+
 interface Props
   extends Omit<
     React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>,
     'ref'
   > {
-  coverImage: {
-    src: string
-    alt: string
-  }
+  coverImage: Media
   roomDetails: {
     visitors: number
     area: string
     beds: number
   }
   code: string
-  name: string
-  paragraph: string
+  name: LocalizedString
+  paragraph: LocalizedString
   primaryButton: {
-    text: string
+    text: LocalizedString
     url: string
   }
 }
@@ -56,10 +56,6 @@ export const RoomHero = ({
   const { locale } = useLocale()
 
   useGSAP(() => {
-    let width = 0
-    if (typeof window !== 'undefined') {
-      width = window.innerWidth
-    }
     gsap.to(container.current, {
       y: 0,
       opacity: 1,
@@ -99,7 +95,7 @@ export const RoomHero = ({
     >
       <img
         ref={image}
-        src={coverImage.src}
+        src={coverImage.url!}
         alt={coverImage.alt}
         className={'object-cover size-full'}
       />
@@ -123,7 +119,7 @@ export const RoomHero = ({
               'font-canela uppercase text-balance text-6xl md:text-8xl leading-none max-w-[768px]'
             }
           >
-            {name}
+            {locale === 'en' ? name.en : name.el}
           </h1>
         </div>
         <div className={'flex flex-col gap-3 w-full lg:w-[40%]'}>
@@ -148,12 +144,14 @@ export const RoomHero = ({
               }
             })()}
           </p>
-          <p className={'text-balance text-lg font-canela'}>{paragraph}</p>
+          <p className={'text-balance text-lg font-canela'}>
+            {locale === 'en' ? paragraph.en : paragraph.el}
+          </p>
           <Button
             className={'w-fit bg-white text-black mt-3'}
             onClick={() => router.push(primaryButton.url)}
           >
-            {primaryButton.text}
+            {locale === 'en' ? primaryButton.text.en : primaryButton.text.el}
           </Button>
         </div>
       </div>
