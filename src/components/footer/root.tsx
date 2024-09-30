@@ -10,49 +10,42 @@ import { HoverFlip } from '@/components/ui/hoverflip'
 import { Button } from '@/components/ui/button'
 import { ArrowUpIcon } from '@/components/vectors/arrow'
 import { useScroller } from '@/components/providers/scroll'
+import { staticData } from '@/lib/static'
+import { useLocale } from '@/stores/locale'
+
+const Copyright: React.FC = () => {
+  const currentYear = new Date().getFullYear()
+
+  const copyright = staticData.footer.copyright
+  const [beforeYear, afterYear] = copyright.split('{{year}}')
+  const [beforeAuthor, afterAuthor] = afterYear.split('{{author}}')
+
+  return (
+    <div
+      className={
+        'w-full md:w-1/3 lg:w-[40%] flex flex-col text-balance justify-start items-start'
+      }
+    >
+      {beforeYear}
+      {currentYear}
+      {beforeAuthor}
+      <Link
+        href={'https://usually.design'}
+        target={'_blank'}
+        className={'hover:underline'}
+      >
+        Usually.design
+      </Link>
+      {afterAuthor}
+    </div>
+  )
+}
 
 export const FooterRoot = ({
   ...props
 }: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) => {
   const { scroller } = useScroller()
-
-  const PageLinks = [
-    {
-      label: 'Find a room',
-      href: '/rooms',
-    },
-    {
-      label: 'Our hotel',
-      href: '/about',
-    },
-    {
-      label: 'Experiences',
-      href: '/experiences',
-    },
-    {
-      label: 'Directions',
-      href: 'https://google.com',
-    },
-    {
-      label: 'FAQs',
-      href: '/faqs',
-    },
-  ]
-
-  const socialLinks = [
-    {
-      href: 'https://www.instagram.com/limnihotel/',
-      label: 'Instagram',
-    },
-    {
-      href: 'https://www.facebook.com/limnihotel/',
-      label: 'Facebook',
-    },
-    {
-      href: 'https://www.booking.com/hotel/gr/limni-hotel.html',
-      label: 'Booking',
-    },
-  ]
+  const { locale } = useLocale()
 
   return (
     <footer
@@ -92,12 +85,14 @@ export const FooterRoot = ({
               'w-full sm:w-1/3 flex flex-col gap-1.5 justify-start items-start'
             }
           >
-            {PageLinks.map((link, index) => (
+            {staticData.footer.menu.items.map((link, index) => (
               <li
                 key={`${link.href}-${index}`}
                 className={'font-canela text-2xl leading-none uppercase'}
               >
-                <HoverFlip.Link href={link.href}>{link.label}</HoverFlip.Link>
+                <HoverFlip.Link href={link.href}>
+                  {link.label[locale]}
+                </HoverFlip.Link>
               </li>
             ))}
           </ul>
@@ -107,13 +102,13 @@ export const FooterRoot = ({
             }
           >
             <HoverFlip.Link
-              href={'/contact'}
+              href={staticData.footer.menu.contact.href}
               className={'font-canela text-2xl leading-none uppercase'}
             >
-              Contact
+              {staticData.footer.menu.contact.label[locale]}
             </HoverFlip.Link>
             <ul className={'flex flex-col gap-1.5'}>
-              {socialLinks.map((link, index) => (
+              {staticData.menu.socialMedia.map((link, index) => (
                 <li
                   key={`${link.href}-${index}`}
                   className={'font-canela text-2xl leading-none uppercase'}
@@ -140,7 +135,9 @@ export const FooterRoot = ({
                 }
               }}
             >
-              <span className={'max-[1380px]:hidden'}>Back to top</span>
+              <span className={'max-[1380px]:hidden'}>
+                {staticData.footer.backToTop.label[locale]}
+              </span>
               <ArrowUpIcon className={'size-3.5'} />
             </Button>
           </div>
@@ -156,20 +153,15 @@ export const FooterRoot = ({
             'w-full lg:w-1/2 flex flex-col md:flex-row gap-8 justify-start items-end'
           }
         >
-          <div
-            className={
-              'w-full md:w-1/3 lg:w-[40%] flex flex-col text-balance justify-start items-start'
-            }
-          >
-            Limni Hotel © 2024. Created by{' '}
-            <Link href={'/home'}>Usually.design</Link>
-          </div>
+          <Copyright />
           <div
             className={
               'w-full md:w-2/3 lg:w-[60%] flex flex-col justify-start items-start max-lg:-ml-3.5 max-md:ml-0'
             }
           >
-            <HoverFlip.Link href={'/terms'}>Terms of Use</HoverFlip.Link>
+            <HoverFlip.Link href={staticData.footer.legal.terms.href}>
+              {staticData.footer.legal.terms.label[locale]}
+            </HoverFlip.Link>
           </div>
         </div>
         <div
@@ -182,8 +174,8 @@ export const FooterRoot = ({
               'w-full sm:w-1/3 flex flex-col justify-start items-start'
             }
           >
-            <HoverFlip.Link href={'/residency-policy'}>
-              Residency Policy
+            <HoverFlip.Link href={staticData.footer.legal.residency.href}>
+              {staticData.footer.legal.residency.label[locale]}
             </HoverFlip.Link>
           </div>
           <div
@@ -191,7 +183,9 @@ export const FooterRoot = ({
               'w-full sm:w-1/3 flex flex-col justify-start items-start'
             }
           >
-            <HoverFlip.Link href={'/privacy'}>Privacy Policy</HoverFlip.Link>
+            <HoverFlip.Link href={staticData.footer.legal.privacy.href}>
+              {staticData.footer.legal.privacy.label[locale]}
+            </HoverFlip.Link>
           </div>
           <div
             className={

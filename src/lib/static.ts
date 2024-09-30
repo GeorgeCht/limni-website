@@ -66,7 +66,7 @@ export const staticData = {
     ],
   },
   footer: {
-    copyright: 'Limni Hotel © 2024. Created by {{author}}',
+    copyright: 'Limni Hotel © {{year}}. Created by {{author}}',
     newsletter: {
       title: {
         en: 'Get offer updates straight to your inbox!',
