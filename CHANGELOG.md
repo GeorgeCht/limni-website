@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.12.0](https://github.com/GeorgeCht/limni-website/compare/v1.11.0...v1.12.0) (2024-09-30)
+
+
+### Features
+
+* **experiences:** added experiences page ([cdd31aa](https://github.com/GeorgeCht/limni-website/commit/cdd31aacb3e05dc6f9ee5139c32f45cd2cf816e0))
+* **staticdata:** added static data for footer and header use ([00b5233](https://github.com/GeorgeCht/limni-website/commit/00b5233cbde1dff3fcab74c696d211958a426363))
+* **stuff:** lots of stuff updated in UI sections components ([2d46095](https://github.com/GeorgeCht/limni-website/commit/2d4609581170ab423b370c1d9f05c44d49676a8b))
+* **ui:** added split section ([f7827c2](https://github.com/GeorgeCht/limni-website/commit/f7827c2eb7a0931f2b7fc97dcfa6bb27a0c033e6))
+
+
+### Bug Fixes
+
+* **rooms:** fixed room page localization data fetching ([2d11f07](https://github.com/GeorgeCht/limni-website/commit/2d11f07c246c32a263d204cbf9ec4d5b75d8a50e))
+
 ## [1.11.0](https://github.com/GeorgeCht/limni-website/compare/v1.10.0...v1.11.0) (2024-09-26)
 
 
