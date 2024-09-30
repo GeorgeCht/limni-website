@@ -34,10 +34,9 @@ export const Rooms: CollectionConfig = {
           fields: [
             {
               name: 'code',
-              unique: true,
+              required: true,
               label: 'Room code',
               type: 'text',
-              required: true,
               admin: {
                 width: '15%',
                 description: 'Unique room code example: DP001',
