@@ -84,7 +84,7 @@ export default async function RoomPage({
   return (
     <React.Fragment>
       <RoomHero
-        code={room.roomEssentials.id}
+        code={room.roomEssentials.code}
         name={room.name as unknown as LocalizedString}
         paragraph={midSection.paragraph as unknown as LocalizedString}
         roomDetails={room.roomDetails}

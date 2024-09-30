@@ -65,4 +65,78 @@ export const staticData = {
       },
     ],
   },
+  footer: {
+    copyright: 'Limni Hotel © 2024. Created by {{author}}',
+    newsletter: {
+      title: {
+        en: 'Get offer updates straight to your inbox!',
+        el: 'Εγγραφείτε στο newsletter μας!',
+      },
+      inputPlaceholder: {
+        en: 'Enter your email',
+        el: 'Το email σας',
+      },
+      disclaimer: {
+        en: 'By subscribing, you agree to our {{policy}}.',
+        el: 'Κατα την εγγραφή σας συμφωνείτε με τη {{policy}}.',
+      },
+    },
+    legal: {
+      privacy: {
+        label: {
+          en: 'Privacy Policy',
+          el: 'Πολιτική απορρήτου',
+        },
+        href: '/privacy',
+      },
+      terms: {
+        label: {
+          en: 'Terms of Service',
+          el: 'Όροι χρήσης',
+        },
+        href: '/terms',
+      },
+      residency: {
+        label: {
+          en: 'Residency Policy',
+          el: 'Πολιτική διαμονής',
+        },
+        href: '/residency',
+      },
+    },
+    menu: {
+      items: [
+        {
+          href: '/rooms',
+          label: { en: 'Find a room', el: 'Δωμάτια' },
+        },
+        {
+          href: '/about',
+          label: { en: 'Our hotel', el: 'Το ξενοδοχείο' },
+        },
+        {
+          href: '/experiences',
+          label: { en: 'Experiences', el: 'Εμπειρίες' },
+        },
+        {
+          href: 'https://maps.google.com',
+          label: { en: 'Directions', el: 'Οδηγίες' },
+        },
+        {
+          href: '/faqs',
+          label: { en: 'FAQs', el: 'Συχνές ερωτήσεις' },
+        },
+      ],
+      contact: {
+        href: '/contact',
+        label: { en: 'Contact us', el: 'Επικοινωνία' },
+      },
+    },
+    backToTop: {
+      label: {
+        en: 'Back to top',
+        el: 'Επάνω',
+      },
+    },
+  },
 }
