@@ -6,7 +6,7 @@ module.exports = {
       fontFamily: {
         canela: ['var(--font-canela)', 'Times', 'serif'],
         jetbrains: ['var(--font-jetbrains)', 'JetBrains Mono', 'monospace'],
-      }
+      },
     },
   },
   plugins: [],

@@ -52,7 +52,7 @@ export async function generateStaticParams() {
   })
 
   return rooms.docs.map((room) => ({
-    slug: room.slug,
+    slug: room.slug as string,
   }))
 }
 
@@ -70,9 +70,6 @@ export default async function RoomPage({
       },
     },
   })
-
-  console.log(result)
-  console.log(result.docs[0])
 
   const room = result.docs[0]
   const midSection = room.midSection

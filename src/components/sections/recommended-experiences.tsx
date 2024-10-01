@@ -34,7 +34,7 @@ const HeadingComponent = ({
         >
           {header}
         </h2>
-        <p className={'w-1/3 max-md:w-full text-balance text-lg font-canela'}>
+        <p className={'w-1/3 max-md:w-full text-balance text-xl font-canela'}>
           {description}
         </p>
       </div>
@@ -109,7 +109,7 @@ export const RecommendedExperiences = ({
         className={'flex max-[1280px]:flex-col-reverse items-end gap-10 w-full'}
       >
         <div className={'w-1/4 max-[1280px]:w-full flex flex-col gap-8'}>
-          <p className={'max-w-96 text-balance text-lg font-canela'}>
+          <p className={'max-w-96 text-balance text-xl font-canela'}>
             {locale === 'en'
               ? experiences.en?.[0]?.paragraph! ?? ''
               : experiences.el?.[0]?.paragraph! ?? ''}

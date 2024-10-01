@@ -97,7 +97,7 @@ export const RoomHero = ({
         ref={image}
         src={coverImage.url!}
         alt={coverImage.alt}
-        className={'object-cover size-full'}
+        className={'object-cover size-full [view-transition-name:active-image]'}
       />
       <span
         className={
