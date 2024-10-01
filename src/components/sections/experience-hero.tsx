@@ -43,7 +43,7 @@ export const ExperienceHero = ({
         </h1>
       </div>
       <div className={'flex flex-col gap-3 w-full lg:w-[40%]'}>
-        <p className={'text-balance text-lg font-canela'}>
+        <p className={'text-balance text-xl font-canela'}>
           {locale === 'en' ? description.en : description.el}
         </p>
         <HoverFlip.Link href={'/contact'} className={'uppercase'}>

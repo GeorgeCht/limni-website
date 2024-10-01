@@ -112,19 +112,19 @@ export const RoomsDisplay = ({
   const roomCategories = [
     {
       title: 'Standard',
-      href: '/rooms/standard',
+      href: '/rooms',
       image: '/assets/placeholder.avif',
       count: 10,
     },
     {
       title: 'Deluxe',
-      href: '/rooms/deluxe',
+      href: '/rooms',
       image: '/assets/placeholder.avif',
       count: 4,
     },
     {
       title: 'Superior',
-      href: '/rooms/superior',
+      href: '/rooms',
       image: '/assets/placeholder.avif',
       count: 3,
     },

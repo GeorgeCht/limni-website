@@ -124,6 +124,7 @@ export const HeaderFlyout = ({
               className={
                 'flex max-sm:text-start max-sm:w-full max-sm:justify-between items-start gap-5 opacity-0'
               }
+              onClick={() => setIsOpen(false)}
             >
               <UnderlinedLinkWithImage
                 image={link.image}

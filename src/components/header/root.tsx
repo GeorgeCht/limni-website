@@ -108,7 +108,14 @@ export const HeaderRoot = ({
             flyoutIsOpen || ctaIsOpen ? 'text-white' : 'text-black',
           )}
         >
-          <Link href={'/'} className={'w-fit inline-block'}>
+          <Link
+            href={'/'}
+            className={'w-fit inline-block'}
+            onClick={() => {
+              setCtaIsOpen(false)
+              setFlyoutIsOpen(false)
+            }}
+          >
             <Logo.Root
               className={
                 'w-32 md:w-40 max-md:hidden transition-all delay-[255ms]'

@@ -3,7 +3,7 @@ import '../globals.css'
 import localFont from 'next/font/local'
 
 import type React from 'react'
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 
 import { JetBrains_Mono } from 'next/font/google'
 import { Providers } from '@/components/providers'
@@ -25,6 +25,18 @@ const jetbrains = JetBrains_Mono({
   display: 'swap',
 })
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+}
+
+export const metadata: Metadata = {
+  title: 'Limni',
+  description: 'Discover the best hotel in Limni',
+}
+
 export default function PageLayout({
   children,
 }: { children: React.ReactNode }) {
@@ -36,8 +48,12 @@ export default function PageLayout({
     <ViewTransitions>
       <Providers.Root>
         <head>
-          <link rel={'icon'} href={'/favicon.ico'} sizes={'32x32'} />
-          <link rel={'icon'} href={'/favicon.svg'} type={'image/svg+xml'} />
+          <link rel={'icon'} href={'/icons/favicon.ico'} sizes={'32x32'} />
+          <link
+            rel={'icon'}
+            href={'/icons/favicon.svg'}
+            type={'image/svg+xml'}
+          />
         </head>
         <body
           className={cn(
@@ -57,12 +73,4 @@ export default function PageLayout({
       </Providers.Root>
     </ViewTransitions>
   )
-}
-
-export const metadata: Metadata = {
-  title: 'Limni',
-  twitter: {
-    card: 'summary_large_image',
-    creator: '@limni',
-  },
 }
