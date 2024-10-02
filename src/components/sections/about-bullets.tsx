@@ -3,11 +3,9 @@
 import type React from 'react'
 
 import { cn } from '@/lib/utils'
-import { HoverFlip } from '@/components/ui/hoverflip'
 import { useLocale } from '@/stores/locale'
 
 import type { LocalizedObject, LocalizedString } from '@/lib/locale'
-import type { Media } from '@/payload-types'
 import { Logo } from '../vectors/logo'
 
 interface Props
@@ -50,7 +48,7 @@ export const AboutBullets = ({
           {bulletPoints[locale]?.map((bulletPoint) => (
             <li
               key={bulletPoint!.id}
-              className={'flex flex-col gap-6 w-full min-[1280px]:w-[45%]'}
+              className={'flex flex-col gap-6 w-full min-[1280px]:w-[44%]'}
             >
               <Logo.Mark className={'size-10 opacity-65'} />
               <p

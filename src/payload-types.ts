@@ -493,6 +493,8 @@ export interface ExperiencesPage {
   label: string;
   paragraph: string;
   headerBelow: string;
+  imageBig?: (string | null) | Media;
+  imageSmall?: (string | null) | Media;
   updatedAt?: string | null;
   createdAt?: string | null;
 }

@@ -60,5 +60,15 @@ export const ExperiencesPage: GlobalConfig = {
           'Live the experience in the middle of the sea and nature of Limni',
       },
     },
+    {
+      name: 'imageBig',
+      type: 'upload',
+      relationTo: 'media',
+    },
+    {
+      name: 'imageSmall',
+      type: 'upload',
+      relationTo: 'media',
+    },
   ],
 }

@@ -153,7 +153,12 @@ export const HeroSection = ({
         }
       >
         <div className={'max-[1628px]:hidden min-[1628px]:basis-1/3'}>
-          <div className={'w-fit p-5 rounded-full border border-black/25'}>
+          <div
+            role={'button'}
+            className={
+              'w-fit p-5 cursor-pointer rounded-full border border-black/25'
+            }
+          >
             <ArrowDownIcon className={'size-6 self-center text-black'} />
           </div>
         </div>
