@@ -28,6 +28,12 @@ export const About: GlobalConfig = {
           required: true,
         },
         {
+          name: 'image',
+          label: 'Front image',
+          type: 'upload',
+          relationTo: 'media',
+        },
+        {
           name: 'cta',
           type: 'blocks',
           label: 'Intro Section Link',

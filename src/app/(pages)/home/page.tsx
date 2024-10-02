@@ -12,6 +12,7 @@ import { SelectedRooms } from '@/components/sections/selected-rooms'
 
 import type { Experience, Media, Room } from '@/payload-types'
 import type { LocalizedObject, LocalizedString } from '@/lib/locale'
+import type { Metadata } from 'next'
 
 interface Rooms {
   room: string | Room
@@ -47,6 +48,10 @@ interface PrefooterType {
 }
 
 export const dynamic = 'force-static'
+
+export const metadata: Metadata = {
+  title: 'Limni | Home',
+}
 
 export default async function HomePage() {
   const payload = await getPayloadHMR({ config })

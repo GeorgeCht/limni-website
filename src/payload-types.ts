@@ -365,6 +365,7 @@ export interface About {
   introSection: {
     title: string;
     paragraph: string;
+    image?: (string | null) | Media;
     cta: {
       label: string;
       url: string;
