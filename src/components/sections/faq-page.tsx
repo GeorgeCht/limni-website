@@ -38,7 +38,7 @@ export const FAQPage = ({
   return (
     <section
       className={
-        'relative flex flex-col lg:flex-row gap-10 w-full px-10 md:px-20 pb-12 md:pb-20 transition-all'
+        'relative flex flex-col lg:flex-row gap-10 w-full min-h-[calc(100dvh-112px)] md:min-h-[calc(100dvh-160px)] px-10 md:px-20 pb-12 md:pb-20 transition-all'
       }
       {...props}
     >
