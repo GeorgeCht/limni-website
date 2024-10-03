@@ -7,6 +7,7 @@ import { getPayloadHMR } from '@payloadcms/next/utilities'
 import { RecommendedExperiences } from '@/components/sections/recommended-experiences'
 import { RoomHero } from '@/components/sections/room-hero'
 
+import type { Metadata } from 'next'
 import type { Experience, Media } from '@/payload-types'
 import type { LocalizedObject, LocalizedString } from '@/lib/locale'
 
@@ -43,6 +44,25 @@ interface PrefooterType {
 }
 
 export const dynamic = 'force-static'
+
+export async function generateMetadata({
+  params,
+}: { params: { slug: string } }) {
+  const payload = await getPayloadHMR({ config })
+  const result = await payload.find({
+    collection: 'rooms',
+    depth: 2,
+    where: {
+      slug: {
+        equals: params.slug,
+      },
+    },
+  })
+
+  return {
+    title: `Limni | ${result.docs[0].name as string}`,
+  }
+}
 
 export async function generateStaticParams() {
   const payload = await getPayloadHMR({ config })

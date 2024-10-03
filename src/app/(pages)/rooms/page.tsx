@@ -3,6 +3,7 @@ import config from '@payload-config'
 
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 
+import type { Metadata } from 'next'
 import type { Experience, Media } from '@/payload-types'
 import type { LocalizedObject, LocalizedString } from '@/lib/locale'
 import type { LocalizedRoom } from '@/components/sections/rooms-carousel'
@@ -12,6 +13,10 @@ import { RoomsHero } from '@/components/sections/rooms-hero'
 import { RecommendedExperiences } from '@/components/sections/recommended-experiences'
 
 export const dynamic = 'force-static'
+
+export const metadata: Metadata = {
+  title: 'Limni | Rooms',
+}
 
 interface Experiences {
   header: string

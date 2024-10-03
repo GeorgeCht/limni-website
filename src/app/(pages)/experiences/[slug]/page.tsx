@@ -28,6 +28,24 @@ interface Experiences {
   blockType: 'SelectedExperiences'
 }
 
+export async function generateMetadata({
+  params,
+}: { params: { slug: string } }) {
+  const payload = await getPayloadHMR({ config })
+  const result = await payload.find({
+    collection: 'experiences',
+    where: {
+      slug: {
+        equals: params.slug,
+      },
+    },
+  })
+
+  return {
+    title: `Limni | ${result.docs[0].name as string}`,
+  }
+}
+
 export async function generateStaticParams() {
   const payload = await getPayloadHMR({ config })
   const experiences = await payload.find({
