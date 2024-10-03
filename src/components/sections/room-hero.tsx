@@ -56,105 +56,123 @@ export const RoomHero = ({
   const { locale } = useLocale()
 
   useGSAP(() => {
-    gsap.to(container.current, {
-      y: 0,
-      opacity: 1,
-      duration: 0.975,
-      ease: 'circ.inOut',
-    })
-    gsap.fromTo(
-      container.current,
-      {
-        yPercent: -15,
-        // '--gsap-color-text': '#FFF',
-        // '--gsap-img-top': '0%',
-      },
-      {
-        yPercent: 0,
-        // '--gsap-color-text': '#414135',
-        // '--gsap-img-top': '-100%',
-        scrollTrigger: {
-          trigger: section.current,
-          scrub: 1,
-          start: 'top top',
-          end: '+=128',
-          pin: true,
+    let width = 0
+    if (typeof window !== 'undefined') {
+      width = window.innerWidth
+    }
+    width > 768 &&
+      gsap.fromTo(
+        section.current,
+        {
+          '--gsap-image-scale': 1.1,
+          '--gsap-image-height': '100%',
+          '--gsap-image-top': 0,
+          '--gsap-container-height': '100%',
+          '--gsap-container-top': 0,
+          '--gsap-color-text': '#FFF',
         },
-      },
-    )
+        {
+          '--gsap-image-scale': 1.275,
+          '--gsap-image-height': '90%',
+          '--gsap-image-top': '-100%',
+          '--gsap-container-height': 0,
+          '--gsap-container-top': '66.666%',
+          '--gsap-color-text': '#414135',
+          scrollTrigger: {
+            trigger: section.current,
+            scrub: 1,
+            start: 'top top',
+            end: 'bottom 25%',
+            // end: '+=50vh',
+            pin: true,
+          },
+        },
+      )
   })
 
   return (
-    <section
-      ref={section}
-      className={cn(
-        'relative w-full h-dvh -mt-[112px] md:-mt-[160px]',
-        className,
-      )}
-      {...props}
-    >
-      <img
-        ref={image}
-        src={coverImage.url!}
-        alt={coverImage.alt}
-        className={'object-cover size-full [view-transition-name:active-image]'}
-      />
-      <span
-        className={
-          'size-full absolute inset-0 bg-gradient-to-t from-black/75 to-transparent'
+    <React.Fragment>
+      <style jsx global>
+        {`
+        .pin-spacer {
+          padding: 0 !important;
+          height: 85vw !important;
         }
-      />
-      <div
-        ref={container}
-        className={
-          'size-full opacity-0 absolute inset-0 flex max-lg:flex-col gap-10 text-white justify-end lg:justify-between items-start lg:items-end py-12 md:py-20 px-10 md:px-20 -translate-y-4 z-10'
+        @media (min-width: 1024px) {
+          .pin-spacer {
+            height: 75vw !important;
+          }
         }
+      `}
+      </style>
+      <section
+        ref={section}
+        className={cn(
+          'relative w-full max-md:h-dvh md:!h-[--gsap-container-height] top-[--gsap-image-top] -mt-[112px] md:-mt-[160px]',
+          className,
+        )}
+        {...props}
       >
-        <div className={'flex flex-col gap-1 w-full lg:w-[60%]'}>
-          <p className={'uppercase'}>
-            {locale === 'en' ? 'Room code ' : 'Κωδικος '} #{code}
-          </p>
-          <h1
-            className={
-              'font-canela uppercase text-balance text-6xl md:text-8xl leading-none max-w-[768px]'
-            }
-          >
-            {locale === 'en' ? name.en : name.el}
-          </h1>
-        </div>
-        <div className={'flex flex-col gap-3 w-full lg:w-[40%]'}>
-          <p className={'uppercase'}>
-            {(() => {
-              switch (locale) {
-                case 'en':
-                  return (
-                    <React.Fragment>
-                      {roomDetails.visitors} Guests / {roomDetails.beds} Beds /{' '}
-                      {roomDetails.area}m<sup>2</sup>
-                    </React.Fragment>
-                  )
-                case 'el':
-                  return (
-                    <React.Fragment>
-                      {roomDetails.visitors} Επισκεπτες / {roomDetails.beds}{' '}
-                      {roomDetails.beds === 1 ? 'Κρεβατι' : 'Κρεβατια'} /{' '}
-                      {roomDetails.area}μ<sup>2</sup>
-                    </React.Fragment>
-                  )
+        <img
+          ref={image}
+          src={coverImage.url!}
+          alt={coverImage.alt}
+          className={cn(
+            'relative object-cover size-full scale-[--gsap-image-scale] top-[--gsap-image-top] h-[--gsap-image-height] [view-transition-name:active-image]',
+          )}
+        />
+        <div
+          ref={container}
+          className={
+            'size-full !h-[--gsap-container-height] top-[--gsap-container-top] min-h-fit absolute inset-0 flex max-lg:flex-col gap-10 text-[--gsap-color-text] justify-end lg:justify-between items-start lg:items-end py-12 md:py-20 px-10 md:px-20 z-10'
+          }
+        >
+          <div className={'flex flex-col gap-1 w-full lg:w-[60%]'}>
+            <p className={'uppercase'}>
+              {locale === 'en' ? 'Room code ' : 'Κωδικος '} #{code}
+            </p>
+            <h1
+              className={
+                'font-canela uppercase text-balance text-6xl md:text-8xl leading-none max-w-[768px]'
               }
-            })()}
-          </p>
-          <p className={'text-balance text-lg font-canela'}>
-            {locale === 'en' ? paragraph.en : paragraph.el}
-          </p>
-          <Button
-            className={'w-fit bg-white text-black mt-3'}
-            onClick={() => router.push(primaryButton.url)}
-          >
-            {locale === 'en' ? primaryButton.text.en : primaryButton.text.el}
-          </Button>
+            >
+              {name[locale]}
+            </h1>
+          </div>
+          <div className={'flex flex-col gap-3 w-full lg:w-[40%]'}>
+            <p className={'uppercase'}>
+              {(() => {
+                switch (locale) {
+                  case 'en':
+                    return (
+                      <React.Fragment>
+                        {roomDetails.visitors} Guests / {roomDetails.beds} Beds
+                        / {roomDetails.area}m<sup>2</sup>
+                      </React.Fragment>
+                    )
+                  case 'el':
+                    return (
+                      <React.Fragment>
+                        {roomDetails.visitors} Επισκεπτες / {roomDetails.beds}{' '}
+                        {roomDetails.beds === 1 ? 'Κρεβατι' : 'Κρεβατια'} /{' '}
+                        {roomDetails.area}μ<sup>2</sup>
+                      </React.Fragment>
+                    )
+                }
+              })()}
+            </p>
+            <p className={'text-balance text-xl font-canela'}>
+              {paragraph[locale]}
+            </p>
+            <Button
+              className={'w-fit bg-white text-black mt-3'}
+              onClick={() => router.push(primaryButton.url)}
+            >
+              {primaryButton.text[locale]}
+            </Button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </React.Fragment>
   )
 }
