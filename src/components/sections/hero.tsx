@@ -61,10 +61,10 @@ export const HeroSection = ({
     gsap.fromTo(
       arch.current,
       {
-        height: '70vh',
+        height: width > 768 ? '73.333vh' : '56.666vh',
       },
       {
-        height: width > 768 ? '78.625vh' : '50vh',
+        height: width > 768 ? '80vh' : '40vh',
         scrollTrigger: {
           trigger: section.current,
           scrub: 1,
