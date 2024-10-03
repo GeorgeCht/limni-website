@@ -81,6 +81,7 @@ export default async function HomePage() {
 
       <InfoTextCTA
         withImage
+        id={'section-1'}
         title={home.second.header as unknown as LocalizedString}
         cta={{
           label: home.second.ctaLabel as unknown as LocalizedString,

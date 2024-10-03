@@ -157,7 +157,7 @@ export const RoomsDisplay = ({
         >
           <p
             className={
-              'w-full sm:max-w-1/2 text-balance font-canela text-lg md:text-xl'
+              'w-full sm:max-w-1/2 text-balance font-canela text-xl md:text-2xl'
             }
           >
             Nestled in the serene coastal village of Limni, our hotel offers a
