@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.14.0](https://github.com/GeorgeCht/limni-website/compare/v1.13.0...v1.14.0) (2024-10-03)
+
+
+### Features
+
+* **about:** added components for /about page ([d802340](https://github.com/GeorgeCht/limni-website/commit/d8023402a8da554584bab6275c7fcd77b70607e1))
+* **contact:** added contact page ([9db7f2e](https://github.com/GeorgeCht/limni-website/commit/9db7f2e921437ff63742055c8764876026bfc97f))
+* **experiences:** finished /experiences page ([6051e45](https://github.com/GeorgeCht/limni-website/commit/6051e457492cf7cd6e96386666472b758d66235d))
+* **not-fount:** added not found page ([a8babb8](https://github.com/GeorgeCht/limni-website/commit/a8babb84d014e5f926cd7510597480005b9771df))
+* **room-hero:** updated the /room/[slug] hero slide animation ([02db957](https://github.com/GeorgeCht/limni-website/commit/02db9573644221ca6ee69bfd6983cc4fcdb5a423))
+* **rooms:** added /rooms page and rooms carousel component ([92db14b](https://github.com/GeorgeCht/limni-website/commit/92db14b05dad2a1940ea0c40a7f9c9de1ddd0e7c))
+
 ## [1.13.0](https://github.com/GeorgeCht/limni-website/compare/v1.12.0...v1.13.0) (2024-10-01)
 
 
