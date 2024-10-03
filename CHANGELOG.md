@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.15.0](https://github.com/GeorgeCht/limni-website/compare/v1.14.0...v1.15.0) (2024-10-03)
+
+
+### Features
+
+* **faqs:** added accordion component, added /faqs page ([e54f326](https://github.com/GeorgeCht/limni-website/commit/e54f3268e7e6ac3b40595ee22ef9667d6c59f3a5))
+* **metadata:** updated page metadata titles ([c4886b0](https://github.com/GeorgeCht/limni-website/commit/c4886b03abb50832f8b55acc10d04a20bd0e4552))
+
+
+### Bug Fixes
+
+* **misc:** mini fix ([53be198](https://github.com/GeorgeCht/limni-website/commit/53be198e8ca7440d24d1d08646de59ef86d462ba))
+
 ## [1.14.0](https://github.com/GeorgeCht/limni-website/compare/v1.13.0...v1.14.0) (2024-10-03)
 
 
