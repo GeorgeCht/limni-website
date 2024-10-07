@@ -13,6 +13,7 @@ import { SelectedRooms } from '@/components/sections/selected-rooms'
 import type { Experience, Media, Room } from '@/payload-types'
 import type { LocalizedObject, LocalizedString } from '@/lib/locale'
 import type { Metadata } from 'next'
+import { Wrapper } from '@/components/misc/wrapper'
 
 interface Rooms {
   room: string | Room
@@ -101,7 +102,7 @@ export default async function HomePage() {
   }
 
   return (
-    <React.Fragment>
+    <Wrapper>
       <HeroSection
         header={home.hero.header as unknown as LocalizedString}
         subtitle={home.hero.subtitle as unknown as LocalizedString}
@@ -142,6 +143,6 @@ export default async function HomePage() {
           home.sixth.prefooter as unknown as LocalizedObject<PrefooterType>
         }
       />
-    </React.Fragment>
+    </Wrapper>
   )
 }

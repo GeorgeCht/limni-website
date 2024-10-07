@@ -1,6 +1,7 @@
 import React from 'react'
 import config from '@payload-config'
 
+import { Wrapper } from '@/components/misc/wrapper'
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import { SplitCTA } from '@/components/sections/split-cta'
 import {
@@ -31,7 +32,7 @@ export default async function ExperiencesPage() {
   })
 
   return (
-    <React.Fragment>
+    <Wrapper>
       <ExperiencesHero content={experiencesPage} />
       <ExperiencesIntro
         title={experiencesPage.headerBelow as unknown as LocalizedString}
@@ -54,6 +55,6 @@ export default async function ExperiencesPage() {
           backImage={experience.media.cover as Media}
         />
       ))}
-    </React.Fragment>
+    </Wrapper>
   )
 }

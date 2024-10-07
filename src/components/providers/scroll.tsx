@@ -5,6 +5,7 @@ import LocomotiveScroll from 'locomotive-scroll'
 
 import type { ILenisScrollValues } from 'locomotive-scroll'
 import { gsap } from 'gsap/all'
+import { usePathname } from 'next/navigation'
 
 type ScrollHandler = (values: ILenisScrollValues) => void
 
@@ -27,6 +28,8 @@ export const ScrollProvider = ({ children }: { children: React.ReactNode }) => {
   const [scroller, setScroller] = React.useState<LocomotiveScroll | null>(null)
   const [scrollHandler, setScrollHandler] =
     React.useState<ScrollHandler | null>(null)
+
+  const pathname = usePathname()
 
   const setOnScroll = React.useCallback((handler: ScrollHandler) => {
     setScrollHandler(() => handler)
@@ -65,6 +68,12 @@ export const ScrollProvider = ({ children }: { children: React.ReactNode }) => {
       }
     }
   }, [internalScrollHandler])
+
+  React.useEffect(() => {
+    if (scroller) {
+      scroller.scrollTo(0)
+    }
+  }, [pathname])
 
   return (
     <ScrollContext.Provider value={{ scroller, setOnScroll }}>

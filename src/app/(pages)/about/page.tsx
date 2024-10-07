@@ -12,6 +12,7 @@ import { AboutBullets } from '@/components/sections/about-bullets'
 import { ImageCarousel } from '@/components/sections/image-carousel'
 import { VerticalCTA } from '@/components/sections/vertical-cta'
 import { RecommendedExperiences } from '@/components/sections/recommended-experiences'
+import { Wrapper } from '@/components/misc/wrapper'
 
 interface AboutIntro {
   title: LocalizedString
@@ -55,7 +56,7 @@ export default async function ContactPage() {
   })
 
   return (
-    <React.Fragment>
+    <Wrapper>
       <AboutHero props={about.introSection as unknown as AboutIntro} />
       <AboutBullets
         title={about.secondSection.title as unknown as LocalizedString}
@@ -87,6 +88,6 @@ export default async function ContactPage() {
           about.recommendedExperiences as unknown as LocalizedObject<Experiences>
         }
       />
-    </React.Fragment>
+    </Wrapper>
   )
 }

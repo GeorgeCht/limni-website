@@ -1,13 +1,10 @@
 'use client'
 
 import React from 'react'
-
-import { useLocale } from '@/stores/locale'
 import { useScroller } from '@/components/providers/scroll'
 
-export const RootProvider = ({ children }: { children: React.ReactNode }) => {
+export const Wrapper = ({ children }: { children: React.ReactNode }) => {
   const { scroller } = useScroller()
-  const { locale } = useLocale()
 
   React.useEffect(() => {
     setTimeout(() => {
@@ -19,9 +16,5 @@ export const RootProvider = ({ children }: { children: React.ReactNode }) => {
     }, 100)
   }, [])
 
-  return (
-    <html lang={locale} suppressHydrationWarning>
-      {children}
-    </html>
-  )
+  return children
 }

@@ -8,6 +8,7 @@ import type { Media } from '@/payload-types'
 import type { LocalizedString } from '@/lib/locale'
 import { FAQItems } from '@/components/sections/faq-items'
 import { FAQPage } from '@/components/sections/faq-page'
+import { Wrapper } from '@/components/misc/wrapper'
 
 interface Question {
   id: string
@@ -40,7 +41,7 @@ export default async function ExperiencesPage() {
   })
 
   return (
-    <React.Fragment>
+    <Wrapper>
       <FAQPage
         title={questionsPage.title as unknown as LocalizedString}
         label={questionsPage.label as unknown as LocalizedString}
@@ -49,6 +50,6 @@ export default async function ExperiencesPage() {
       >
         <FAQItems questions={result.docs as unknown as Array<Question>} />
       </FAQPage>
-    </React.Fragment>
+    </Wrapper>
   )
 }

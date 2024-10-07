@@ -6,6 +6,7 @@ import type { LocalizedObject } from '@/lib/locale'
 
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import { LegalSection } from '@/components/sections/legal'
+import { Wrapper } from '@/components/misc/wrapper'
 
 export const dynamic = 'force-static'
 
@@ -28,7 +29,7 @@ export default async function PrivacyPage() {
   })
 
   return (
-    <React.Fragment>
+    <Wrapper>
       <LegalSection
         // @ts-expect-error
         textBlocks={
@@ -40,6 +41,6 @@ export default async function PrivacyPage() {
         }}
         updatedAt={results.updatedAt}
       />
-    </React.Fragment>
+    </Wrapper>
   )
 }

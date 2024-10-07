@@ -11,6 +11,7 @@ import type { LocalizedRoom } from '@/components/sections/rooms-carousel'
 import { RoomCategoryCarousel } from '@/components/sections/rooms-carousel'
 import { RoomsHero } from '@/components/sections/rooms-hero'
 import { RecommendedExperiences } from '@/components/sections/recommended-experiences'
+import { Wrapper } from '@/components/misc/wrapper'
 
 export const dynamic = 'force-static'
 
@@ -75,7 +76,7 @@ export default async function RoomsPage() {
   }
 
   return (
-    <React.Fragment>
+    <Wrapper>
       <RoomsHero
         title={roomsPage.intro.title as unknown as LocalizedString}
         description={roomsPage.intro.paragraph as unknown as LocalizedString}
@@ -88,6 +89,6 @@ export default async function RoomsPage() {
           roomsPage.recommendedExperiences as unknown as LocalizedObject<Experiences>
         }
       />
-    </React.Fragment>
+    </Wrapper>
   )
 }

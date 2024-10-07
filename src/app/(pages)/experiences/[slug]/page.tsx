@@ -2,6 +2,7 @@ import React from 'react'
 import config from '@payload-config'
 
 import { notFound } from 'next/navigation'
+import { Wrapper } from '@/components/misc/wrapper'
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import { ImageCarousel } from '@/components/sections/image-carousel'
 import { InfoTextCTA } from '@/components/sections/infotext-cta'
@@ -80,7 +81,7 @@ export default async function ExperiencePage({
   }
 
   return (
-    <React.Fragment>
+    <Wrapper>
       <ExperienceHero
         name={experience.name as unknown as LocalizedString}
         description={experience.description as unknown as LocalizedString}
@@ -134,6 +135,6 @@ export default async function ExperiencePage({
           experience.recommendedExperiences as unknown as LocalizedObject<Experiences>
         }
       />
-    </React.Fragment>
+    </Wrapper>
   )
 }

@@ -3,6 +3,7 @@ import config from '@payload-config'
 
 import { getPayloadHMR } from '@payloadcms/next/utilities'
 import { ContactSection } from '@/components/sections/contact'
+import { Wrapper } from '@/components/misc/wrapper'
 
 import type { LocalizedString } from '@/lib/locale'
 import type { Metadata } from 'next'
@@ -21,11 +22,11 @@ export default async function ContactPage() {
   })
 
   return (
-    <React.Fragment>
+    <Wrapper>
       <ContactSection
         title={contact.title as unknown as LocalizedString}
         paragraph={contact.paragraph as unknown as LocalizedString}
       />
-    </React.Fragment>
+    </Wrapper>
   )
 }

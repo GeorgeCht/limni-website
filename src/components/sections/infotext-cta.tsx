@@ -44,32 +44,34 @@ export const InfoTextCTA = ({
 
   gsap.registerPlugin(ScrollTrigger)
 
-  useGSAP(() => {
-    let width = 0
-    if (typeof window !== 'undefined') {
-      width = window.innerWidth
-    }
-    width >= 1024 &&
-      gsap.fromTo(
-        img.current,
-        {
-          y: '-15vh',
-          scaleX: '100%',
-          scaleY: '100%',
-        },
-        {
-          y: 0,
-          scaleX: '115%',
-          scaleY: '115%',
-          scrollTrigger: {
-            trigger: section.current,
-            scrub: 1,
-            start: 'top center',
-            end: 'bottom center',
+  if (withImage) {
+    useGSAP(() => {
+      let width = 0
+      if (typeof window !== 'undefined') {
+        width = window.innerWidth
+      }
+      width >= 1024 &&
+        gsap.fromTo(
+          img.current,
+          {
+            y: '-15vh',
+            scaleX: '100%',
+            scaleY: '100%',
           },
-        },
-      )
-  }, [])
+          {
+            y: 0,
+            scaleX: '115%',
+            scaleY: '115%',
+            scrollTrigger: {
+              trigger: section.current,
+              scrub: 1,
+              start: 'top center',
+              end: 'bottom center',
+            },
+          },
+        )
+    }, [])
+  }
 
   return (
     <section

@@ -15,6 +15,7 @@ import { ImageCarousel } from '@/components/sections/image-carousel'
 import { InfoTextCTA } from '@/components/sections/infotext-cta'
 import { SplitCTA } from '@/components/sections/split-cta'
 import { Prefooter } from '@/components/sections/prefooter'
+import { Wrapper } from '@/components/misc/wrapper'
 
 interface Experiences {
   header: string
@@ -99,7 +100,7 @@ export default async function RoomPage({
   }
 
   return (
-    <React.Fragment>
+    <Wrapper>
       <RoomHero
         code={room.roomEssentials.code}
         name={room.name as unknown as LocalizedString}
@@ -145,6 +146,6 @@ export default async function RoomPage({
           room.recommendedExperiences as unknown as LocalizedObject<Experiences>
         }
       />
-    </React.Fragment>
+    </Wrapper>
   )
 }
