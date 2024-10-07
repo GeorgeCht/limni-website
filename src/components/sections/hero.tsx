@@ -8,6 +8,7 @@ import { useLocale } from '@/stores/locale'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { useScroller } from '@/components/providers/scroll'
+import { useTransitionRouter } from 'next-view-transitions'
 
 import { Flair } from '@/components/ui/flair'
 import { ArrowDownIcon } from '@/components/vectors/arrow'
@@ -50,6 +51,8 @@ export const HeroSection = ({
   const img = React.useRef<HTMLImageElement>(null)
   const headerRef = React.useRef<HTMLHeadingElement>(null)
   const bottom = React.useRef<HTMLDivElement>(null)
+
+  const router = useTransitionRouter()
 
   gsap.registerPlugin(ScrollTrigger)
 
@@ -113,8 +116,9 @@ export const HeroSection = ({
     >
       <div
         ref={arch}
+        onClick={() => router.push(cta.url || '/rooms')}
         className={
-          'flex flex-col mt-0 items-center opacity-0 scale-150 h-[78.625vh] justify-center [mask-image:url(/assets/arch-vector.svg)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] overflow-hidden'
+          'flex flex-col mt-0 items-center opacity-0 scale-150 h-[78.625vh] justify-center cursor-pointer [mask-image:url(/assets/arch-vector.svg)] [mask-size:contain] [mask-repeat:no-repeat] [mask-position:center] overflow-hidden'
         }
       >
         <img
