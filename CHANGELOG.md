@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.17.1](https://github.com/GeorgeCht/limni-website/compare/v1.17.0...v1.17.1) (2024-10-07)
+
+
+### Bug Fixes
+
+* **css:** quickfix ([85d4725](https://github.com/GeorgeCht/limni-website/commit/85d4725005e4d574e73dbc6532b279eca85e0016))
+
 ## [1.17.0](https://github.com/GeorgeCht/limni-website/compare/v1.16.0...v1.17.0) (2024-10-07)
 
 
