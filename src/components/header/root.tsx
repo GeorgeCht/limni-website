@@ -66,7 +66,11 @@ export const HeaderRoot = ({
 
   return (
     <React.Fragment>
-      <HeaderFlyout isOpen={flyoutIsOpen} setIsOpen={setFlyoutIsOpen} />
+      <HeaderFlyout
+        locale={locale}
+        isOpen={flyoutIsOpen}
+        setIsOpen={setFlyoutIsOpen}
+      />
       <HeaderCTA
         isOpen={ctaIsOpen}
         setIsOpen={setCtaIsOpen}
@@ -100,7 +104,7 @@ export const HeaderRoot = ({
               {flyoutIsOpen ? (locale === 'en' ? 'Close' : 'Κλείσιμο') : 'Menu'}
             </HoverFlip.Root>
           </div>
-          {flyoutIsOpen ? null : children}
+          {children}
         </div>
         <div
           className={cn(

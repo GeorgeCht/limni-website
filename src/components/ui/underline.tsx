@@ -206,7 +206,7 @@ export const UnderlinedLinkWithImage = ({
                   {words[0]}{' '}
                   <span
                     ref={containerRef}
-                    className={'relative inline-block w-full h-full'}
+                    className={'relative inline-block w-fit h-fit'}
                   >
                     <img
                       ref={imageRef}
@@ -223,7 +223,7 @@ export const UnderlinedLinkWithImage = ({
                 <React.Fragment>
                   <span
                     ref={containerRef}
-                    className={'relative inline-block w-full h-full mr-4'}
+                    className={'relative inline-block w-fit h-fit mr-4'}
                   >
                     <img
                       ref={imageRef}

@@ -9,13 +9,15 @@ import { useScroller } from '@/components/providers/scroll'
 import { UnderlinedLinkWithImage } from '@/components/ui/underline'
 import { HoverFlip } from '@/components/ui/hoverflip'
 import { staticData } from '@/lib/static'
-import { useLocale } from '@/stores/locale'
+
+import type { Locale } from '@/lib/locale'
 
 interface Props
   extends React.DetailedHTMLProps<
     React.HTMLAttributes<HTMLDivElement>,
     HTMLDivElement
   > {
+  locale: Locale
   isOpen: boolean
   setIsOpen: (isOpen: boolean) => void
 }
@@ -23,11 +25,11 @@ interface Props
 export const HeaderFlyout = ({
   isOpen,
   setIsOpen,
+  locale,
   className,
   ...props
 }: Props) => {
   const { scroller } = useScroller()
-  const { locale } = useLocale()
 
   const ref = React.useRef<HTMLDivElement>(null)
   const linksRef = React.useRef<Array<HTMLLIElement | null>>([])
