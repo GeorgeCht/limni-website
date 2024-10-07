@@ -92,7 +92,8 @@ export default async function ExperiencePage({
         images={experience.media.images as Array<Media>}
       />
       <InfoTextCTA
-        className={'bg-[#414135] text-[#E7E0D5] pt-12 md:pt-20'}
+        theme={'dark'}
+        className={'pt-12 md:pt-20'}
         title={experience.title as unknown as LocalizedString}
         cta={{
           label: experience.cta[0].label as unknown as LocalizedString,

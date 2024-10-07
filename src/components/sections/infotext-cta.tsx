@@ -18,6 +18,7 @@ interface Props
     React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>,
     'ref' | 'title'
   > {
+  theme?: 'dark' | 'light'
   withImage?: boolean
   title: LocalizedString
   cta: {
@@ -32,6 +33,7 @@ export const InfoTextCTA = ({
   cta,
   withImage = false,
   image = undefined,
+  theme,
   className,
   ...props
 }: Props) => {
@@ -74,6 +76,7 @@ export const InfoTextCTA = ({
       className={cn(
         'relative pb-10 md:pb-16 px-10 md:px-20 transition-all',
         withImage && 'h-fit min-[1628px]:min-h-dvh',
+        theme === 'dark' && 'bg-[#414135] text-[#E7E0D5]',
       )}
       ref={section}
     >
