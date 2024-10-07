@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.16.0](https://github.com/GeorgeCht/limni-website/compare/v1.15.0...v1.16.0) (2024-10-07)
+
+
+### Features
+
+* **textblock:** added textblock payload block ([812063a](https://github.com/GeorgeCht/limni-website/commit/812063a4b8891fd88d0de822c01fc93288813d7e))
+
+
+### Bug Fixes
+
+* **/contact:** added contact page footer links ([62a66a2](https://github.com/GeorgeCht/limni-website/commit/62a66a2b0357c6c61cde9ed2151c2ae7c23adac3))
+* **/contact:** removed footer from contact page ([cf06341](https://github.com/GeorgeCht/limni-website/commit/cf06341da7b82d56c27ac042ec74ac0f8a712aa2))
+* **header-cta:** added animations for header cta section ([865a744](https://github.com/GeorgeCht/limni-website/commit/865a744363e13f887003315be86c0c9aac9ab0b1))
+* **menu-flyout:** fixed menu animation render issue on locale switch ([b76a60b](https://github.com/GeorgeCht/limni-website/commit/b76a60b73fabe3ea16c9eb8c97df97600c91b2d1))
+* **menu-flyout:** fixed numbers on <li> in main menu flyout ([f94f484](https://github.com/GeorgeCht/limni-website/commit/f94f48487e52bd934e71973b6863b9c8ed6396be))
+* **rooms-carousel:** added animation on SelectedRooms carousel component ([0d26eed](https://github.com/GeorgeCht/limni-website/commit/0d26eed20aedfa58fceb1f9b97bb2d66df3b62a8))
+
 ## [1.15.0](https://github.com/GeorgeCht/limni-website/compare/v1.14.0...v1.15.0) (2024-10-03)
 
 
