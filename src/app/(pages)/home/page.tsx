@@ -61,6 +61,45 @@ export default async function HomePage() {
     depth: 2,
   })
 
+  const superiorRoomsCount = (
+    await payload.find({
+      collection: 'rooms',
+      where: {
+        category: {
+          equals: 'superior',
+        },
+      },
+    })
+  ).totalDocs
+
+  const deluxeRoomsCount = (
+    await payload.find({
+      collection: 'rooms',
+      where: {
+        category: {
+          equals: 'deluxe',
+        },
+      },
+    })
+  ).totalDocs
+
+  const standardRoomsCount = (
+    await payload.find({
+      collection: 'rooms',
+      where: {
+        category: {
+          equals: 'standard',
+        },
+      },
+    })
+  ).totalDocs
+
+  const roomCount = {
+    standard: standardRoomsCount,
+    deluxe: deluxeRoomsCount,
+    superior: superiorRoomsCount,
+  }
+
   return (
     <React.Fragment>
       <HeroSection
@@ -90,7 +129,7 @@ export default async function HomePage() {
         image={home.second.image as Media}
         className={'mt-20'}
       />
-      <RoomsDisplay />
+      <RoomsDisplay roomCount={roomCount} />
       <SelectedRooms rooms={home.fourth?.rooms as Array<Rooms>} />
       <RecommendedExperiences
         experiences={

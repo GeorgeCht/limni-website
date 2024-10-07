@@ -1,6 +1,7 @@
 'use client'
 
 import React from 'react'
+import gsap from 'gsap'
 
 import { cn } from '@/lib/utils'
 import { HoverFlip } from '@/components/ui/hoverflip'
@@ -32,7 +33,7 @@ const HeadingComponent = ({
             'w-2/3 max-md:w-full font-canela text-balance text-6xl md:text-8xl leading-none'
           }
         >
-          {header}
+          <span className={'inline-block max-w-[682px]'}>{header}</span>
         </h2>
         <p className={'w-1/3 max-md:w-full text-balance text-xl font-canela'}>
           {description}
@@ -79,6 +80,50 @@ export const RecommendedExperiences = ({
     return video !== null && typeof video === 'object' && 'id' in video
   }
 
+  const hoverflips = React.useRef<Array<HTMLSpanElement | null>>([])
+  const headings = React.useRef<Array<HTMLHeadingElement | null>>([])
+  const availability = React.useRef<Array<HTMLSpanElement | null>>([])
+
+  const handleMouseEnter = (index: number) => {
+    if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
+      gsap.to(availability.current[index], {
+        opacity: 1,
+        marginTop: 0,
+        ease: 'circ.inOut',
+        delay: 0.175,
+        duration: 0.475,
+      })
+      gsap.to(headings.current[index], {
+        opacity: 1,
+        ease: 'circ.inOut',
+        duration: 0.175,
+      })
+      gsap.to(hoverflips.current[index], {
+        opacity: 1,
+        marginBottom: 0,
+        ease: 'circ.inOut',
+        delay: 0.175,
+        duration: 0.475,
+      })
+    }
+  }
+
+  const handleMouseLeave = (index: number) => {
+    if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
+      gsap.to(availability.current[index], {
+        marginTop: -15,
+        opacity: 0,
+      })
+      gsap.to(headings.current[index], {
+        opacity: 0,
+      })
+      gsap.to(hoverflips.current[index], {
+        marginBottom: -10,
+        opacity: 0,
+      })
+    }
+  }
+
   return (
     <section
       className={cn(
@@ -123,11 +168,13 @@ export const RecommendedExperiences = ({
             'w-3/4 max-[1280px]:w-full flex flex-row max-[1280px]:flex-col gap-8 *:min-[1280px]:aspect-[7/10] *:aspect-square'
           }
         >
-          {experiences[locale]?.[0]?.experiences?.map((experience) => {
+          {experiences[locale]?.[0]?.experiences?.map((experience, index) => {
             const item = experience.experience as Experience
             return (
               <li
                 key={experience.id}
+                onMouseEnter={() => handleMouseEnter(index)}
+                onMouseLeave={() => handleMouseLeave(index)}
                 className={'group relative w-full min-[1280px]:w-1/3 bg-black'}
               >
                 <Link
@@ -140,7 +187,7 @@ export const RecommendedExperiences = ({
                     src={(item.media.cover as Media).url!}
                     alt={(item.media.cover as Media).alt}
                     className={
-                      'absolute top-0 left-0 w-full h-full object-cover md:opacity-100 max-md:opacity-60 group-hover:md:opacity-0 transition-all z-0'
+                      'absolute top-0 left-0 w-full h-full object-cover md:opacity-100 max-md:opacity-60 group-hover:md:opacity-0 transition-all ease-in-out duration-[825ms] z-0'
                     }
                   />
                   {(() => {
@@ -154,7 +201,7 @@ export const RecommendedExperiences = ({
                               muted
                               src={experience.video.url!}
                               className={
-                                'absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:md:opacity-65 transition-all md:z-[1]'
+                                'absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:md:opacity-65 transition-all md:z-[1] group-hover:scale-110 ease-in-out duration-[875ms]'
                               }
                             />
                           )}
@@ -163,7 +210,7 @@ export const RecommendedExperiences = ({
                               src={experience.video.url!}
                               alt={experience.video.alt || ''}
                               className={
-                                'absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:md:opacity-65 transition-all md:z-[1]'
+                                'absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:md:opacity-65 transition-all md:z-[1] ease-in-out duration-[875ms]'
                               }
                             />
                           )}
@@ -171,6 +218,9 @@ export const RecommendedExperiences = ({
                       )
                   })()}
                   <span
+                    ref={(element) => {
+                      availability.current[index] = element
+                    }}
                     className={
                       'text-white z-10 uppercase md:opacity-0 transition-all md:group-hover:opacity-100'
                     }
@@ -205,6 +255,9 @@ export const RecommendedExperiences = ({
                     })()}
                   </span>
                   <h3
+                    ref={(element) => {
+                      headings.current[index] = element
+                    }}
                     className={
                       'font-canela text-white text-4xl text-center md:text-5xl md:opacity-0 transition-all md:group-hover:opacity-100 z-10'
                     }
@@ -214,6 +267,9 @@ export const RecommendedExperiences = ({
                       : (item.name as unknown as LocalizedString).el}
                   </h3>
                   <HoverFlip.Root
+                    ref={(element) => {
+                      hoverflips.current[index] = element
+                    }}
                     className={
                       'uppercase text-white md:opacity-0 transition-all md:group-hover:opacity-100'
                     }

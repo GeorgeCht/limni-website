@@ -1,13 +1,17 @@
 'use client'
 
 import React from 'react'
+import gsap from 'gsap'
+
+import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import { cn } from '@/lib/utils'
+import { useLocale } from '@/stores/locale'
 import { HoverFlip } from '@/components/ui/hoverflip'
 
 import type { LocalizedString } from '@/lib/locale'
 import type { Media } from '@/payload-types'
-import { useLocale } from '@/stores/locale'
 
 interface Props
   extends Omit<
@@ -33,11 +37,50 @@ export const InfoTextCTA = ({
 }: Props) => {
   const { locale } = useLocale()
 
+  const section = React.useRef<HTMLElement>(null)
+  const img = React.useRef<HTMLImageElement>(null)
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  useGSAP(() => {
+    let width = 0
+    if (typeof window !== 'undefined') {
+      width = window.innerWidth
+    }
+    width >= 1024 &&
+      gsap.fromTo(
+        img.current,
+        {
+          y: '-15vh',
+          scaleX: '100%',
+          scaleY: '100%',
+        },
+        {
+          y: 0,
+          scaleX: '115%',
+          scaleY: '115%',
+          scrollTrigger: {
+            trigger: section.current,
+            scrub: 1,
+            start: 'top center',
+            end: 'bottom center',
+          },
+        },
+      )
+  }, [])
+
   return (
-    <React.Fragment>
-      <section
+    <section
+      className={cn(
+        'relative pb-10 md:pb-16 px-10 md:px-20 transition-all',
+        withImage && 'h-fit min-[1628px]:min-h-dvh',
+      )}
+      ref={section}
+    >
+      <div
+        role={'contentinfo'}
         className={cn(
-          'relative w-full flex max-lg:flex-col max-lg:gap-10 pb-12 md:pb-20 px-10 md:px-20 transition-all',
+          'relative w-full flex max-lg:flex-col max-lg:gap-10 pb-12 md:pb-20 transition-all',
           className,
         )}
         {...props}
@@ -57,22 +100,22 @@ export const InfoTextCTA = ({
         >
           {locale === 'en' ? title.en : title.el}
         </h2>
-      </section>
+      </div>
       {withImage && image && (
-        <section
+        <div
+          role={'contentinfo'}
           className={
-            'relative w-full max-lg:aspect-square lg:h-dvh mb-16 md:mb-20 px-10 md:px-20 transition-all overflow-hidden'
+            'relative w-full max-lg:aspect-square lg:h-dvh mb-16 md:mb-20 transition-all overflow-hidden'
           }
         >
           <img
-            data-scroll
-            data-scroll-speed={-0.1685}
+            ref={img}
             src={image.url!}
             alt={image.alt || ''}
             className={'w-full h-full object-cover'}
           />
-        </section>
+        </div>
       )}
-    </React.Fragment>
+    </section>
   )
 }

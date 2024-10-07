@@ -15,34 +15,83 @@ interface Props
     HTMLElement
   > {
   theme?: 'dark' | 'light'
+  roomCount: {
+    standard: number
+    deluxe: number
+    superior: number
+  }
 }
 
 export const RoomsDisplay = ({
   theme = 'dark',
+  roomCount,
   className,
   ...props
 }: Props) => {
   const { locale } = useLocale()
-  const [isTransitioning, setIsTransitioning] = React.useState(false)
+  const [_, setIsTransitioning] = React.useState(false)
 
   const section = React.useRef<HTMLElement>(null)
   const listItems = React.useRef<Array<HTMLLIElement | null>>([])
+
+  const hoverflips = React.useRef<Array<HTMLSpanElement | null>>([])
+  const headings = React.useRef<Array<HTMLHeadingElement | null>>([])
+  const availabilityCounts = React.useRef<Array<HTMLSpanElement | null>>([])
 
   const handleMouseEnter = (index: number) => {
     if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
       setIsTransitioning(true)
       gsap.to(listItems.current[index], {
-        width: '40%',
-        duration: 0.275,
+        width: '50%',
+        ease: 'circ.inOut',
+        duration: 0.475,
         onComplete: () => setIsTransitioning(false),
         onInterrupt: () => setIsTransitioning(false),
       })
+
+      gsap.to(availabilityCounts.current[index], {
+        marginTop: 0,
+        ease: 'circ.inOut',
+        delay: 0.175,
+        duration: 0.475,
+      })
+
+      gsap.to(headings.current[index], {
+        scaleX: '125%',
+        scaleY: '125%',
+        marginTop: 0,
+        ease: 'circ.inOut',
+        delay: 0.125,
+        duration: 0.475,
+      })
+
+      availabilityCounts.current
+        .filter((_, i) => i !== index)
+        .forEach((element) => {
+          gsap.to(element, {
+            marginTop: -10,
+            duration: 0.475,
+          })
+        })
+
+      headings.current
+        .filter((_, i) => i !== index)
+        .forEach((element) => {
+          gsap.to(element, {
+            scaleX: '100%',
+            scaleY: '100%',
+            marginTop: 10,
+            duration: 0.475,
+          })
+        })
+
       listItems.current
         .filter((_, i) => i !== index)
         .forEach((element) => {
           gsap.to(element, {
-            width: '30%',
-            duration: 0.275,
+            width: '24%',
+            ease: 'circ.inOut',
+            duration: 0.475,
             onComplete: () => setIsTransitioning(false),
             onInterrupt: () => setIsTransitioning(false),
           })
@@ -94,39 +143,24 @@ export const RoomsDisplay = ({
       }
   }
 
-  const handleMouseLeave = () => {
-    if (
-      typeof window !== 'undefined' &&
-      window.innerWidth >= 1024 &&
-      !isTransitioning
-    ) {
-      listItems.current.forEach((element) => {
-        gsap.to(element, {
-          width: '33.333%',
-          duration: 0.275,
-        })
-      })
-    }
-  }
-
   const roomCategories = [
     {
       title: 'Standard',
       href: '/rooms',
       image: '/assets/placeholder.avif',
-      count: 10,
+      count: roomCount.standard,
     },
     {
       title: 'Deluxe',
       href: '/rooms',
       image: '/assets/placeholder.avif',
-      count: 4,
+      count: roomCount.deluxe,
     },
     {
       title: 'Superior',
       href: '/rooms',
       image: '/assets/placeholder.avif',
-      count: 3,
+      count: roomCount.standard,
     },
   ]
 
@@ -174,7 +208,11 @@ export const RoomsDisplay = ({
           </div>
         </div>
       </div>
-      <ul className={'flex max-lg:flex-col gap-10 *:md:h-[65vh] *:h-[50vh]'}>
+      <ul
+        className={
+          'flex w-full max-lg:flex-col gap-8 overflow-hidden *:md:h-[65vw] *:md:max-h-[65vh] *:h-auto'
+        }
+      >
         {roomCategories.map((category, index) => {
           return (
             <li
@@ -183,12 +221,13 @@ export const RoomsDisplay = ({
               }}
               key={`${category.title}-${index}`}
               onMouseEnter={() => handleMouseEnter(index)}
-              onMouseLeave={() => handleMouseLeave()}
-              className={'group relative w-full lg:w-1/3 bg-black'}
+              className={
+                'group relative w-full lg:w-1/3 aspect-square bg-black'
+              }
             >
               <Link
                 className={
-                  'relative w-full h-full flex flex-col items-center justify-between p-6'
+                  'relative w-full h-full flex flex-col items-center justify-between p-6 overflow-hidden'
                 }
                 href={category.href}
               >
@@ -196,10 +235,13 @@ export const RoomsDisplay = ({
                   src={'/assets/placeholder.avif'}
                   alt={'placeholder'}
                   className={
-                    'absolute top-0 left-0 w-full h-full object-cover md:opacity-100 max-md:opacity-60 group-hover:opacity-60 transition-all z-0'
+                    'absolute top-0 left-0 w-full h-full object-cover md:opacity-100 max-md:opacity-60 group-hover:scale-110 group-hover:opacity-60 transition-all ease-in-out duration-[875ms] z-0'
                   }
                 />
                 <span
+                  ref={(element) => {
+                    availabilityCounts.current[index] = element
+                  }}
                   className={
                     'text-white z-10 uppercase md:opacity-0 transition-all md:group-hover:opacity-100'
                   }
@@ -211,10 +253,20 @@ export const RoomsDisplay = ({
                     'flex flex-col gap-4 text-white text-center z-10 md:opacity-0 transition-all md:group-hover:opacity-100'
                   }
                 >
-                  <h3 className={'font-canela text-3xl md:text-5xl text-white'}>
+                  <h3
+                    ref={(element) => {
+                      headings.current[index] = element
+                    }}
+                    className={'font-canela text-3xl md:text-5xl text-white'}
+                  >
                     {category.title}
                   </h3>
-                  <HoverFlip.Root className={'uppercase'}>
+                  <HoverFlip.Root
+                    ref={(element) => {
+                      hoverflips.current[index] = element
+                    }}
+                    className={'uppercase'}
+                  >
                     Discover more
                   </HoverFlip.Root>
                 </div>

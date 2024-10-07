@@ -1,6 +1,10 @@
 'use client'
 
 import React from 'react'
+import gsap from 'gsap'
+
+import { useGSAP } from '@gsap/react'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import { cn } from '@/lib/utils'
 import { HoverFlip } from '@/components/ui/hoverflip'
@@ -31,13 +35,44 @@ interface Props
 }
 
 export const Prefooter = ({ prefooter, className, ...props }: Props) => {
-  const img = React.useRef<HTMLImageElement>(null)
   const { locale } = useLocale()
 
+  const img = React.useRef<HTMLImageElement>(null)
+  const section = React.useRef<HTMLElement>(null)
   const data = prefooter[locale]?.[0]
+
+  gsap.registerPlugin(ScrollTrigger)
+
+  useGSAP(() => {
+    let width = 0
+    if (typeof window !== 'undefined') {
+      width = window.innerWidth
+    }
+    width >= 1024 &&
+      gsap.fromTo(
+        img.current,
+        {
+          y: '-15vh',
+          scaleX: '100%',
+          scaleY: '100%',
+        },
+        {
+          y: 0,
+          scaleX: '115%',
+          scaleY: '115%',
+          scrollTrigger: {
+            trigger: section.current,
+            scrub: 1,
+            start: 'top center',
+            end: 'bottom center',
+          },
+        },
+      )
+  }, [])
 
   return (
     <section
+      ref={section}
       className={cn(
         'relative w-full h-fit py-12 md:py-20 px-10 md:px-20 transition-all bg-[#414135]',
         className,
@@ -46,7 +81,7 @@ export const Prefooter = ({ prefooter, className, ...props }: Props) => {
     >
       <div
         className={
-          'relative bg-[#414135] flex flex-col justify-between items-center w-full md:py-20 px-4 max-md:aspect-square md:h-dvh overflow-hidden'
+          'relative bg-[#414135] flex flex-col md:justify-between justify-center items-center w-full md:py-20 px-4 max-md:aspect-square md:h-dvh overflow-hidden'
         }
       >
         <img
@@ -59,7 +94,9 @@ export const Prefooter = ({ prefooter, className, ...props }: Props) => {
         />
         <span />
         <div className={'flex flex-col items-center gap-4 z-10'}>
-          <span className={'text-white uppercase'}>{data?.subheader}</span>
+          <span className={'text-white text-center uppercase'}>
+            {data?.subheader}
+          </span>
           <h2
             className={
               '*:text-white max-w-72 md:max-w-[1024px] m-auto text-center z-10'
