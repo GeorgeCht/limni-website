@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.17.0](https://github.com/GeorgeCht/limni-website/compare/v1.16.0...v1.17.0) (2024-10-07)
+
+
+### Features
+
+* **legal:** added all policy / legal pages and components ([12f4fe6](https://github.com/GeorgeCht/limni-website/commit/12f4fe65a78d6ca5296dbc130f8bc0b4c5ab95da))
+
 ## [1.16.0](https://github.com/GeorgeCht/limni-website/compare/v1.15.0...v1.16.0) (2024-10-07)
 
 
