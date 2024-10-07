@@ -7,6 +7,8 @@ import { useGSAP } from '@gsap/react'
 
 import { cn } from '@/lib/utils'
 import { useTransitionRouter } from 'next-view-transitions'
+import { ArrowDownIcon } from '@/components/vectors/arrow'
+import { useLocale } from '@/stores/locale'
 
 interface ActionCardProps
   extends Omit<
@@ -49,7 +51,26 @@ const ActionCard = ({ title, cta, className, ...props }: ActionCardProps) => {
         >
           {title}
         </h2>
-        <p className={'uppercase text-white w-fit'}>{cta}</p>
+        <div
+          role={'button'}
+          onClick={() => {}}
+          className={
+            'group flex flex-row items-center gap-6 w-full h-[50px] cursor-pointer'
+          }
+        >
+          <span
+            className={
+              'flex size-2.5 group-hover:size-fit group-hover:p-3 rounded-full bg-transparent border border-white group-hover:border-[#B47351] group-hover:bg-[#B47351] transition-all ease-in-out duration-[475ms]'
+            }
+          >
+            <ArrowDownIcon
+              className={
+                'size-0 group-hover:size-6 self-center text-white -rotate-90'
+              }
+            />
+          </span>
+          <span className={'uppercase text-white w-fit'}>{cta}</span>
+        </div>
       </div>
     </div>
   )
@@ -76,6 +97,8 @@ export const HeaderCTA = ({
   const card1 = React.useRef<HTMLDivElement>(null)
   const card2 = React.useRef<HTMLDivElement>(null)
   const router = useTransitionRouter()
+
+  const { locale } = useLocale()
 
   useGSAP(() => {
     let width = 0
@@ -191,14 +214,14 @@ export const HeaderCTA = ({
       >
         <ActionCard
           ref={card1}
-          title={'Find your room'}
-          cta={'View all rooms'}
+          title={locale === 'en' ? 'Find your room' : 'Βρειτε δωματιο'}
+          cta={locale === 'en' ? 'View all rooms' : 'Ολα τα δωματια'}
           onClick={() => router.push('/rooms')}
         />
         <ActionCard
           ref={card2}
-          title={'Fast booking'}
-          cta={'Book an appartment'}
+          title={locale === 'en' ? 'Fast booking' : 'Καντε κρατηση'}
+          cta={locale === 'en' ? 'Book an appartment' : 'Κρατηση δωματιου'}
           onClick={() => router.push('/rooms')}
         />
       </div>

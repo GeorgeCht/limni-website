@@ -259,7 +259,7 @@ export const RecommendedExperiences = ({
                       headings.current[index] = element
                     }}
                     className={
-                      'font-canela text-white text-4xl text-center md:text-5xl md:opacity-0 transition-all md:group-hover:opacity-100 z-10'
+                      'font-canela text-white text-4xl text-center md:text-5xl md:opacity-0 md:group-hover:opacity-100 z-10'
                     }
                   >
                     {locale === 'en'
@@ -271,7 +271,7 @@ export const RecommendedExperiences = ({
                       hoverflips.current[index] = element
                     }}
                     className={
-                      'uppercase text-white md:opacity-0 transition-all md:group-hover:opacity-100'
+                      'uppercase text-white md:opacity-0 md:group-hover:opacity-100'
                     }
                   >
                     {locale === 'en' ? 'Discover more' : 'Περισσότερα'}

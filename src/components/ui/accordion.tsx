@@ -30,14 +30,14 @@ const AccordionItem = ({
           {question}
         </span>
         <span
-          className={`font-canela text-7xl transition-all ${isOpen ? 'rotate-45' : ''}`}
+          className={`font-canela text-7xl transition-all duration-500 ease-circ-in-out ${isOpen ? 'rotate-45' : ''}`}
         >
           +
         </span>
       </button>
       <div
         className={cn(
-          'overflow-hidden transition-all duration-300 ease-in-out',
+          'overflow-hidden transition-all duration-[575ms] ease-circ-in-out',
           isOpen ? 'max-h-96' : 'max-h-0',
         )}
       >

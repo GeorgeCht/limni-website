@@ -42,7 +42,12 @@ export const FAQPage = ({
       }
       {...props}
     >
-      <div className={'w-full lg:w-1/2 flex flex-col justify-between gap-16'}>
+      <div
+        id={'sticky-container'}
+        className={
+          'lg:sticky lg:top-40 w-full lg:w-1/2 flex flex-col justify-between gap-16 lg:h-[calc(100dvh-230px)]'
+        }
+      >
         <h1
           className={
             'font-canela uppercase text-balance text-5xl lg:text-6xl min-[1700px]:text-9xl leading-none'
@@ -64,7 +69,11 @@ export const FAQPage = ({
           </Button>
         </div>
       </div>
-      <div className={'w-full lg:w-1/2'}>{children}</div>
+      <div className={'w-full lg:w-1/2'}>
+        {children}
+        {children}
+        {children}
+      </div>
     </section>
   )
 }

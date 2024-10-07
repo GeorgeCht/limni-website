@@ -176,7 +176,7 @@ export const HeroSection = ({
         <div className={'max-[1628px]:hidden min-[1628px]:basis-1/3'}>
           <p
             className={
-              'text-balance text-center leading-tight max-w-72 m-auto uppercase'
+              'text-balance text-center leading-tight max-w-64 m-auto uppercase'
             }
           >
             {locale === 'en' ? subtitle.en : subtitle.el}
