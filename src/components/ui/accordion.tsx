@@ -30,7 +30,7 @@ const AccordionItem = ({
           {question}
         </span>
         <span
-          className={`font-canela text-7xl transition-all ${isOpen ? '' : 'rotate-45'}`}
+          className={`font-canela text-7xl transition-all ${isOpen ? 'rotate-45' : ''}`}
         >
           +
         </span>

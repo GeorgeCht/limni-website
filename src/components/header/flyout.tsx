@@ -135,7 +135,13 @@ export const HeaderFlyout = ({
               >
                 {link.label[locale]}
               </UnderlinedLinkWithImage>
-              <span className={'text-white text-sm'}>0{index + 1}</span>
+              <span
+                className={
+                  'text-white max-lg:text-sm min-[1200px]:mt-2 min-[1600px]:mt-2'
+                }
+              >
+                0{index + 1}
+              </span>
             </li>
           ))}
         </ul>
