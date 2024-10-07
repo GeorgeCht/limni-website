@@ -28,7 +28,7 @@ export function isObject(item: unknown): boolean {
  * @param target
  * @param ...sources
  */
-export default function deepMerge<T, R>(target: T, source: R): T {
+export function deepMerge<T, R>(target: T, source: R): T {
   const output = { ...target }
   if (isObject(target) && isObject(source)) {
     Object.keys(source).forEach((key) => {
@@ -45,4 +45,20 @@ export default function deepMerge<T, R>(target: T, source: R): T {
   }
 
   return output
+}
+
+/**
+ * Formats a date in the format: DD/MM/YYYY
+ *
+ * @param {string} isoDate - The date in ISO format
+ * @returns {string} The formatted date
+ */
+export function formatDate(isoDate: string): string {
+  const date = new Date(isoDate)
+  const options: Intl.DateTimeFormatOptions = {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+  }
+  return new Intl.DateTimeFormat('en-GB', options).format(date)
 }

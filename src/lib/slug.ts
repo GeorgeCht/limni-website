@@ -1,4 +1,4 @@
-import deepMerge from '@/lib/utils'
+import { deepMerge } from '@/lib/utils'
 
 import type { Field, FieldHook } from 'payload'
 

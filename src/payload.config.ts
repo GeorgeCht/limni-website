@@ -8,20 +8,21 @@ import sharp from 'sharp'
 import path from 'node:path'
 
 // Collections
-import { Users } from './collections/Users'
-import { Media } from './collections/Media'
-import { Rooms } from './collections/Rooms'
-import { FAQs } from './collections/FAQs'
-import { Experiences } from './collections/Experiences'
+import { Users } from '@/collections/Users'
+import { Media } from '@/collections/Media'
+import { Rooms } from '@/collections/Rooms'
+import { FAQs } from '@/collections/FAQs'
+import { Experiences } from '@/collections/Experiences'
 
 // Globals
-import { Home } from './globals/Home'
-import { Contact } from './globals/Contact'
-import { Shared } from './globals/Shared'
-import { About } from './globals/About'
-import { ExperiencesPage } from './globals/Experiences'
-import { RoomsPage } from './globals/Rooms'
-import { FAQsPage } from './globals/FAQs'
+import { Home } from '@/globals/Home'
+import { Contact } from '@/globals/Contact'
+import { Shared } from '@/globals/Shared'
+import { About } from '@/globals/About'
+import { ExperiencesPage } from '@/globals/Experiences'
+import { RoomsPage } from '@/globals/Rooms'
+import { FAQsPage } from '@/globals/FAQs'
+import { PrivacyPolicy, ResidencyPolicy, TermsOfService } from '@/globals/Legal'
 
 const filename = fileURLToPath(import.meta.url)
 const dirname = path.dirname(filename)
@@ -33,7 +34,18 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  globals: [Home, About, Contact, RoomsPage, ExperiencesPage, FAQsPage, Shared],
+  globals: [
+    Home,
+    About,
+    Contact,
+    RoomsPage,
+    ExperiencesPage,
+    FAQsPage,
+    PrivacyPolicy,
+    TermsOfService,
+    ResidencyPolicy,
+    Shared,
+  ],
   collections: [Users, Media, Rooms, Experiences, FAQs],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || '',

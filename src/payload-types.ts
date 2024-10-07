@@ -29,6 +29,9 @@ export interface Config {
     roomsPage: RoomsPage;
     experiencesPage: ExperiencesPage;
     questionsPage: QuestionsPage;
+    privacyPolicy: PrivacyPolicy;
+    termsOfService: TermsOfService;
+    residencyPolicy: ResidencyPolicy;
     shared: Shared;
   };
   locale: 'en' | 'el';
@@ -518,6 +521,54 @@ export interface QuestionsPage {
     title: string;
     paragraph: string;
   };
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "privacyPolicy".
+ */
+export interface PrivacyPolicy {
+  id: string;
+  textBlocks: {
+    header: string;
+    paragraph: string;
+    id?: string | null;
+    blockName?: string | null;
+    blockType: 'TextBlock';
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "termsOfService".
+ */
+export interface TermsOfService {
+  id: string;
+  textBlocks: {
+    header: string;
+    paragraph: string;
+    id?: string | null;
+    blockName?: string | null;
+    blockType: 'TextBlock';
+  }[];
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "residencyPolicy".
+ */
+export interface ResidencyPolicy {
+  id: string;
+  textBlocks: {
+    header: string;
+    paragraph: string;
+    id?: string | null;
+    blockName?: string | null;
+    blockType: 'TextBlock';
+  }[];
   updatedAt?: string | null;
   createdAt?: string | null;
 }
