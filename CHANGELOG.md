@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [commit-and-tag-version](https://github.com/absolute-version/commit-and-tag-version) for commit guidelines.
 
+## [1.18.0](https://github.com/GeorgeCht/limni-website/compare/v1.17.1...v1.18.0) (2024-10-07)
+
+
+### Features
+
+* **scroll:** added scroll wrapper for better scrolling behavior ([c81fac2](https://github.com/GeorgeCht/limni-website/commit/c81fac2d600da1f3fbbc87ccf05ff4f85d0e04d8))
+
 ## [1.17.1](https://github.com/GeorgeCht/limni-website/compare/v1.17.0...v1.17.1) (2024-10-07)
 
 
