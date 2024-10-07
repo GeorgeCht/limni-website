@@ -9,8 +9,10 @@ import { Logo } from '@/components/vectors/logo'
 import { HoverFlip } from '@/components/ui/hoverflip'
 import { Button } from '@/components/ui/button'
 import { ArrowUpIcon } from '@/components/vectors/arrow'
-import { useScroller } from '@/components/providers/scroll'
 import { staticData } from '@/lib/static'
+
+import { usePathname } from 'next/navigation'
+import { useScroller } from '@/components/providers/scroll'
 import { useLocale } from '@/stores/locale'
 
 const Copyright: React.FC = () => {
@@ -46,9 +48,13 @@ export const FooterRoot = ({
 }: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) => {
   const { scroller } = useScroller()
   const { locale } = useLocale()
+  const pathname = usePathname()
+
+  if (pathname.includes('contact')) return null
 
   return (
     <footer
+      id={'footer'}
       className={
         'flex flex-col gap-12 items-start w-full py-10 md:py-16 pb-12 md:pb-20 px-10 md:px-20 bg-[#414135] text-[#C7B09C] transition-all'
       }
