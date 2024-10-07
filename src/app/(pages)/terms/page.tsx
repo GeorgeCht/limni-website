@@ -35,7 +35,7 @@ export default async function PrivacyPage() {
           results.textBlocks as unknown as LocalizedObject<Array<TextBlock>>
         }
         title={{
-          en: 'termsOfService',
+          en: 'Terms of Service',
           el: 'Όροι χρήσης',
         }}
         updatedAt={results.updatedAt}

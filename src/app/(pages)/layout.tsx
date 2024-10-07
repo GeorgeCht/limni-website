@@ -46,31 +46,31 @@ export default function PageLayout({
      * @see: https://next-view-transitions.vercel.app/
      */
     <ViewTransitions>
-      <Providers.Root>
-        <head>
-          <link rel={'icon'} href={'/icons/favicon.ico'} sizes={'32x32'} />
-          <link
-            rel={'icon'}
-            href={'/icons/favicon.svg'}
-            type={'image/svg+xml'}
-          />
-        </head>
-        <body
-          className={cn(
-            canela.variable,
-            jetbrains.variable,
-            'font-jetbrains text-black',
-          )}
-        >
-          <Providers.Scroll>
+      <Providers.Scroll>
+        <Providers.Root>
+          <head>
+            <link rel={'icon'} href={'/icons/favicon.ico'} sizes={'32x32'} />
+            <link
+              rel={'icon'}
+              href={'/icons/favicon.svg'}
+              type={'image/svg+xml'}
+            />
+          </head>
+          <body
+            className={cn(
+              canela.variable,
+              jetbrains.variable,
+              'font-jetbrains text-black',
+            )}
+          >
             <Header.Root>
               <LocaleSwitch />
             </Header.Root>
             {children}
             <Footer.Root />
-          </Providers.Scroll>
-        </body>
-      </Providers.Root>
+          </body>
+        </Providers.Root>
+      </Providers.Scroll>
     </ViewTransitions>
   )
 }
