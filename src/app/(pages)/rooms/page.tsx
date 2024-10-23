@@ -85,6 +85,7 @@ export default async function RoomsPage() {
       <RoomCategoryCarousel rooms={rooms.deluxe} category={'deluxe'} />
       <RoomCategoryCarousel rooms={rooms.superior} category={'superior'} />
       <RecommendedExperiences
+        className={'mt-12 md:mt-20'}
         experiences={
           roomsPage.recommendedExperiences as unknown as LocalizedObject<Experiences>
         }

@@ -57,20 +57,24 @@ export const RoomCategoryCarousel = ({
   const { locale } = useLocale()
 
   return (
-    <section
-      className={cn(
-        'relative flex flex-col gap-14 w-full h-fit py-12 md:py-20 px-10 md:px-20 pr-0 md:pr-0 transition-all',
-        className,
-      )}
-      {...props}
-    >
-      <h2
-        className={'font-canela text-balance text-5xl md:text-7xl leading-none'}
+    <React.Fragment>
+      <section
+        className={cn(
+          'relative flex flex-col gap-14 w-full h-fit py-12 md:py-20 px-10 md:px-20 pr-0 md:pr-0 transition-all',
+          className,
+        )}
+        {...props}
       >
-        {locale === 'en'
-          ? `${sentenceCase(category)} Rooms`
-          : `${sentenceCase(category)} Δωμάτια`}
-      </h2>
+        <h2
+          className={
+            'font-canela text-balance text-5xl md:text-7xl leading-none'
+          }
+        >
+          {locale === 'en'
+            ? `${sentenceCase(category)} Rooms`
+            : `${sentenceCase(category)} Δωμάτια`}
+        </h2>
+      </section>
       <Carousel
         opts={{
           align: 'start',
@@ -82,18 +86,20 @@ export const RoomCategoryCarousel = ({
             return (
               <CarouselItem
                 key={room.id}
-                className={'md:basis-1/2 lg:basis-2/5 basis-4/5 pr-4 lg:pr-8'}
+                className={cn(
+                  'md:basis-1/2 lg:basis-2/5 basis-4/5 pr-4 lg:pr-8',
+                )}
               >
                 <Link
-                  className={'flex flex-col gap-8 lg:gap-12'}
+                  className={'group flex flex-col gap-8 lg:gap-12'}
                   href={`/room/${room.slug}`}
                 >
-                  <div className={'relative aspect-[1.5]'}>
+                  <div className={'relative aspect-[1.5] overflow-hidden'}>
                     <img
                       src={(room.media.cover as Media).url!}
                       alt={(room.media.cover as Media).alt}
                       className={
-                        'object-cover absolute inset-0 w-full h-full hover:[view-transition-name:active-image]'
+                        'object-cover absolute inset-0 w-full h-full group-hover:scale-105 transition-transform will-change-transform ease-circ-in-out duration-700 hover:[view-transition-name:active-image]'
                       }
                     />
                   </div>
@@ -179,6 +185,6 @@ export const RoomCategoryCarousel = ({
           })}
         </CarouselContent>
       </Carousel>
-    </section>
+    </React.Fragment>
   )
 }
