@@ -2,7 +2,7 @@ import '../globals.css'
 
 import localFont from 'next/font/local'
 
-import React from 'react'
+import type React from 'react'
 import type { Metadata, Viewport } from 'next'
 
 import { JetBrains_Mono } from 'next/font/google'
@@ -45,8 +45,7 @@ export default function PageLayout({
      * @see: https://github.com/shuding/next-view-transitions
      * @see: https://next-view-transitions.vercel.app/
      */
-    <React.Fragment>
-      {/* <ViewTransitions> */}
+    <ViewTransitions>
       <Providers.Scroll>
         <Providers.Root>
           <head>
@@ -72,7 +71,6 @@ export default function PageLayout({
           </body>
         </Providers.Root>
       </Providers.Scroll>
-      {/* </ViewTransitions> */}
-    </React.Fragment>
+    </ViewTransitions>
   )
 }
