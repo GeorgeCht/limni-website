@@ -67,7 +67,10 @@ export const ContactSection = ({
               <p className={'text-balance text-2xl font-canela'}>
                 {paragraph[locale]}
               </p>
-              <HoverFlip.Link href={'/contact'} className={'uppercase'}>
+              <HoverFlip.Link
+                href={'/contact'}
+                className={'uppercase w-fit border-b border-black'}
+              >
                 {locale === 'en' ? 'FAQs' : 'Συχνες ερωτησεις'}
               </HoverFlip.Link>
             </div>
@@ -90,7 +93,10 @@ export const ContactSection = ({
                 <h2 className={'text-balance text-2xl font-canela'}>
                   {staticData.menu.contact.address[locale]}
                 </h2>
-                <HoverFlip.Link href={'/'} className={'uppercase'}>
+                <HoverFlip.Link
+                  href={'/'}
+                  className={'uppercase w-fit border-b border-black'}
+                >
                   {locale === 'en' ? 'Get directions' : 'Οδηγίες'}
                 </HoverFlip.Link>
               </div>

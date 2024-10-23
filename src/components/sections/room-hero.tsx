@@ -15,6 +15,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import type { Media } from '@/payload-types'
 import type { LocalizedString } from '@/lib/locale'
+import { usePathname } from 'next/navigation'
 
 interface Props
   extends Omit<
@@ -53,6 +54,7 @@ export const RoomHero = ({
   const image = React.useRef<HTMLImageElement>(null)
 
   const router = useTransitionRouter()
+  const pathname = usePathname()
   const { locale } = useLocale()
 
   useGSAP(() => {
@@ -88,7 +90,7 @@ export const RoomHero = ({
           },
         },
       )
-  })
+  }, [pathname])
 
   return (
     <React.Fragment>
