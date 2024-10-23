@@ -1,8 +1,9 @@
 'use client'
 
-import type React from 'react'
+import React from 'react'
 
 import { cn } from '@/lib/utils'
+import { HoverFlip } from './hoverflip'
 
 export const Button = ({
   children,
@@ -21,7 +22,11 @@ export const Button = ({
       )}
       {...props}
     >
-      {children}
+      {typeof children === 'string' ? (
+        <HoverFlip.Root>{children}</HoverFlip.Root>
+      ) : (
+        <React.Fragment>{children}</React.Fragment>
+      )}
     </button>
   )
 }
