@@ -1,7 +1,6 @@
 'use client'
 
 import React from 'react'
-import { useScroller } from '@/components/providers/scroll'
 
 export const Wrapper = ({ children }: { children: React.ReactNode }) => {
   React.useEffect(() => {

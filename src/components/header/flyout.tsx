@@ -5,7 +5,7 @@ import gsap from 'gsap'
 
 import { cn } from '@/lib/utils'
 import { useGSAP } from '@gsap/react'
-import { useScroller } from '@/components/providers/scroll'
+import { useLenis } from '@/lib/lenis'
 import { UnderlinedLinkWithImage } from '@/components/ui/underline'
 import { HoverFlip } from '@/components/ui/hoverflip'
 import { staticData } from '@/lib/static'
@@ -29,15 +29,14 @@ export const HeaderFlyout = ({
   className,
   ...props
 }: Props) => {
-  const { scroller } = useScroller()
-
+  const lenis = useLenis()
   const ref = React.useRef<HTMLDivElement>(null)
   const linksRef = React.useRef<Array<HTMLLIElement | null>>([])
   const footerRef = React.useRef<HTMLDivElement>(null)
   const timeline = React.useRef<gsap.core.Timeline | null>(null)
 
   useGSAP(() => {
-    scroller?.stop()
+    lenis?.stop()
     if (isOpen) {
       gsap.fromTo(
         ref.current,
@@ -65,7 +64,7 @@ export const HeaderFlyout = ({
         ease: 'circ.in',
       })
     } else {
-      scroller?.start()
+      lenis?.start()
       if (timeline.current) {
         timeline.current.kill()
       }

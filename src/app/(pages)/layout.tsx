@@ -12,6 +12,7 @@ import { Header } from '@/components/header'
 import { LocaleSwitch } from '@/components/locale/switch'
 import { ViewTransitions } from 'next-view-transitions'
 import { Footer } from '@/components/footer'
+import LenisProvider from '@/components/providers/scroll'
 
 const canela = localFont({
   src: '../../../public/fonts/canela.woff2',
@@ -46,31 +47,29 @@ export default function PageLayout({
      * @see: https://next-view-transitions.vercel.app/
      */
     <ViewTransitions>
-      <Providers.Scroll>
-        <Providers.Root>
-          <head>
-            <link rel={'icon'} href={'/icons/favicon.ico'} sizes={'32x32'} />
-            <link
-              rel={'icon'}
-              href={'/icons/favicon.svg'}
-              type={'image/svg+xml'}
-            />
-          </head>
-          <body
-            className={cn(
-              canela.variable,
-              jetbrains.variable,
-              'font-jetbrains text-black',
-            )}
-          >
-            <Header.Root>
-              <LocaleSwitch />
-            </Header.Root>
-            {children}
-            <Footer.Root />
-          </body>
-        </Providers.Root>
-      </Providers.Scroll>
+      <Providers.Root>
+        <head>
+          <link rel={'icon'} href={'/icons/favicon.ico'} sizes={'32x32'} />
+          <link
+            rel={'icon'}
+            href={'/icons/favicon.svg'}
+            type={'image/svg+xml'}
+          />
+        </head>
+        <body
+          className={cn(
+            canela.variable,
+            jetbrains.variable,
+            'font-jetbrains text-black',
+          )}
+        >
+          <Header.Root>
+            <LocaleSwitch />
+          </Header.Root>
+          <LenisProvider>{children}</LenisProvider>
+          <Footer.Root />
+        </body>
+      </Providers.Root>
     </ViewTransitions>
   )
 }

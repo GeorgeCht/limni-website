@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils'
 import { useLocale } from '@/stores/locale'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { useScroller } from '@/components/providers/scroll'
+import { useLenis } from '@/lib/lenis'
 import { useTransitionRouter } from 'next-view-transitions'
 
 import { Flair } from '@/components/ui/flair'
@@ -44,7 +44,7 @@ export const HeroSection = ({
   ...props
 }: Props) => {
   const { locale } = useLocale()
-  const { scroller } = useScroller()
+  const lenis = useLenis()
 
   const arch = React.useRef<HTMLDivElement>(null)
   const section = React.useRef<HTMLElement>(null)
@@ -162,8 +162,8 @@ export const HeroSection = ({
           <div
             role={'button'}
             onClick={() => {
-              if (scroller) {
-                scroller.scrollTo('#section-1')
+              if (lenis) {
+                lenis?.scrollTo('#section-1')
               } else {
                 if (document) {
                   document.location.hash = '#section-1'

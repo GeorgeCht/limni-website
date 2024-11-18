@@ -12,7 +12,7 @@ import { ArrowUpIcon } from '@/components/vectors/arrow'
 import { staticData } from '@/lib/static'
 
 import { usePathname } from 'next/navigation'
-import { useScroller } from '@/components/providers/scroll'
+import { useLenis } from '@/lib/lenis'
 import { useLocale } from '@/stores/locale'
 
 const Copyright: React.FC = () => {
@@ -46,7 +46,7 @@ const Copyright: React.FC = () => {
 export const FooterRoot = ({
   ...props
 }: React.DetailedHTMLProps<React.HTMLAttributes<HTMLElement>, HTMLElement>) => {
-  const { scroller } = useScroller()
+  const lenis = useLenis()
   const { locale } = useLocale()
   const pathname = usePathname()
 
@@ -134,11 +134,7 @@ export const FooterRoot = ({
                 'w-fit text-[15px] text-[#C7B09C] bg-transparent border border-[#C7B09C]/75'
               }
               onClick={() => {
-                if (scroller) {
-                  scroller.scrollTo(0)
-                } else {
-                  window.scrollTo({ top: 0 })
-                }
+                lenis?.scrollTo(0)
               }}
             >
               <span className={'max-[1380px]:hidden'}>

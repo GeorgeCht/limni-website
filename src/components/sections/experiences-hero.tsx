@@ -8,7 +8,7 @@ import { useLocale } from '@/stores/locale'
 import type { LocalizedString } from '@/lib/locale'
 import type { ExperiencesPage, Media } from '@/payload-types'
 import { ArrowDownIcon } from '@/components/vectors/arrow'
-import { useScroller } from '../providers/scroll'
+import { useLenis } from '@/lib/lenis'
 
 interface Props
   extends Omit<
@@ -20,7 +20,7 @@ interface Props
 
 export const ExperiencesHero = ({ content, className, ...props }: Props) => {
   const { locale } = useLocale()
-  const { scroller } = useScroller()
+  const lenis = useLenis()
 
   return (
     <section
@@ -65,13 +65,7 @@ export const ExperiencesHero = ({ content, className, ...props }: Props) => {
           <div
             role={'button'}
             onClick={() => {
-              if (scroller) {
-                scroller.scrollTo('#experience-0')
-              } else {
-                if (document) {
-                  document.location.hash = '#experience-0'
-                }
-              }
+              lenis?.scrollTo('#experience-0')
             }}
             className={
               'w-fit p-5 cursor-pointer rounded-full border border-black/25 z-10'
