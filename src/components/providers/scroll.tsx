@@ -71,7 +71,8 @@ export const ScrollProvider = ({ children }: { children: React.ReactNode }) => {
 
   React.useEffect(() => {
     if (scroller) {
-      scroller.scrollTo(0)
+      window.scrollTo({ top: 0, behavior: 'instant' })
+      // scroller.scrollTo(0)
     }
   }, [pathname])
 

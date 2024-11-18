@@ -8,9 +8,9 @@ export const RootProvider = ({ children }: { children: React.ReactNode }) => {
   const { locale } = useLocale()
 
   React.useEffect(() => {
-    setTimeout(() => {
-      window.scrollTo({ top: 0, behavior: 'instant' })
-    }, 100)
+    // setTimeout(() => {
+    //   window.scrollTo({ top: 0, behavior: 'instant' })
+    // }, 100)
   }, [])
 
   return (
