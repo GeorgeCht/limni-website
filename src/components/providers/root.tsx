@@ -9,7 +9,7 @@ export const RootProvider = ({ children }: { children: React.ReactNode }) => {
 
   React.useEffect(() => {
     setTimeout(() => {
-      window.scrollTo({ top: 0 })
+      window.scrollTo({ top: 0, behavior: 'instant' })
     }, 100)
   }, [])
 
