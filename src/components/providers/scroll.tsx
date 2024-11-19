@@ -120,6 +120,19 @@ function LenisProvider({
 
   return (
     <React.Fragment>
+      <style jsx global>
+        {`
+          .pin-spacer {
+            padding: 0 !important;
+            height: 85vw !important;
+          }
+          @media (min-width: 1024px) {
+            .pin-spacer {
+              height: 66.6vw !important;
+            }
+          }
+        `}
+      </style>
       <ReactLenis root options={{ autoRaf: false }} ref={lenisRef}>
         {children}
       </ReactLenis>
