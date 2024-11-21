@@ -110,7 +110,7 @@ export const RoomHero = ({
       <section
         ref={section}
         className={cn(
-          'relative w-full max-[564px]:h-[66.6dvh] max-md:h-[50dvh] md:!h-[--gsap-container-height] top-[--gsap-image-top] -mt-[112px] md:-mt-[160px]',
+          'relative w-full max-[564px]:h-[626px] max-md:h-[460px] md:!h-[--gsap-container-height] top-[--gsap-image-top] -mt-[112px] md:-mt-[160px]',
           className,
         )}
         {...props}
