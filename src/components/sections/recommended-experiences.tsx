@@ -199,6 +199,7 @@ export const RecommendedExperiences = ({
                               autoPlay
                               loop
                               muted
+                              playsInline
                               src={experience.video.url!}
                               className={
                                 'absolute top-0 left-0 w-full h-full object-cover opacity-0 group-hover:md:opacity-65 transition-all md:z-[1] group-hover:scale-110 ease-in-out duration-[875ms]'
