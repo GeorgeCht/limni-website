@@ -86,7 +86,6 @@ export const RoomHero = ({
             start: 'top 1%',
             end: 'bottom 25%',
             // end: '+=25vh',
-            markers: true,
             pin: true,
           },
         },
@@ -111,7 +110,7 @@ export const RoomHero = ({
       <section
         ref={section}
         className={cn(
-          'relative w-full max-md:h-dvh md:!h-[--gsap-container-height] top-[--gsap-image-top] -mt-[112px] md:-mt-[160px]',
+          'relative w-full max-[564px]:h-[66.6dvh] max-md:h-[50dvh] md:!h-[--gsap-container-height] top-[--gsap-image-top] -mt-[112px] md:-mt-[160px]',
           className,
         )}
         {...props}
@@ -121,13 +120,13 @@ export const RoomHero = ({
           src={coverImage.url!}
           alt={coverImage.alt}
           className={cn(
-            'relative object-cover size-full scale-[--gsap-image-scale] top-[--gsap-image-top] h-[--gsap-image-height] [view-transition-name:active-image]',
+            'relative object-cover aspect-[3/2] size-full max-lg:hidden scale-[--gsap-image-scale] top-[--gsap-image-top] h-[--gsap-image-height] [view-transition-name:active-image]',
           )}
         />
         <div
           ref={container}
           className={
-            'size-full !h-[--gsap-container-height] top-[--gsap-container-top] min-h-fit absolute inset-0 flex max-lg:flex-col gap-10 text-[--gsap-color-text] justify-end lg:justify-between items-start lg:items-end py-12 md:py-20 px-10 md:px-20 z-10'
+            'size-full !h-[--gsap-container-height] top-[--gsap-container-top] min-h-fit absolute inset-0 flex max-lg:flex-col gap-10 lg:text-[--gsap-color-text] justify-end lg:justify-between items-start lg:items-end py-12 md:py-20 md:pt-36 px-10 md:px-20 z-10'
           }
         >
           <div className={'flex flex-col gap-1 w-full lg:w-[60%]'}>
