@@ -99,6 +99,35 @@ export const RoomsDisplay = ({
     }
   }
 
+  const handleMouseLeave = () => {
+    if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
+      listItems.current.forEach((element) => {
+        gsap.to(element, {
+          width: '32%',
+          ease: 'circ.inOut',
+          duration: 0.475,
+        })
+      })
+
+      // Reset other elements to their original state
+      headings.current.forEach((element) => {
+        gsap.to(element, {
+          scaleX: '100%',
+          scaleY: '100%',
+          marginTop: 10,
+          duration: 0.475,
+        })
+      })
+
+      availabilityCounts.current.forEach((element) => {
+        gsap.to(element, {
+          marginTop: -10,
+          duration: 0.475,
+        })
+      })
+    }
+  }
+
   useGSAP(() => {
     if (typeof window !== 'undefined' && window.innerWidth >= 1024) {
       gsap.to(listItems.current[2], {
@@ -129,7 +158,7 @@ export const RoomsDisplay = ({
       if (window.innerWidth >= 1024) {
         listItems.current.forEach((element) => {
           gsap.to(element, {
-            width: '33.333%',
+            width: '32%',
             duration: 0.275,
           })
         })
@@ -221,6 +250,7 @@ export const RoomsDisplay = ({
               }}
               key={`${category.title}-${index}`}
               onMouseEnter={() => handleMouseEnter(index)}
+              onMouseLeave={handleMouseLeave}
               className={
                 'group relative w-full lg:w-1/3 aspect-square bg-black'
               }

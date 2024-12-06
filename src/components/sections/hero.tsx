@@ -149,7 +149,7 @@ export const HeroSection = ({
       </div>
       <Flair parent={arch}>
         <span className={'text-center p-6'}>
-          {locale === 'en' ? 'Book a room' : 'Καντε κρατηση'}
+          {locale === 'en' ? 'Get directions' : 'Οδηγίες'}
         </span>
       </Flair>
       <div
