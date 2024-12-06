@@ -25,14 +25,15 @@ export const ExperiencesHero = ({ content, className, ...props }: Props) => {
   return (
     <section
       className={cn(
-        'relative bg-white w-full min-h-dvh h-fit -mt-[112px] md:-mt-[160px]',
+        'relative bg-white w-full min-h-[600px] md:min-h-dvh h-fit -mt-[112px] md:-mt-[160px] flex',
         className,
       )}
       {...props}
     >
       <div
         className={
-          'flex flex-col gap-16 min-[1280px]:flex-row size-full absolute py-12 md:py-20 pt-24 md:pt-36 px-10 md:px-20 transition-all'
+          'flex flex-col gap-16 min-[1280px]:flex-row w-full relative py-12 md:py-20 pt-24 md:pt-36 px-10 md:px-20 transition-all'
+          // 'flex flex-col gap-16 min-[1280px]:flex-row w-full py-12 md:py-20 pt-24 md:pt-36 px-10 md:px-20 transition-all relative'
         }
       >
         <div
