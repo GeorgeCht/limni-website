@@ -1,12 +1,16 @@
 'use client'
 
 import type React from 'react'
-import type { LocalizedString } from '@/lib/locale'
+import { useRef } from 'react'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 
+import type { LocalizedString } from '@/lib/locale'
 import { useLocale } from '@/stores/locale'
 import { Button } from '@/components/ui/button'
 import { ArrowOutbound } from '@/components/vectors/arrow'
 import { useTransitionRouter } from 'next-view-transitions'
+import { HoverFlip } from '@/components/ui/hoverflip'
 
 interface LocalizedCTA {
   label: LocalizedString
@@ -35,6 +39,34 @@ export const FAQPage = ({
   const router = useTransitionRouter()
   const { locale } = useLocale()
 
+  // Refs for animating elements
+  const titleRef = useRef<HTMLHeadingElement>(null)
+  const labelRef = useRef<HTMLParagraphElement>(null)
+  const paragraphRef = useRef<HTMLParagraphElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+
+  useGSAP(() => {
+    const tl = gsap.timeline()
+
+    // Animations for title, label, paragraph, and button
+    tl.fromTo(
+      [
+        titleRef.current,
+        labelRef.current,
+        paragraphRef.current,
+        buttonRef.current,
+      ],
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power3.out',
+        stagger: 0.2,
+      },
+    )
+  }, [])
+
   return (
     <section
       className={
@@ -49,22 +81,29 @@ export const FAQPage = ({
         }
       >
         <h1
+          ref={titleRef}
           className={
-            'font-canela uppercase text-balance text-5xl lg:text-6xl min-[1700px]:text-9xl leading-none'
+            'font-canela uppercase text-balance text-5xl lg:text-6xl min-[1700px]:text-9xl leading-none opacity-0'
           }
         >
           {title[locale]}
         </h1>
         <div className={'flex flex-col gap-6 max-w-96'}>
-          <p className={'uppercase'}>{label[locale]}</p>
-          <p className={'text-balance text-xl font-canela'}>
+          <p ref={labelRef} className={'uppercase opacity-0'}>
+            {label[locale]}
+          </p>
+          <p
+            ref={paragraphRef}
+            className={'text-balance text-xl font-canela opacity-0'}
+          >
             {paragraph[locale]}
           </p>
           <Button
-            className={'w-fit flex gap-10'}
+            ref={buttonRef}
+            className={'w-fit flex gap-10 opacity-0'}
             onClick={() => router.push(cta.url)}
           >
-            <span>{cta.label[locale]}</span>
+            <HoverFlip.Root>{cta.label[locale] as string}</HoverFlip.Root>
             <ArrowOutbound className={'size-3.5'} />
           </Button>
         </div>

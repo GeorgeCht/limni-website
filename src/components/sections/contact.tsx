@@ -1,10 +1,12 @@
 'use client'
 
-import type React from 'react'
+import React from 'react'
+import gsap from 'gsap'
 
 import { cn } from '@/lib/utils'
 import { HoverFlip } from '@/components/ui/hoverflip'
 import { useLocale } from '@/stores/locale'
+import { useGSAP } from '@gsap/react'
 
 import type { LocalizedString } from '@/lib/locale'
 import { staticData } from '@/lib/static'
@@ -26,8 +28,51 @@ export const ContactSection = ({
 }: Props) => {
   const { locale } = useLocale()
 
+  // Refs for animating elements
+  const sectionRef = React.useRef<HTMLElement>(null)
+  const titleRef = React.useRef<HTMLHeadingElement>(null)
+  const paragraphRef = React.useRef<HTMLParagraphElement>(null)
+  const faqLinkRef = React.useRef<HTMLAnchorElement>(null)
+  const phoneRef = React.useRef<HTMLDivElement>(null)
+  const addressRef = React.useRef<HTMLDivElement>(null)
+  const emailRef = React.useRef<HTMLDivElement>(null)
+  const socialMediaRef = React.useRef<HTMLUListElement>(null)
+  const imageSectionRef = React.useRef<HTMLDivElement>(null)
+  const legalLinksRef = React.useRef<HTMLDivElement>(null)
+
+  useGSAP(() => {
+    const tl = gsap.timeline()
+
+    // Animate all elements simultaneously with shorter durations
+    tl.fromTo(
+      [
+        titleRef.current,
+        paragraphRef.current,
+        faqLinkRef.current,
+        phoneRef.current,
+        addressRef.current,
+        emailRef.current,
+        socialMediaRef.current?.children!,
+        imageSectionRef.current,
+        legalLinksRef.current?.children!,
+      ],
+      {
+        opacity: 0,
+        y: 30,
+      },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power3.out',
+        stagger: 0.05,
+      },
+    )
+  }, [])
+
   return (
     <section
+      ref={sectionRef}
       className={cn(
         'relative w-full h-dvh -mt-[112px] md:-mt-[160px]',
         className,
@@ -35,8 +80,9 @@ export const ContactSection = ({
       {...props}
     >
       <div
+        ref={imageSectionRef}
         className={
-          'absolute top-0 max-[1280px]:left-[100%] left-[60%] w-2/5 max-[1280px]:w-0 h-dvh overflow-hidden transition-all'
+          'absolute top-0 max-[1280px]:left-[100%] left-[60%] w-2/5 max-[1280px]:w-0 h-dvh overflow-hidden transition-all opacity-0'
         }
       >
         <img
@@ -52,8 +98,9 @@ export const ContactSection = ({
       >
         <div className={'flex flex-col gap-10 lg:gap-16'}>
           <h1
+            ref={titleRef}
             className={
-              'font-canela uppercase text-balance text-6xl md:text-8xl leading-none max-w-[768px]'
+              'font-canela uppercase text-balance text-6xl md:text-8xl leading-none max-w-[768px] opacity-0'
             }
           >
             {title[locale]}
@@ -64,17 +111,25 @@ export const ContactSection = ({
             }
           >
             <div className={'flex flex-col gap-4'}>
-              <p className={'text-balance text-2xl font-canela'}>
+              <p
+                ref={paragraphRef}
+                className={'text-balance text-2xl font-canela opacity-0'}
+              >
                 {paragraph[locale]}
               </p>
               <HoverFlip.Link
+                // @ts-expect-error
+                ref={faqLinkRef}
                 href={'/contact'}
-                className={'uppercase w-fit border-b border-black'}
+                className={'uppercase w-fit border-b border-black opacity-0'}
               >
                 {locale === 'en' ? 'FAQs' : 'Συχνες ερωτησεις'}
               </HoverFlip.Link>
             </div>
-            <div className={'flex flex-col gap-12 lg:gap-16'}>
+            <div
+              ref={phoneRef}
+              className={'flex flex-col gap-12 lg:gap-16 opacity-0'}
+            >
               <div className={'flex flex-col gap-4'}>
                 <p className={'uppercase text-sm'}>
                   {locale === 'en' ? 'Give us a call' : 'Τηλ επικοινωνιας'}
@@ -86,7 +141,7 @@ export const ContactSection = ({
                   {staticData.menu.contact.phone}
                 </HoverFlip.Link>
               </div>
-              <div className={'flex flex-col gap-4'}>
+              <div ref={addressRef} className={'flex flex-col gap-4 opacity-0'}>
                 <p className={'uppercase text-sm'}>
                   {locale === 'en' ? 'Address' : 'Διεύθυνση'}
                 </p>
@@ -102,7 +157,10 @@ export const ContactSection = ({
               </div>
             </div>
 
-            <div className={'flex flex-col gap-12 lg:gap-16'}>
+            <div
+              ref={emailRef}
+              className={'flex flex-col gap-12 lg:gap-16 opacity-0'}
+            >
               <div className={'flex flex-col gap-4'}>
                 <p className={'uppercase text-sm'}>
                   {locale === 'en' ? 'Send us a mail' : 'Στειλτε μας email'}
@@ -118,7 +176,10 @@ export const ContactSection = ({
                 <p className={'uppercase text-sm'}>
                   {locale === 'en' ? 'Follow us' : 'Social Media'}
                 </p>
-                <ul className={'flex flex-col items-start justify-start gap-2'}>
+                <ul
+                  ref={socialMediaRef}
+                  className={'flex flex-col items-start justify-start gap-2'}
+                >
                   {staticData.menu.socialMedia.map((link, index) => (
                     <li
                       key={`${link.href}-${index}`}
@@ -138,25 +199,26 @@ export const ContactSection = ({
           </div>
         </div>
         <div
+          ref={legalLinksRef}
           className={
             'flex lg:flex-row flex-col gap-10 lg:gap-20 *:w-full *:lg:w-1/3'
           }
         >
           <HoverFlip.Link
             href={staticData.footer.legal.privacy.href}
-            className={'uppercase'}
+            className={'uppercase opacity-0'}
           >
             {staticData.footer.legal.privacy.label[locale]}
           </HoverFlip.Link>
           <HoverFlip.Link
             href={staticData.footer.legal.terms.href}
-            className={'uppercase'}
+            className={'uppercase opacity-0'}
           >
             {staticData.footer.legal.terms.label[locale]}
           </HoverFlip.Link>
           <HoverFlip.Link
             href={staticData.footer.legal.residency.href}
-            className={'uppercase'}
+            className={'uppercase opacity-0'}
           >
             {staticData.footer.legal.residency.label[locale]}
           </HoverFlip.Link>

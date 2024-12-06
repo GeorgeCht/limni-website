@@ -1,12 +1,14 @@
 'use client'
 
 import type React from 'react'
+import { useRef } from 'react'
+import gsap from 'gsap'
+import { useGSAP } from '@gsap/react'
 
+import type { LocalizedString } from '@/lib/locale'
 import { cn } from '@/lib/utils'
 import { HoverFlip } from '@/components/ui/hoverflip'
 import { useLocale } from '@/stores/locale'
-
-import type { LocalizedString } from '@/lib/locale'
 
 interface Props
   extends React.DetailedHTMLProps<
@@ -25,6 +27,28 @@ export const ExperienceHero = ({
 }: Props) => {
   const { locale } = useLocale()
 
+  // Refs for animating elements
+  const headingRef = useRef<HTMLHeadingElement>(null)
+  const descriptionRef = useRef<HTMLParagraphElement>(null)
+  const buttonRef = useRef<HTMLAnchorElement>(null)
+
+  useGSAP(() => {
+    const tl = gsap.timeline()
+
+    // Animations for heading, description, and button
+    tl.fromTo(
+      [headingRef.current, descriptionRef.current, buttonRef.current],
+      { opacity: 0, y: 30 },
+      {
+        opacity: 1,
+        y: 0,
+        duration: 0.6,
+        ease: 'power3.out',
+        stagger: 0.2,
+      },
+    )
+  }, [])
+
   return (
     <section
       className={cn(
@@ -35,18 +59,27 @@ export const ExperienceHero = ({
     >
       <div className={'flex flex-col gap-1 w-full lg:w-[60%] overflow-hidden'}>
         <h1
+          ref={headingRef}
           className={
-            'font-canela uppercase text-balance text-6xl md:text-8xl leading-none max-w-[768px]'
+            'font-canela uppercase text-balance text-6xl md:text-8xl leading-none max-w-[768px] opacity-0'
           }
         >
           {locale === 'en' ? name.en : name.el}
         </h1>
       </div>
       <div className={'flex flex-col gap-3 w-full lg:w-[40%]'}>
-        <p className={'text-balance text-xl font-canela'}>
+        <p
+          ref={descriptionRef}
+          className={'text-balance text-xl font-canela opacity-0'}
+        >
           {locale === 'en' ? description.en : description.el}
         </p>
-        <HoverFlip.Link href={'/contact'} className={'uppercase'}>
+        <HoverFlip.Link
+          // @ts-expect-error
+          ref={buttonRef}
+          href={'/contact'}
+          className={'uppercase opacity-0'}
+        >
           {locale === 'en' ? 'Contact us' : 'Επικοινωνία'}
         </HoverFlip.Link>
       </div>
