@@ -99,7 +99,7 @@ export const RoomCategoryCarousel = ({
                       src={(room.media.cover as Media).url!}
                       alt={(room.media.cover as Media).alt}
                       className={
-                        'object-cover absolute inset-0 w-full h-full group-hover:scale-105 transition-transform will-change-transform ease-circ-in-out duration-700 hover:[view-transition-name:active-image]'
+                        'object-cover absolute inset-0 w-full h-full group-hover:scale-105 transition-transform will-change-transform ease-in duration-200 hover:[view-transition-name:active-image]'
                       }
                     />
                   </div>
