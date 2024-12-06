@@ -103,9 +103,11 @@ const TextSection = ({
       </div>
       <div className={'flex flex-row items-center gap-14'}>
         <Button onClick={() => router.push(primaryButton.url)}>
-          {locale === 'en'
-            ? (primaryButton.text.en as string)
-            : (primaryButton.text.el as string)}
+          <HoverFlip.Root>
+            {locale === 'en'
+              ? (primaryButton.text.en as string)
+              : (primaryButton.text.el as string)}
+          </HoverFlip.Root>
           <ArrowOutbound className={'ml-4'} />
         </Button>
         {secondaryButton && (

@@ -137,9 +137,9 @@ export const FooterRoot = ({
                 lenis?.scrollTo(0)
               }}
             >
-              <span className={'max-[1380px]:hidden'}>
+              <HoverFlip.Root className={'max-[1380px]:hidden'}>
                 {staticData.footer.backToTop.label[locale]}
-              </span>
+              </HoverFlip.Root>
               <ArrowUpIcon className={'size-3.5'} />
             </Button>
           </div>
