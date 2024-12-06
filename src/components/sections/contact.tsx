@@ -79,12 +79,12 @@ export const ContactSection = ({
                 <p className={'uppercase text-sm'}>
                   {locale === 'en' ? 'Give us a call' : 'Τηλ επικοινωνιας'}
                 </p>
-                <a
+                <HoverFlip.Link
                   href={`tel:${staticData.menu.contact.phone}`}
                   className={'text-2xl font-canela'}
                 >
                   {staticData.menu.contact.phone}
-                </a>
+                </HoverFlip.Link>
               </div>
               <div className={'flex flex-col gap-4'}>
                 <p className={'uppercase text-sm'}>
@@ -107,12 +107,12 @@ export const ContactSection = ({
                 <p className={'uppercase text-sm'}>
                   {locale === 'en' ? 'Send us a mail' : 'Στειλτε μας email'}
                 </p>
-                <a
+                <HoverFlip.Link
                   href={`mailto:${staticData.menu.contact.email}`}
                   className={'text-2xl font-canela'}
                 >
                   {staticData.menu.contact.email}
-                </a>
+                </HoverFlip.Link>
               </div>
               <div className={'flex flex-col gap-4'}>
                 <p className={'uppercase text-sm'}>
@@ -124,14 +124,12 @@ export const ContactSection = ({
                       key={`${link.href}-${index}`}
                       className={'flex items-center gap-1'}
                     >
-                      <a
+                      <HoverFlip.Link
                         className={'text-balance text-2xl font-canela'}
-                        target={'_blank'}
                         href={link.href}
-                        rel={'noreferrer'}
                       >
                         {link.label}
-                      </a>
+                      </HoverFlip.Link>
                     </li>
                   ))}
                 </ul>
