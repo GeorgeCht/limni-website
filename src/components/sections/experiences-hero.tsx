@@ -33,7 +33,6 @@ export const ExperiencesHero = ({ content, className, ...props }: Props) => {
       <div
         className={
           'flex flex-col gap-16 min-[1280px]:flex-row w-full relative py-12 md:py-20 pt-24 md:pt-36 px-10 md:px-20 transition-all'
-          // 'flex flex-col gap-16 min-[1280px]:flex-row w-full py-12 md:py-20 pt-24 md:pt-36 px-10 md:px-20 transition-all relative'
         }
       >
         <div

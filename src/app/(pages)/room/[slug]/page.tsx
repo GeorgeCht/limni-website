@@ -113,7 +113,7 @@ export default async function RoomPage({
         coverImage={room.media.cover as Media}
       />
       <ImageCarousel
-        className={'pt-16 lg:pt-24'}
+        className={'pt-16 lg:pt-44'}
         images={room.media.images as Array<Media>}
       />
       <InfoTextCTA
